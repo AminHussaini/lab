@@ -143,7 +143,7 @@ include('inc/connection.php');
   <main class="body-content ms-lock-screen">
     <!-- Body Content Wrapper -->
     <div class="ms-content-wrapper">
-      <img class="ms-user-img ms-img-round ms-lock-screen-user" src="./assets/website/user/<?php echo $_SESSION["user_image"] ?>" alt="logo_<?php echo $_SESSION["user_image"] ?>">
+      <img class="ms-user-img ms-img-round ms-lock-screen-user" src="./assets/user_image/<?php echo $_SESSION["user_image"] ?>" alt="logo_<?php echo $_SESSION["user_image"] ?>">
       <h1><?php echo $_SESSION["user_name"] ?></h1>
       <form method="POST">
         <div class="ms-form-group my-0 mb-0 has-icon fs-14">

@@ -57,7 +57,7 @@
                     if ($_SESSION["Id"] != $row['Id']) {
                     echo "<tr>
                       <td>" . $i . "</td>
-                      <td><div class='img-session'><img src='assets/website/user/" . $row['image'] . "'/></div></td>
+                      <td><div class='img-session'><img src='assets/user_image/" . $row['image'] . "'/></div></td>
                       <td>" . $row['name'] . "</td>
                       <td class='email'>" . $row['email'] . "</td>
                       <td>" . $row['password'] . "</td>
@@ -66,20 +66,20 @@
 
                     if ($row['status'] == "Pending") {
                       echo "
-                       <span>Pending &nbsp;</span>
+                       <span>Block &nbsp;</span>
                         <label class='ms-switch'>
                           <input type='checkbox' class='change-user-permission' id=" . $row['Id'] . " >
                           <span class='ms-switch-slider ms-switch-warning round'></span>
                         </label>
-                        <span> &nbsp;Accept</span>";
+                        <span> &nbsp;Allow</span>";
                     } else {
                       echo "
-                        <span>Pending &nbsp;</span>
+                        <span>Block &nbsp;</span>
                         <label class='ms-switch'>
                         <input type='checkbox' class='change-user-permission' checked id=" . $row['Id'] . ">
                         <span class='ms-switch-slider ms-switch-warning round'></span>
                         </label>
-                        <span> &nbsp;Accept</span>";
+                        <span> &nbsp;Allow</span>";
                     }
 
                     echo "</form>
