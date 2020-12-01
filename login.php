@@ -9,7 +9,7 @@
     <div class="ms-auth-col">
       <div class="ms-auth-form">
         <form class="needs-validation" method="post" novalidate="">
-          <h1>Login to Accounts</h1>
+          <h1>Login to FOrget</h1>
           <p>Please enter your email and password to continue</p>
           <div class="mb-3">
             <label for="validationCustom08">Email Address</label>
