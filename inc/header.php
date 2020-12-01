@@ -108,7 +108,7 @@ if (isset($_SESSION["user_lock"])) {
           </ul>
         </li>
         <li class="ms-nav-item ms-nav-user dropdown">
-          <a href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img class="ms-user-img ms-img-round float-right" src="assets/website/user/<?php echo $_SESSION["user_image"] ?>" alt="logo_<?php echo $_SESSION["user_image"] ?>"> </a>
+          <a href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img class="ms-user-img ms-img-round float-right" src="assets/user_image/<?php echo $_SESSION["user_image"] ?>" alt="logo_<?php echo $_SESSION["user_image"] ?>"> </a>
           <ul class="dropdown-menu dropdown-menu-right user-dropdown" aria-labelledby="userDropdown">
             <li class="dropdown-menu-header">
               <h6 class="dropdown-header ms-inline m-0"><span class="text-disabled">Welcome, Ms. <?php echo $_SESSION["user_name"] ?></span></h6>

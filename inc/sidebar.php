@@ -6,7 +6,7 @@
     <!-- Logo -->
     <div class="logo-sn ms-d-block-lg">
       <a class="pl-0 ml-0 text-center" href="index-2.html"> <img src="assets/img/toola.png" alt="logo"> </a>
-      <a href="#" class="text-center ms-logo-img-link"> <img src="assets/website/user/<?php echo $_SESSION["user_image"] ?>" alt="logo_<?php echo $_SESSION["user_image"] ?>"></a>
+      <a href="#" class="text-center ms-logo-img-link"> <img src="assets/user_image/<?php echo $_SESSION["user_image"] ?>" alt="logo_<?php echo $_SESSION["user_image"] ?>"></a>
       <h5 class="text-center text-white mt-2">Ms. <?php echo $_SESSION["user_name"] ?></h5>
       <h6 class="text-center text-white mb-3"><?php echo $_SESSION["user_role"] ?></h6>
     </div>

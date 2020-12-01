@@ -87,45 +87,43 @@ if (isset($_POST["btn"])) {
   $default = "later";
   $file = $_FILES["file"]["name"];
 
-  // echo  $name.' '. $email.' '. $pass.' '. $role.' '. $status.' '. $file.' ';
-  // die("asdasd");
   $a = mysqli_query($con, "insert into register values(null,'$name','$email','$pass','$role','$status','$file')");
 
   if ($a) {
-    $target_dir = "C:/xampp/htdocs/aptechProject/lab/assets/website/user";
+    $target_dir = "C:/xampp/htdocs/aptechProject/lab/assets/user_image/";
     $target_file = $target_dir . basename($_FILES["file"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    $check = getimagesize($_FILES["file"]["tmp_name"]);
-    if ($check !== false) {
-      echo '
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>File is an image - "'. $check["mime"] . '"."</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>';
-      $uploadOk = 1;
-    } else {
-      echo '
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>File is not an image.</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>';
-      $uploadOk = 0;
-    }
-    if (file_exists($target_file)) {
-      echo '
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Sorry, file already exists.Please change your file name.</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>';
-      $uploadOk = 0;
-    }
+    // $check = getimagesize($_FILES["file"]["tmp_name"]);
+    // if ($check !== false) {
+    //   echo '
+    //   <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    //     <strong>File is an image - "'. $check["mime"] . '"."</strong>
+    //     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    //       <span aria-hidden="true">&times;</span>
+    //     </button>
+    //   </div>';
+    //   $uploadOk = 1;
+    // } else {
+    //   echo '
+    //   <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    //     <strong>File is not an image.</strong>
+    //     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    //       <span aria-hidden="true">&times;</span>
+    //     </button>
+    //   </div>';
+    //   $uploadOk = 0;
+    // }
+    // if (file_exists($target_file)) {
+    //   echo '
+    //   <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    //     <strong>Sorry, file already exists.Please change your file name.</strong>
+    //     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    //       <span aria-hidden="true">&times;</span>
+    //     </button>
+    //   </div>';
+    //   $uploadOk = 0;
+    // }
     // Check file size 1mb
     if ($_FILES["file"]["size"] > 1000000) {
       echo '
