@@ -1,4 +1,4 @@
-<?php include "inc/header.php"?>
+<?php $title="Dashboard"; include "inc/header.php"?>
 
 <!-- Body Content Wrapper -->
   <div class="ms-content-wrapper">

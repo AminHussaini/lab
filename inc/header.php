@@ -9,18 +9,23 @@ if (isset($_SESSION["user_lock"])) {
   header("Location:lock-screen.php");
   // exit();
 }
+<<<<<<< Updated upstream
 if ($_SERVER['REQUEST_URI'] != "/aptechProject/lab/product-category.php") {
   $_SESSION["editCategoryPanel"] = "close";
 }
 
 ?><!DOCTYPE html>
+=======
+?>
+<!DOCTYPE html>
+>>>>>>> Stashed changes
 <html lang="en">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Toola Board</title>
+  <title><?php if (isset($title)) {echo $title;} else{echo "Toola Board";} ?></title>
   <!-- Iconic Fonts -->
   <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
   <link href="vendors/iconic-fonts/material/font.css" rel="stylesheet">

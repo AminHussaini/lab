@@ -1,4 +1,5 @@
 <?php
+$title="Screen Lock";
 session_start();
 $_SESSION["user_lock"] = $_SESSION["Id"];
 include('inc/connection.php');
