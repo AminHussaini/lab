@@ -1,4 +1,4 @@
-<?php include "inc/header.php";
+<?php $title="Porfile"; include "inc/header.php";
 error_reporting(0); ?>
 
 <!-- Main Content -->
@@ -45,7 +45,7 @@ error_reporting(0); ?>
                 <tr>
                   <td colspan='2'>
                     <!-- ?EDIT= WILL HELP US TO GET THE ID IN EDIT PAGE, EDIT IS THE NAME WHERE ID STORE-->
-                    <a class="btn btn-primary mt-4 d-block w-5 text-white">Edit Profile</a>
+                    <a class="btn btn-primary mt-4 d-block w-5 text-white" id="edit-profile">Edit Profile</a>
                   </td>
                 </tr>
               </tbody>
@@ -111,6 +111,9 @@ error_reporting(0); ?>
 
 <?php include "inc/footer.php" ?>
 <script>
+
+
+ 
   $(document).ready(function() {
     $("#update_user").on('submit', (function(e) {
       // alert("aaaa");
@@ -128,5 +131,22 @@ error_reporting(0); ?>
         }
       });
     }));
+    $(".view-profile .btn-primary").on("click", function () {
+    $(this).closest('.view-profile').hide();
+    
+    $('.edit-profile').show();
+  });
+  $(".edit-profile .btn-success").on("click", function () {
+    $('.view-profile').show();
+    $('.edit-profile').hide();
+  });
+
+  $(document).on("click","#edit-profile", function () {
+    $(this).closest('.view-profile').hide();
+    
+    $('.edit-profile').show();
+   
+  });
   })
+
 </script>

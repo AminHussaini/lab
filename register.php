@@ -87,9 +87,6 @@ if (isset($_POST["btn"])) {
   $default = "later";
   $file = $_FILES["file"]["name"];
 
-<<<<<<< Updated upstream
-=======
-
 
   $qurey_em=mysqli_query($con,"select * from register where email='$email'");
 
@@ -103,10 +100,7 @@ if (isset($_POST["btn"])) {
     </div>';
   }
   else{
-
-  $a = mysqli_query($con, "insert into register values(null,'$name','$email','$pass','$role','$status','$file')");
->>>>>>> Stashed changes
-
+    
 
     $target_dir = "C:/xampp/htdocs/aptechProject/lab/assets/user_image/";
     $target_file = $target_dir . basename($_FILES["file"]["name"]);
@@ -168,6 +162,8 @@ if (isset($_POST["btn"])) {
     //   </div>';
     // }
 
+  }
+
   } else {
     echo '
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -178,13 +174,6 @@ if (isset($_POST["btn"])) {
       </div>';
   }
 
-<<<<<<< Updated upstream
-=======
-  }
-
-}
-// id	name	email	password	role	status	image
->>>>>>> Stashed changes
 
 ?>
 

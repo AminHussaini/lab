@@ -7,7 +7,7 @@
    <div class="logo-sn ms-d-block-lg">
      <a class="pl-0 ml-0 text-center" href="index-2.html"> <img src="assets/img/toola.png" alt="logo"> </a>
      <a href="#" class="text-center ms-logo-img-link"> <img onerror="this.src='assets/user_image/user-default.png'" src="assets/user_image/<?php echo $_SESSION["user_image"] ?>" alt="logo_<?php echo $_SESSION["user_image"] ?>"></a>
-     <h5 class="text-center text-white mt-2">Ms. <?php echo $_SESSION["user_name"] ?></h5>
+     <h5 class="text-center text-white mt-2"><?php echo $_SESSION["user_name"] ?></h5>
      <h6 class="text-center text-white mb-3"><?php echo $_SESSION["user_role"] ?></h6>
    </div>
    <!-- Navigation -->
@@ -65,6 +65,30 @@
         </li>
         ";
       }
+      
+      if ($_SESSION["user_role"] == "CPRI") {
+        echo "
+        <li class='menu-item'>
+          <a href='#' class='has-chevron' data-toggle='collapse' data-target='#dashboard' aria-expanded='false' aria-controls='dashboard'>
+            <span><i class='material-icons fs-16'>dashboard</i>CPRI Dashboard </span>
+          </a>
+          <ul id='dashboard' class='collapse' aria-labelledby='dashboard' data-parent='#side-nav-accordion'>
+            <li> <a href='#'>Toola Board</a> </li>
+          </ul>
+        </li>
+        <li class='menu-item'>
+          <a href='#' class='has-chevron collapsed' data-toggle='collapse' data-target='#Testing' aria-expanded='false' aria-controls='department'>
+          <span><i class='fas fa-archive'></i>Testing</span>
+          </a>
+          <ul id='Testing' class='collapse' aria-labelledby='Testing' data-parent='#side-nav-accordion' style=''>
+            <li> <a href='Testing-category.php'>Testing Category</a> </li>
+            <li> <a href='add-Testing.php'>Add Testing</a> </li>
+            <li> <a href='Testing-list.php'>Testing List</a> </li>
+          </ul>
+        </li>
+        ";
+      }
+
       ?>
 
    </ul>

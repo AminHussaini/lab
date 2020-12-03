@@ -1,4 +1,4 @@
-<?php include "inc/header.php" ?>
+<?php $title="Product Categories"; include "inc/header.php"; ?>
 <?php include "inc/connection.php";
 $return_var = '<script type="text/javascript">
 window.location = "' . $url . 'dashboard.php"
