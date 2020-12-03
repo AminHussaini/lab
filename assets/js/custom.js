@@ -19,7 +19,6 @@ $(document).ready(function () {
     icon = passwordStatus.attr("type") === "password" ? "fas fa-eye-slash" : "fas fa-eye";
     $(this).attr("class", icon)
   })
-  
 
 });
 

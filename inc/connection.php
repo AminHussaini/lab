@@ -3,7 +3,7 @@
 $con = mysqli_connect("localhost", "root", "", "lab");
 
 
-$url = "http://localhost:8080/aptechProject/lab/";
+$url = "http://localhost/aptechProject/lab/";
 
 if (!$con) {
   echo "connection fail";
@@ -235,64 +235,59 @@ if (isset($_POST["currentId"])) {
       </div>';
   }
 }
-
 // Edit category product
 if (isset($_POST["currentIdEdit"])) {
   session_start();
-  $_SESSION["editCategoryId"] = $_POST["currentIdEdit"];
-  $_SESSION["editCategoryPanel"] = "open";
-  echo $_SESSION["editCategoryId"];
+  extract($_POST);
+  $query = "Select * from producttype where ProductTypeId=$currentIdEdit";
+  $result = mysqli_query($con, $query);
+  if ($result) {
+    $row = mysqli_fetch_array($result);
+  }
+  $categoryName = $row["ProductName"];
+  $categoryDescription = $row["ProductDescription"];
+  echo   $currentIdEdit . "(array)" . $categoryName . "(array)" . $categoryDescription;
 }
-if (isset($_POST["panelCategoryClose"])) {
-  session_start();
-  $_SESSION["editCategoryPanel"] = $_POST["panelCategoryClose"];
-}
-
-if (isset($_POST['updateProductName']) && isset($_POST['updateProductDescription'])) {
+if (isset($_POST["updateProductId"]) && isset($_POST["updateProductDescription"])) {
   session_start();
   date_default_timezone_set("Asia/Karachi");
+  $updateProductId = $_POST['updateProductId'];
   $updateProduct_name = $_POST['updateProductName'];
   $updateProduct_description = $_POST['updateProductDescription'];
   $updateProduct_Category_user = $_SESSION['Id'];
-  $updateProduct_Id = $_SESSION["editCategoryId"];
   $updateProductDate = date('Y-m-d h:ia');
-  $exitQuery = "select * from producttype where ProductName='" . $updateProduct_name . "'";
+
+  $exitQuery = "select * from producttype where ProductTypeId = $updateProductId";
   $result = mysqli_query($con, $exitQuery) or die("Query Failed");
   $row = mysqli_fetch_assoc($result);
-  if ($_POST['updateProductName'] != $row['ProductName'] || $_POST['updateProductDescription'] != $row['ProductDescription']) {
-    $productQuery = "UPDATE producttype SET ProductName = '" . $updateProduct_name . "', ProductDescription = '" . $updateProduct_description . "', ProductCateDate = '" . $updateProductDate . "', ProductCateAddUser = " . $updateProduct_Category_user . "  WHERE ProductTypeId = $updateProduct_Id";
-    echo $productQuery;
-    if (mysqli_query($con, $productQuery)) {
-      echo '
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Product category is update</strong>
+  if ($_POST['updateProductName'] != $row['ProductName']) {
+    echo "query";
+    $productQuery = "UPDATE producttype SET ProductName = '" . $updateProduct_name . "', ProductDescription = '" . $updateProduct_description . "', ProductCateDate = '" . $updateProductDate . "', ProductCateAddUser = " . $updateProduct_Category_user . "  WHERE ProductTypeId = $updateProductId";
+    $result = mysqli_query($con, $productQuery) or die("Query Failed");
+    if ($result) {
+      echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Category Update.</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
-         ';
-      echo '<script type="text/javascript">
-               window.location = "' . $url . 'product-category.php"
-          </script>';
-      $_SESSION["editCategoryPanel"] = "close";
+          </div>';
     } else {
-      echo '
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Something went wrong.</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>';
+      echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Some went wrong</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
     }
   } else {
-    echo '
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>This category is already is added.</strong>
+    echo '    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>This category is already exit.</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>';
   }
 }
+
 
 ?>
