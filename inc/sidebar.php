@@ -7,7 +7,7 @@
    <div class="logo-sn ms-d-block-lg">
      <a class="pl-0 ml-0 text-center" href="index-2.html"> <img src="assets/img/toola.png" alt="logo"> </a>
      <a href="#" class="text-center ms-logo-img-link"> <img onerror="this.src='assets/user_image/user-default.png'" src="assets/user_image/<?php echo $_SESSION["user_image"] ?>" alt="logo_<?php echo $_SESSION["user_image"] ?>"></a>
-     <h5 class="text-center text-white mt-2">Ms. <?php echo $_SESSION["user_name"] ?></h5>
+     <h5 class="text-center text-white mt-2">Mr. <?php echo $_SESSION["user_name"] ?></h5>
      <h6 class="text-center text-white mb-3"><?php echo $_SESSION["user_role"] ?></h6>
    </div>
    <!-- Navigation -->
@@ -77,13 +77,13 @@
           </ul>
         </li>
         <li class='menu-item'>
-          <a href='#' class='has-chevron collapsed' data-toggle='collapse' data-target='#testing' aria-expanded='false' aria-controls='department'>
-          <span><i class='fas fa-archive'></i>testing</span>
+          <a href='#' class='has-chevron collapsed' data-toggle='collapse' data-target='#Testing' aria-expanded='false' aria-controls='department'>
+          <span><i class='fas fa-archive'></i>Testing</span>
           </a>
-          <ul id='testing' class='collapse' aria-labelledby='testing' data-parent='#side-nav-accordion' style=''>
-            <li> <a href='testing-category.php'>Testing Category</a> </li>
-            <li> <a href='add-testing.php'>Add testing</a> </li>
-            <li> <a href='testing-list.php'>testing List</a> </li>
+          <ul id='Testing' class='collapse' aria-labelledby='Testing' data-parent='#side-nav-accordion' style=''>
+            <li> <a href='Testing-category.php'>Testing Category</a> </li>
+            <li> <a href='add-Testing.php'>Add Testing</a> </li>
+            <li> <a href='Testing-list.php'>Testing List</a> </li>
           </ul>
         </li>
         ";

@@ -87,25 +87,6 @@ if (isset($_POST["btn"])) {
   $default = "later";
   $file = $_FILES["file"]["name"];
 
-<<<<<<< Updated upstream
-=======
-
-
-  $qurey_em=mysqli_query($con,"select * from register where email='$email'");
-
-  if(mysqli_num_rows($qurey_em) >0){
-    echo '
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>Sorry, your Email are already Exists.</strong>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>';
-  }
-  else{
-
-  $a = mysqli_query($con, "insert into register values(null,'$name','$email','$pass','$role','$status','$file')");
->>>>>>> Stashed changes
 
 
     $target_dir = "C:/xampp/htdocs/aptechProject/lab/assets/user_image/";
@@ -178,13 +159,6 @@ if (isset($_POST["btn"])) {
       </div>';
   }
 
-<<<<<<< Updated upstream
-=======
-  }
-
-}
-// id	name	email	password	role	status	image
->>>>>>> Stashed changes
 
 ?>
 
