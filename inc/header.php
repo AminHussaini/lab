@@ -9,16 +9,11 @@ if (isset($_SESSION["user_lock"])) {
   header("Location:lock-screen.php");
   // exit();
 }
-<<<<<<< Updated upstream
 if ($_SERVER['REQUEST_URI'] != "/aptechProject/lab/product-category.php") {
   $_SESSION["editCategoryPanel"] = "close";
 }
 
 ?><!DOCTYPE html>
-=======
-?>
-<!DOCTYPE html>
->>>>>>> Stashed changes
 <html lang="en">
 
 <head>
