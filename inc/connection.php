@@ -3,7 +3,7 @@
 $con = mysqli_connect("localhost", "root", "", "lab");
 
 
-$url = "http://localhost/aptechProject/lab/";
+$url = "http://localhost:8080/aptechProject/lab/";
 
 if (!$con) {
   echo "connection fail";

@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_URI'] != "/aptechProject/lab/product-category.php") {
           <a href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img onerror="this.src='assets/user_image/user-default.png'" class="ms-user-img ms-img-round float-right" src="assets/user_image/<?php echo $_SESSION["user_image"] ?>" alt="logo_<?php echo $_SESSION["user_image"] ?>"> </a>
           <ul class="dropdown-menu dropdown-menu-right user-dropdown" aria-labelledby="userDropdown">
             <li class="dropdown-menu-header">
-              <h6 class="dropdown-header ms-inline m-0"><span class="text-disabled">Welcome, Ms. <?php echo $_SESSION["user_name"] ?></span></h6>
+              <h6 class="dropdown-header ms-inline m-0"><span class="text-disabled">Welcome, Mr. <?php echo $_SESSION["user_name"] ?></span></h6>
             </li>
             <li class="dropdown-divider"></li>
             <li class="ms-dropdown-list">
