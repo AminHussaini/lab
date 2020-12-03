@@ -21,12 +21,21 @@ $(document).ready(function () {
   })
   $(".view-profile .btn-primary").on("click", function () {
     $(this).closest('.view-profile').hide();
+    
     $('.edit-profile').show();
   });
   $(".edit-profile .btn-success").on("click", function () {
     $('.view-profile').show();
     $('.edit-profile').hide();
   });
+
+  $(document).on("click","#edit-profile", function () {
+    // $(this).closest('.view-profile').hide();
+    
+    // $('.edit-profile').show();
+    alert("abc");
+  });
+
 
 });
 
