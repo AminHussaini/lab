@@ -65,7 +65,11 @@
         </li>
         ";
       }
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> amin_development
       if ($_SESSION["user_role"] == "CPRI") {
         echo "
         <li class='menu-item'>
