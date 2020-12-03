@@ -1,5 +1,11 @@
+<<<<<<< Updated upstream
 <?php include "inc/header.php";
 error_reporting(0); ?>
+=======
+
+<?php $title="Profile"; include "inc/header.php";
+error_reporting(0);?>
+>>>>>>> Stashed changes
 
 <!-- Main Content -->
 <main>

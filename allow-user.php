@@ -1,4 +1,4 @@
-<?php include "inc/header.php" ?>
+<?php $title="Allow User"; include "inc/header.php" ?>
 <?php include "inc/connection.php"; if ($_SESSION["user_role"] != "Admin") echo '<script type="text/javascript">
              window.location = "'.$url.'dashboard.php"
         </script>';

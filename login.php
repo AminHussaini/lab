@@ -1,4 +1,4 @@
-<?php include('inc/header-account.php') ?>
+<?php $title="login"; include('inc/header-account.php') ?>
 
 <!-- Body Content Wrapper -->
 <div class="ms-content-wrapper ms-auth login">
