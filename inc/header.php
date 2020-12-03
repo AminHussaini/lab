@@ -9,6 +9,10 @@ if (isset($_SESSION["user_lock"])) {
   header("Location:lock-screen.php");
   // exit();
 }
+if ($_SERVER['REQUEST_URI'] != "/aptechProject/lab/product-category.php") {
+  $_SESSION["editCategoryPanel"] = "close";
+}
+
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +22,8 @@ if (isset($_SESSION["user_lock"])) {
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Toola Board</title>
   <!-- Iconic Fonts -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+  <link href="vendors/iconic-fonts/material/font.css" rel="stylesheet">
   <link href="vendors/iconic-fonts/font-awesome/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="vendors/iconic-fonts/flat-icons/flaticon.css">
   <link rel="stylesheet" href="vendors/iconic-fonts/cryptocoins/cryptocoins.css">
@@ -43,7 +48,7 @@ if (isset($_SESSION["user_lock"])) {
   <!-- Preloader -->
   <?php include 'loader.php' ?>
 
-  <?php include 'sidebar.php';include 'connection.php' ?>
+  <?php include 'sidebar.php'; include 'connection.php' ?>
 
   <!-- Main Content -->
   <main class="body-content">
@@ -108,7 +113,7 @@ if (isset($_SESSION["user_lock"])) {
           </ul>
         </li>
         <li class="ms-nav-item ms-nav-user dropdown">
-          <a href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img class="ms-user-img ms-img-round float-right" src="assets/user_image/<?php echo $_SESSION["user_image"] ?>" alt="logo_<?php echo $_SESSION["user_image"] ?>"> </a>
+          <a href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img onerror="this.src='assets/user_image/user-default.png'" class="ms-user-img ms-img-round float-right" src="assets/user_image/<?php echo $_SESSION["user_image"] ?>" alt="logo_<?php echo $_SESSION["user_image"] ?>"> </a>
           <ul class="dropdown-menu dropdown-menu-right user-dropdown" aria-labelledby="userDropdown">
             <li class="dropdown-menu-header">
               <h6 class="dropdown-header ms-inline m-0"><span class="text-disabled">Welcome, Ms. <?php echo $_SESSION["user_name"] ?></span></h6>

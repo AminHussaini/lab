@@ -15,7 +15,8 @@ if (isset($_SESSION["user_name"])) {
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Registration</title>
   <!-- Iconic Fonts -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+  <link href="material/iconic-fonts/font.css" rel="stylesheet">
   <link href="vendors/iconic-fonts/font-awesome/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="vendors/iconic-fonts/flat-icons/flaticon.css">
   <link rel="stylesheet" href="vendors/iconic-fonts/cryptocoins/cryptocoins.css">

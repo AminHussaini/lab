@@ -16,7 +16,7 @@
       </nav>
       <div class="ms-panel">
         <div class="ms-panel-header">
-          <h6>Responsive Datatable</h6>
+          <h6>User allow table</h6>
         </div>
         <div class="ms-panel-body">
           <div class="table-responsive">

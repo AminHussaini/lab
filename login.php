@@ -9,7 +9,7 @@
     <div class="ms-auth-col">
       <div class="ms-auth-form">
         <form class="needs-validation" method="post" novalidate="">
-          <h1>Login to Forget</h1>
+          <h1>Login to FOrget</h1>
           <p>Please enter your email and password to continue</p>
           <div class="mb-3">
             <label for="validationCustom08">Email Address</label>
@@ -51,41 +51,58 @@ if (isset($_POST["btn"])) {
 
   $status_query = "select * From register where email='" . $_POST["email"] . "'and status='Accepted'";
   $result_1 = mysqli_query($con, $status_query) or die("Query Failed");
-  if (mysqli_num_rows($result_1) == 1) {
-    $query = "select Id, name, role, image, status From register where email='" . $_POST["email"] . "' and password='" . $_POST["pass"] . "'";
-    $result_2 = mysqli_query($con, $query) or die("Query Failed");
 
-    if (mysqli_num_rows($result_2) > 0) {
+  $query_1 = "select * From register where email='" . $_POST["email"] . "'";
+  $result = mysqli_query($con, $query_1) or die("Query Failed");
+  $row = mysqli_fetch_assoc($result);
+  $fetch_mail = $row['email'];
+  if ($_POST["email"]== $fetch_mail) {
+    if (mysqli_num_rows($result_1) == 1) {
+      $query = "select Id, name, role, image, status From register where email='" . $_POST["email"] . "' and password='" . $_POST["pass"] . "'";
+      $result_2 = mysqli_query($con, $query) or die("Query Failed");
 
-      while ($row = mysqli_fetch_assoc($result_2)) {
-        $_SESSION["user_name"] = $row["name"];
-        $_SESSION["Id"] = $row["Id"];
-        $_SESSION["user_role"] = $row["role"];
-        $_SESSION["user_status"] = $row["status"];
-        $_SESSION["user_image"] = $row["image"];
 
-        echo '<script type="text/javascript">
-             window.location = "'.$url.'dashboard.php"
-        </script>';
+      if (mysqli_num_rows($result_2) > 0) {
+
+        while ($row = mysqli_fetch_assoc($result_2)) {
+          $_SESSION["user_name"] = $row["name"];
+          $_SESSION["Id"] = $row["Id"];
+          $_SESSION["user_role"] = $row["role"];
+          $_SESSION["user_status"] = $row["status"];
+          $_SESSION["user_image"] = $row["image"];
+
+          echo '<script type="text/javascript">
+               window.location = "'.$url.'dashboard.php"
+          </script>';
+        }
+      } else {
+        echo '
+        <div class="alert alert-danger alert-dismissible fade show " role="alert">
+          <strong>User and Password does not match</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>';
       }
     } else {
       echo '
-      <div class="alert alert-danger alert-dismissible fade show " role="alert">
-        <strong>User and Password does not match</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>';
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Your account is still pending</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>';
     }
   } else {
     echo '
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Your account is still pending</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>';
+    <div class="alert alert-danger alert-dismissible fade show " role="alert">
+      <strong>You are not register.</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
   }
+
 }
 ?>
 <?php include('inc/footer-account.php') ?>

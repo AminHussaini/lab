@@ -87,43 +87,13 @@ if (isset($_POST["btn"])) {
   $default = "later";
   $file = $_FILES["file"]["name"];
 
-  $a = mysqli_query($con, "insert into register values(null,'$name','$email','$pass','$role','$status','$file')");
 
-  if ($a) {
+
     $target_dir = "C:/xampp/htdocs/aptechProject/lab/assets/user_image/";
     $target_file = $target_dir . basename($_FILES["file"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    // $check = getimagesize($_FILES["file"]["tmp_name"]);
-    // if ($check !== false) {
-    //   echo '
-    //   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    //     <strong>File is an image - "'. $check["mime"] . '"."</strong>
-    //     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    //       <span aria-hidden="true">&times;</span>
-    //     </button>
-    //   </div>';
-    //   $uploadOk = 1;
-    // } else {
-    //   echo '
-    //   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    //     <strong>File is not an image.</strong>
-    //     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    //       <span aria-hidden="true">&times;</span>
-    //     </button>
-    //   </div>';
-    //   $uploadOk = 0;
-    // }
-    // if (file_exists($target_file)) {
-    //   echo '
-    //   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    //     <strong>Sorry, file already exists.Please change your file name.</strong>
-    //     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    //       <span aria-hidden="true">&times;</span>
-    //     </button>
-    //   </div>';
-    //   $uploadOk = 0;
-    // }
+
     // Check file size 1mb
     if ($_FILES["file"]["size"] > 1000000) {
       echo '
@@ -148,15 +118,7 @@ if (isset($_POST["btn"])) {
       </div>';
       $uploadOk = 0;
     }
-    if ($uploadOk == 0) {
-      echo '
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Sorry, your file was not uploaded.</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>';
-    } else {
+    if ($uploadOk != 0) {
       if (!move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
         echo '
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -167,15 +129,26 @@ if (isset($_POST["btn"])) {
         </div>';
       } else {
         // echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"])) . " has been uploaded.";
+        mysqli_query($con, "insert into register values(null,'$name','$email','$pass','$role','$status','$file')");
+        echo '
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Account has been created</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>';
       }
     }
-    echo '
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Account has been created</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>';
+    // else {
+    //   echo '
+    //   <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    //     <strong>Sorry, your file was not uploaded.</strong>
+    //     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    //       <span aria-hidden="true">&times;</span>
+    //     </button>
+    //   </div>';
+    // }
+
   } else {
     echo '
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -185,8 +158,7 @@ if (isset($_POST["btn"])) {
         </button>
       </div>';
   }
-}
-// id	name	email	password	role	status	image
+
 
 ?>
 
