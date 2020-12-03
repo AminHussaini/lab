@@ -88,6 +88,19 @@ if (isset($_POST["btn"])) {
   $file = $_FILES["file"]["name"];
 
 
+  $qurey_em=mysqli_query($con,"select * from register where email='$email'");
+
+  if(mysqli_num_rows($qurey_em) >0){
+    echo '
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Sorry, your Email are already Exists.</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+  }
+  else{
+    
 
     $target_dir = "C:/xampp/htdocs/aptechProject/lab/assets/user_image/";
     $target_file = $target_dir . basename($_FILES["file"]["name"]);
@@ -148,6 +161,8 @@ if (isset($_POST["btn"])) {
     //     </button>
     //   </div>';
     // }
+
+  }
 
   } else {
     echo '
