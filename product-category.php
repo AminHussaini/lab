@@ -139,6 +139,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
       success: function(data) {
         $(".alert").remove();
         $("body").append(data);
+        $(".add-category input,.update-category textarea").val("");
         fetch_data();
       }
     });
@@ -176,7 +177,10 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
         $("#updateProductDescription").val(data.split("(array)")[2]);
         $(".add-category").hide();
         $(".update-category").show();
-        window.scrollTo({top: 0, behavior: 'smooth'});
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
       }
     });
   });
@@ -198,9 +202,11 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
         updateProductDescription: updateProductDescription
       },
       success: function(data) {
-        // $(".alert").remove();
-        // $("body").append(data);
-        alert(data);
+        $(".alert").remove();
+        $("body").append(data);
+        $(".update-category input,.update-category textarea").val("");
+        $(".add-category").show();
+        $(".update-category").hide();
         fetch_data();
       }
     });

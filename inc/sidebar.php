@@ -18,12 +18,9 @@
       if ($_SESSION["user_role"] == "Admin") {
         echo "
         <li class='menu-item'>
-          <a href='#' class='has-chevron' data-toggle='collapse' data-target='#dashboard' aria-expanded='false' aria-controls='dashboard'>
+          <a href='dashboard.php'>
             <span><i class='material-icons fs-16'>dashboard</i>Admin Dashboard </span>
           </a>
-          <ul id='dashboard' class='collapse' aria-labelledby='dashboard' data-parent='#side-nav-accordion'>
-            <li> <a href='#'>Toola Board</a> </li>
-          </ul>
         </li>
         <li class='menu-item'>
           <a href='allow-user.php' class='active'>
@@ -39,6 +36,16 @@
               <li> <a href='add-product.php'>Add Product</a> </li>
               <li> <a href='product-list.php'>Product List</a> </li>
             </ul>
+        </li>
+        <li class='menu-item'>
+          <a href='#' class='has-chevron collapsed' data-toggle='collapse' data-target='#testing' aria-expanded='false' aria-controls='department'>
+          <span><i class='fas fa-archive'></i>Testing</span>
+          </a>
+          <ul id='testing' class='collapse' aria-labelledby='testing' data-parent='#side-nav-accordion' style=''>
+            <li> <a href='testing-category.php'>Testing Category</a> </li>
+            <li> <a href='add-testing.php'>Add Testing</a> </li>
+            <li> <a href='testing-list.php'>Testing List</a> </li>
+          </ul>
         </li>
         ";
       }
@@ -65,7 +72,7 @@
         </li>
         ";
       }
-      
+
       if ($_SESSION["user_role"] == "CPRI") {
         echo "
         <li class='menu-item'>

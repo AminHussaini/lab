@@ -93,7 +93,6 @@ if (isset($_FILES["file"]["type"]) && isset($_POST["name"]) && isset($_POST["use
 }
 
 //  Add Product Category
-
 if (isset($_POST['productName']) && isset($_POST['productDescription'])) {
   session_start();
   date_default_timezone_set("Asia/Karachi");
@@ -257,15 +256,14 @@ if (isset($_POST["updateProductId"]) && isset($_POST["updateProductDescription"]
   $updateProduct_Category_user = $_SESSION['Id'];
   $updateProductDate = date('Y-m-d h:ia');
 
-  $exitQuery = "select * from producttype where ProductTypeId = $updateProductId";
+  $exitQuery = "select * from producttype where ProductName='" . $updateProduct_name . "'";
   $result = mysqli_query($con, $exitQuery) or die("Query Failed");
   $row = mysqli_fetch_assoc($result);
   if ($_POST['updateProductName'] != $row['ProductName']) {
-    echo "query";
     $productQuery = "UPDATE producttype SET ProductName = '" . $updateProduct_name . "', ProductDescription = '" . $updateProduct_description . "', ProductCateDate = '" . $updateProductDate . "', ProductCateAddUser = " . $updateProduct_Category_user . "  WHERE ProductTypeId = $updateProductId";
     $result = mysqli_query($con, $productQuery) or die("Query Failed");
     if ($result) {
-      echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Category Update.</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
