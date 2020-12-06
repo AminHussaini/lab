@@ -39,6 +39,7 @@
 }
 
 // Add project
+.product-list,
 #test-product {
   .image-box {
     max-width: 120px;
@@ -76,3 +77,15 @@
   }
 }
 
+// Product detail
+.demo {
+  width: 450px;
+  img {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+}
+#lightSlider {
+  display: flex;
+}
