@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2020 at 05:20 AM
+-- Generation Time: Dec 06, 2020 at 05:13 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -67,7 +67,15 @@ INSERT INTO `multiimages` (`id`, `file_name`, `parentId`) VALUES
 (120, 'download-3.jpg', 68),
 (121, 'download-2.jpg', 68),
 (122, 'download-1.jpg', 68),
-(123, '—Pngtree—muscle santa cool body_5590575.png', 69);
+(123, '—Pngtree—muscle santa cool body_5590575.png', 69),
+(124, '—Pngtree—muscle santa cool body_5590575.png', 70),
+(125, '—Pngtree—instagram icon logo_3560507.png', 70),
+(126, '0a1f820e29719c7b67e9d5aa44241155.jpg', 70),
+(127, 'images.jpg', 70),
+(128, 'download-4.jpg', 70),
+(129, 'download-3.jpg', 70),
+(130, 'download-2.jpg', 70),
+(131, 'download-1.jpg', 70);
 
 -- --------------------------------------------------------
 
@@ -98,7 +106,8 @@ INSERT INTO `product` (`ProductId`, `ProductName`, `ProductCode`, `ProductaddUse
 (66, 'amin', '2963983742', '3', 'sdfsdfsdf', 76, '2020-12-06 02:39am'),
 (67, 'elecrtic fuse', '3582799570', '3', 'asdasdas', 76, '2020-12-06 02:55am'),
 (68, 'motor fuse', '9841179899', '3', 'asdsadasd', 74, '2020-12-06 05:51am'),
-(69, 'asdasda', '8178347652', '3', 'What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting i', 75, '2020-12-06 05:54am');
+(69, 'asdasda', '8178347652', '3', 'What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting i', 75, '2020-12-06 05:54am'),
+(70, 'elecrtic fuse', '5267679422', '3', 'demo', 77, '2020-12-06 01:39pm');
 
 -- --------------------------------------------------------
 
@@ -121,7 +130,8 @@ CREATE TABLE `producttype` (
 INSERT INTO `producttype` (`ProductTypeId`, `ProductName`, `ProductDescription`, `ProductCateAddUser`, `ProductCateDate`) VALUES
 (74, 'fuse', 'asdasdasd', 3, '2020-12-06 12:16am'),
 (75, 'bulb', 'asdasdas', 3, '2020-12-06 12:18am'),
-(76, 'testing', 'asdasd', 3, '2020-12-06 12:21am');
+(76, 'testing', 'asdasd', 3, '2020-12-06 12:21am'),
+(77, 'bulb-new', 'this is bulb', 3, '2020-12-06 01:38pm');
 
 -- --------------------------------------------------------
 
@@ -243,19 +253,19 @@ ALTER TABLE `uploading`
 -- AUTO_INCREMENT for table `multiimages`
 --
 ALTER TABLE `multiimages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `ProductId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `ProductId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `producttype`
 --
 ALTER TABLE `producttype`
-  MODIFY `ProductTypeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `ProductTypeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `register`
