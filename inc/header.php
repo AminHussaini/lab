@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_URI'] != "/aptechProject/lab/product-category.php") {
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title><?php if (isset($title)) {echo $title;} else{echo "Toola Board";} ?></title>
+  <title><?php if (isset($title)) {echo $title;} else{echo "Lab Automation";} ?></title>
   <!-- Iconic Fonts -->
   <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
   <link href="vendors/iconic-fonts/material/font.css" rel="stylesheet">
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_URI'] != "/aptechProject/lab/product-category.php") {
   <link href="assets/css/slick.css" rel="stylesheet">
   <!-- Data table styles -->
   <link href="assets/css/datatables.min.css" rel="stylesheet">
-  <!-- Toola Board styles -->
+  <!-- Lab Automation styles -->
   <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- Page Specific CSS (Morris Charts.css) -->

@@ -13,7 +13,7 @@ include('inc/connection.php');
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Toola Board</title>
+  <title>Lab Automation</title>
   <!-- Iconic Fonts -->
   <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
   <link href="vendors/iconic-fonts/material/font.css" rel="stylesheet">
@@ -25,7 +25,7 @@ include('inc/connection.php');
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
   <!-- jQuery UI -->
   <link href="assets/css/jquery-ui.min.css" rel="stylesheet">
-  <!-- Toola Board styles -->
+  <!-- Lab Automation styles -->
   <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- Favicon -->
@@ -82,7 +82,7 @@ include('inc/connection.php');
               <img src="assets/img/dashboard/Engineer-2.jpg" class="ms-img-round" alt="people">
             </div>
             <div class="media-body">
-              <span>Dear John, I was told you bought Toola Board! Send me your feedback</span>
+              <span>Dear John, I was told you bought Lab Automation! Send me your feedback</span>
               <p class="fs-10 my-1 text-disabled"><i class="material-icons">access_time</i> 28 minutes ago</p>
             </div>
           </a>
@@ -173,7 +173,7 @@ include('inc/connection.php');
     <script src="assets/js/perfect-scrollbar.js"> </script>
     <script src="assets/js/jquery-ui.min.js"> </script>
     <!-- Global Required Scripts End -->
-    <!-- Toola Board core JavaScript -->
+    <!-- Lab Automation core JavaScript -->
     <script src="assets/js/framework.js"></script>
     <!-- Settings -->
     <script src="assets/js/settings.js"></script>

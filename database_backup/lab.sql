@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2020 at 03:09 AM
+-- Generation Time: Dec 06, 2020 at 05:20 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -144,10 +144,10 @@ CREATE TABLE `register` (
 --
 
 INSERT INTO `register` (`Id`, `name`, `email`, `password`, `role`, `status`, `image`) VALUES
-(3, 'Muhammad Amin Hussaini', 'aminasghar125@gmail.com', 'demo125', 'Admin', 'Accepted', 'pp+.jpg'),
+(3, 'Muhammad Amin Hussaini', 'aminasghar125@gmail.com', 'demo125', 'Admin', 'Accepted', '3pp.jpg'),
 (4, 'Ali', 'aminasghar5@gmail.com', 'demo', 'SRS', 'Accepted', '20151104_113813.jpg'),
 (12, 'Aizaz', 'twinmark01@gmail.com', 'demo23', 'Admin', 'Pending', 'slider.jpg'),
-(13, 'Irfan', 'irfanhaiderkhan12@yahoo.com', 'demo123', 'CPRI', 'Accepted', 'pp.jpg'),
+(13, 'Irfan', 'irfanhaiderkhan12@yahoo.com', 'demo123', 'CPRI', 'Accepted', '13pp+.jpg'),
 (17, 'Ehtizan', 'aminasghar52@gmail.com', 'duck', 'SRS', 'Pending', 'pp1.jpg'),
 (19, 'shariq', 'shariq.shaikh109@gmail.com', 'demo', 'SRS', 'Accepted', 'processed.jpeg');
 
@@ -158,10 +158,20 @@ INSERT INTO `register` (`Id`, `name`, `email`, `password`, `role`, `status`, `im
 --
 
 CREATE TABLE `testingtypes` (
-  `TestingTypeId` int(11) NOT NULL,
-  `TestingName` varchar(100) NOT NULL,
-  `TestingTypeDescription` varchar(500) NOT NULL
+  `TestingTypeID` int(11) NOT NULL,
+  `TestingTypeName` varchar(50) NOT NULL,
+  `TestingTypeDescription` varchar(1000) NOT NULL,
+  `TestingCateAddUser` int(11) NOT NULL,
+  `TestingCateDate` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `testingtypes`
+--
+
+INSERT INTO `testingtypes` (`TestingTypeID`, `TestingTypeName`, `TestingTypeDescription`, `TestingCateAddUser`, `TestingCateDate`) VALUES
+(2, 'level-2', 'this testing is medium', 13, '2020-12-06 08:36am'),
+(3, 'level-4', 'this is very hard testing', 13, '2020-12-06 08:37am');
 
 -- --------------------------------------------------------
 
@@ -217,7 +227,7 @@ ALTER TABLE `register`
 -- Indexes for table `testingtypes`
 --
 ALTER TABLE `testingtypes`
-  ADD PRIMARY KEY (`TestingTypeId`);
+  ADD PRIMARY KEY (`TestingTypeID`);
 
 --
 -- Indexes for table `uploading`
@@ -257,7 +267,7 @@ ALTER TABLE `register`
 -- AUTO_INCREMENT for table `testingtypes`
 --
 ALTER TABLE `testingtypes`
-  MODIFY `TestingTypeId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `TestingTypeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `uploading`
