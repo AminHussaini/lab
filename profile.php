@@ -116,24 +116,20 @@ error_reporting(0); ?>
  
   $(document).ready(function() {
     $("#update_user").on('submit', (function(e) {
-      // alert("aaaa");
       e.preventDefault();
       $.ajax({
-        url: "inc/connection.php", // Url to which the request is send
-        type: "POST", // Type of request to be send, called as method
-        data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-        // contentType: false, // The content type used when sending data to the server.
-        // cache: false, // To unable request pages to be cached
-        // processData: false, // To send DOMDocument or non processed data file it is set to false
-        success: function(data) // A function to be called if request succeeds
+        url: "inc/connection.php",
+        type: "POST",
+        data: new FormData(this),
+        success: function(data)
         {
-          $('body').append(data);
+          alert(data);
+          // $('body').append(data);
         }
       });
     }));
     $(".view-profile .btn-primary").on("click", function () {
     $(this).closest('.view-profile').hide();
-    
     $('.edit-profile').show();
   });
   $(".edit-profile .btn-success").on("click", function () {
@@ -143,9 +139,7 @@ error_reporting(0); ?>
 
   $(document).on("click","#edit-profile", function () {
     $(this).closest('.view-profile').hide();
-    
     $('.edit-profile').show();
-   
   });
   })
 

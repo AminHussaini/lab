@@ -24,27 +24,55 @@
 }
 
 // login
-.login {
-  .mb-2 {
-    @extend %posRelative;
-    input {
-      padding-right: 33px;
-    }
-    #password-icon-btn {
+.input-icon {
+  @extend %posRelative;
+  input {
+    padding-right: 33px;
+  }
+  i {
+    cursor: pointer;
+    @extend %posAbsolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+  }
+}
+
+// Add project
+#test-product {
+  .image-box {
+    max-width: 120px;
+    overflow-y: auto;
+    .img-session {
+      border: 1px solid #5d5d5dad;
+      background: var(--white);
       cursor: pointer;
-      @extend %posAbsolute;
-      top: 10px;
-      right: 10px;
-      z-index: 3;
+      display: inline-block;
+      position: relative;
+    }
+    > :first-child {
+      z-index: 15;
+    }
+    @for $i from 2 through 15 {
+      > :nth-child(#{$i}) {
+        z-index: 15-$i;
+        margin-left: (-#{6 + $i}) +'px';
+      }
+    }
+  }
+}
+#modal-13 {
+  .modal-body {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    @include phone {
+      min-width: 200px;
+      min-height: 300px;
+    }
+    @include tabletP {
+      min-height: 400px;
     }
   }
 }
 
-// register
-.register {
-  #validationCustom05 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}

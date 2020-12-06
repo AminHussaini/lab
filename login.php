@@ -20,7 +20,7 @@
               </div>
             </div>
           </div>
-          <div class="mb-2">
+          <div class="mb-2 input-icon">
             <label for="validationCustom09">Password</label>
             <div class="input-group">
               <input type="password" class="form-control password-field" name="pass" id="validationCustom09" placeholder="Password" required="">

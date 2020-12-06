@@ -100,8 +100,6 @@ if (isset($_POST["btn"])) {
     </div>';
   }
   else{
-    
-
     $target_dir = "C:/xampp/htdocs/aptechProject/lab/assets/user_image/";
     $target_file = $target_dir . basename($_FILES["file"]["name"]);
     $uploadOk = 1;

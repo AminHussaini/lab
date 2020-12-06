@@ -45,8 +45,8 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
                 </div>
               </div>
             </div>
-            <button class="btn btn-primary mt-4 d-inline w-20" id="productCateAdd" name="productCateAdd" type="button">Submit</button>
-            <button class="btn btn-success mt-4 d-inline w-20" type="reset">Reset</button>
+            <button class="btn btn-primary mt-0 d-inline w-20" id="productCateAdd" name="productCateAdd" type="button">Add</button>
+            <button class="btn btn-success mt-0 d-inline w-20" type="reset">Reset</button>
           </form>
         </div>
       </div>
@@ -80,15 +80,15 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
                 </div>
               </div>
             </div>
-            <button class="btn btn-primary mt-4 d-inline w-20" id="productCateUpdate" name="productCateUpdate" type="button">Update</button>
-            <button class="btn btn-success mt-4 d-inline w-20 close-category-box" type="button">Back</button>
+            <button class="btn btn-primary mt-0 d-inline w-20" id="productCateUpdate" name="productCateUpdate" type="button">Update</button>
+            <button class="btn btn-success mt-0 d-inline w-20 close-category-box" type="button">Back</button>
           </form>
         </div>
       </div>
     </div>
 
   </div>
-  <div class="ms-panel">
+  <div class="ms-panel w-100">
     <div class="ms-panel-header">
       <h6>Product Category List</h6>
     </div>
@@ -128,21 +128,29 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
   $(document).on('click', "#productCateAdd", function() {
     let productName = $("#productName").val();
     let productDescription = $("#productDescription").val();
-    console.log(productName, productDescription);
-    $.ajax({
-      url: "inc/connection.php",
-      method: "POST",
-      data: {
-        productName: productName,
-        productDescription: productDescription
-      },
-      success: function(data) {
-        $(".alert").remove();
-        $("body").append(data);
-        $(".add-category input,.update-category textarea").val("");
-        fetch_data();
-      }
-    });
+    // if (productName == "" && productDescription == "") {
+      $.ajax({
+        url: "inc/connection.php",
+        method: "POST",
+        data: {
+          productName: productName,
+          productDescription: productDescription
+        },
+        success: function(data) {
+          $(".alert").remove();
+          $("body").append(data);
+          $(".add-category input,.add-category textarea").val("");
+          fetch_data();
+        }
+      });
+    // } else {
+    //   $("body").append('<div class="alert alert-danger alert-dismissible fade show" role="alert">\
+    //         <strong>File the fields before submit.</strong>\
+    //         <button type="button" class="close" data-dismiss="alert" aria-label="Close">\
+    //           <span aria-hidden="true">&times;</span>\
+    //         </button>\
+    //       </div>')
+    // }
   });
   // delete
   $(document).on('click', "#delete-product-category", function() {

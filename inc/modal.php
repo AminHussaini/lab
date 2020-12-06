@@ -375,7 +375,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>
@@ -397,6 +396,18 @@
           </div>
           <input name="forget_pass" type="submit" class="btn btn-primary shadow-none" value="Reset Password" />
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add product Modal -->
+<div class="modal fade" id="modal-13" tabindex="-1" role="dialog" aria-labelledby="modal-13" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-min" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+
       </div>
     </div>
   </div>
