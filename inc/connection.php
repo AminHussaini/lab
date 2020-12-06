@@ -93,7 +93,6 @@ if (isset($_FILES["file"]["type"]) && isset($_POST["name"]) && isset($_POST["use
 }
 
 //  Add Product Category
-
 if (isset($_POST['productName']) && isset($_POST['productDescription'])) {
   session_start();
   date_default_timezone_set("Asia/Karachi");
@@ -511,7 +510,6 @@ if (isset($_POST["addTestingProductTable"])) {
     ";
   }
 }
-
 // delete product
 if (isset($_POST["productCurrentId"])) {
   $productCurrentId = $_POST["productCurrentId"];
@@ -538,7 +536,6 @@ if (isset($_POST["productCurrentId"])) {
       </div>';
   }
 }
-
 // Edit click product
 if (isset($_POST["productCurrentIdEdit"])) {
   session_start();
@@ -584,5 +581,199 @@ if (isset($_POST["updateTestProductId"]) && isset($_POST["updateTestProductName"
   }
 }
 
+//  Add testing Category
+if (isset($_POST['testingCategoryName']) && isset($_POST['testingCategoryDescription'])) {
+  session_start();
+  date_default_timezone_set("Asia/Karachi");
+  $testingCategoryName = strtolower($_POST['testingCategoryName']);
+  $testingCategoryDescription = strtolower($_POST['testingCategoryDescription']);
+  $testing_Category_user = $_SESSION['Id'];
+  $testingDate = date('Y-m-d h:ia');
+  $exitQuery = "select * from testingtypes where TestingTypeName='" . $testingCategoryName . "'";
+  $result = mysqli_query($con, $exitQuery) or die("Query Failed");
+  $row = mysqli_fetch_assoc($result);
+  if ($testingCategoryName != $row['TestingTypeName']) {
+    $testingQuery = "insert into testingtypes values(null,'$testingCategoryName','$testingCategoryDescription', '$testing_Category_user', '$testingDate')";
+    if (mysqli_query($con, $testingQuery)) {
+      echo '
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Test category is added</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+         ';
+    } else {
+      echo '
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Something went wrong.</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
+    }
+  } else {
+    echo '
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>This category is already is added.</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
+  }
+}
+
+// return table
+if (isset($_POST["testingTable"])) {
+  session_start();
+  $sql = "SELECT * FROM testingtypes";
+  $result = mysqli_query($con, $sql) or die("query fail");
+  if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+?>
+      <div class="table-responsive">
+        <table id="testing-category-table" class="table w-100 thead-primary">
+          <thead>
+            <tr>
+              <th>
+                Id
+              </th>
+              <th>
+                User Name
+              </th>
+              <th>
+                Category Name
+              </th>
+              <th>
+                Description
+              </th>
+              <th>
+                Date
+              </th>
+              <th class="text-center">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <?php
+            if ($result = mysqli_query($con, $sql)) {
+              $i = 1;
+              while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>
+                        <td>" . $i . "</td>
+                        ";
+
+                $sql = "SELECT * FROM register where id=" . $row['TestingCateAddUser'] . "";
+                $getRegister = mysqli_query($con, $sql);
+                $getRegisterRow = mysqli_fetch_assoc($getRegister);
+                echo   "<td>" . $getRegisterRow['name'] . "</td>";
+                echo "
+                        <td style='text-transform:capitalize;'>" . $row['TestingTypeName'] . "</td>
+                        <td style='width: 280px;word-break: break-word;white-space: initial;'>" . $row['TestingTypeDescription'] . "</td>
+                        <td style='width: 140px;white-space: initial;'> <b>Date: </b>" . explode(" ", $row['TestingCateDate'])[0] . "<br> <b>Time: </b>" . explode(" ", $row['TestingCateDate'])[1] . "</td>
+                        <td class='text-center'>
+                  ";
+
+                if ($_SESSION["Id"] == $row['TestingCateAddUser'] || $_SESSION["user_role"] == "Admin") {
+                  echo "
+                  <a id='edit-testing-category' storeData=" . $row['TestingTypeID'] . " href='javascript:void(0);' style='margin-right:10px'><i class='fas fa-pencil-alt ms-text-primary'></i></a>
+                  <a id='delete-testing-category' storeData=" . $row['TestingTypeID'] . " href='javascript:void(0);'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                } else {
+                  echo "<span class='badge badge-outline-danger'>No permission</span>";
+                }
+                echo "
+                      </td>
+                      </tr>
+                  ";
+                $i++;
+              }
+            }
+            ?>
+          </tbody>
+        </table>
+      </div>
+    <?php
+    }
+  }
+}
+
+// delete category product
+if (isset($_POST["deleteTestingCategory"])) {
+  $deleteTestingCategory = $_POST["deleteTestingCategory"];
+  // echo $_POST["currentId"];
+  $query = "DELETE FROM testingtypes WHERE TestingTypeID = $deleteTestingCategory";
+  $result = mysqli_query($con, $query) or die("Query Failed");
+  if ($result) {
+    echo '    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Category is delete.</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
+  } else {
+    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Something wrong.</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
+  }
+}
+
+// Edit click category product
+if (isset($_POST["editTestingCategory"])) {
+  session_start();
+  extract($_POST);
+  $query = "Select * from testingtypes where TestingTypeID =$editTestingCategory";
+  $result = mysqli_query($con, $query);
+  if ($result) {
+    $row = mysqli_fetch_array($result);
+  }
+  $categoryName = strtolower($row["TestingTypeName"]);
+  $categoryDescription = strtolower($row["TestingTypeDescription"]);
+  echo   $editTestingCategory . "(array)" . $categoryName . "(array)" . $categoryDescription;
+}
+// edit values
+if (isset($_POST["updateTestingId"]) && isset($_POST["updateTestingName"]) && isset($_POST["updateTestingDescription"])) {
+  session_start();
+  date_default_timezone_set("Asia/Karachi");
+  $updateTestingId = $_POST['updateTestingId'];
+  $updateTestingName = strtolower($_POST['updateTestingName']);
+  $updateTestingDescription = strtolower($_POST['updateTestingDescription']);
+  $updateTesting_Category_user = $_SESSION['Id'];
+  $updateProductDate = date('Y-m-d h:ia');
+
+  $exitQuery = "select * from testingtypes where TestingTypeName='" . $updateTestingName . "'";
+  $result = mysqli_query($con, $exitQuery) or die("Query Failed");
+  $row = mysqli_fetch_assoc($result);
+  if ($updateTestingName != $row['TestingTypeName']) {
+    $productQuery = "UPDATE testingtypes SET 	TestingTypeName = '" . $updateTestingName . "', TestingTypeDescription = '" . $updateTestingDescription . "', TestingCateDate = '" . $updateProductDate . "', TestingCateAddUser = " . $updateTesting_Category_user . "  WHERE TestingTypeID = $updateTestingId";
+    $result = mysqli_query($con, $productQuery) or die("Query Failed");
+    if ($result) {
+      echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Category Update.</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+    } else {
+      echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Some went wrong</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+    }
+  } else {
+    echo '    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>This category is already exit.</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
+  }
+}
 
 ?>

@@ -4,7 +4,7 @@ $(document).ready(function () {
     $('#allow-user').DataTable();
   }
   $("body").mousemove(function () {
-    // $('.alert').delay(4000).fadeOut()
+    $('.alert').delay(4000).fadeOut()
   });
 
   $(document).on("click", "#password-icon-btn", function () {

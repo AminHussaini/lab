@@ -4,7 +4,6 @@ $return_var = '<script type="text/javascript">
 window.location = "' . $url . 'dashboard.php"
 </script>';
 if ($_SESSION["user_role"] == "CPRI") echo $return_var;
-
 ?>
 <!-- Body Content Wrapper -->
 <div class="ms-content-wrapper">

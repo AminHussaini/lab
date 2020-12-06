@@ -53,12 +53,9 @@
       if ($_SESSION["user_role"] == "SRS") {
         echo "
         <li class='menu-item'>
-          <a href='#' class='has-chevron' data-toggle='collapse' data-target='#dashboard' aria-expanded='false' aria-controls='dashboard'>
+          <a href='dashboard.php'>
             <span><i class='material-icons fs-16'>dashboard</i>SRS Dashboard </span>
           </a>
-          <ul id='dashboard' class='collapse' aria-labelledby='dashboard' data-parent='#side-nav-accordion'>
-            <li> <a href='#'>Toola Board</a> </li>
-          </ul>
         </li>
         <li class='menu-item'>
           <a href='#' class='has-chevron collapsed' data-toggle='collapse' data-target='#product' aria-expanded='false' aria-controls='department'>
@@ -76,19 +73,16 @@
       if ($_SESSION["user_role"] == "CPRI") {
         echo "
         <li class='menu-item'>
-          <a href='#' class='has-chevron' data-toggle='collapse' data-target='#dashboard' aria-expanded='false' aria-controls='dashboard'>
+          <a href='dashboard.php'>
             <span><i class='material-icons fs-16'>dashboard</i>CPRI Dashboard </span>
           </a>
-          <ul id='dashboard' class='collapse' aria-labelledby='dashboard' data-parent='#side-nav-accordion'>
-            <li> <a href='#'>Toola Board</a> </li>
-          </ul>
         </li>
         <li class='menu-item'>
           <a href='#' class='has-chevron collapsed' data-toggle='collapse' data-target='#Testing' aria-expanded='false' aria-controls='department'>
           <span><i class='fas fa-archive'></i>Testing</span>
           </a>
           <ul id='Testing' class='collapse' aria-labelledby='Testing' data-parent='#side-nav-accordion' style=''>
-            <li> <a href='Testing-category.php'>Testing Category</a> </li>
+            <li> <a href='testing-category.php'>Testing Category</a> </li>
             <li> <a href='add-Testing.php'>Add Testing</a> </li>
             <li> <a href='Testing-list.php'>Testing List</a> </li>
           </ul>
