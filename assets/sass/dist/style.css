@@ -9274,16 +9274,3 @@ body:not(.ms-settings-open) .ms-settings-toggle:hover {
     min-height: 400px;
   }
 }
-
-.demo {
-  width: 450px;
-}
-.demo img {
-  display: block;
-  height: 100%;
-  width: 100%;
-}
-
-#lightSlider {
-  display: flex;
-}

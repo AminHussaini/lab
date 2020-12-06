@@ -125,7 +125,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
                         <td>" . $row['ProductCode'] . "</td>
                         <td>" . $getProductCategoryRow['ProductName'] . "</td>
                         <td style='min-width: 200px;max-width: 280px;word-break: break-word;white-space: initial;'>" . $row['ProductDetail'] . "</td>
-                        <td style='min-width: 150px;white-space: initial;'> <b>Date: </b>" . explode(" ", $row['ProductDate'])[0] . "<br> <b>Time: </b>" . explode(" ", $row['ProductDate'])[1] . "</td>
+                        <td style='min-width: 170px;white-space: initial;'> <b>Date: </b>" . explode(" ", $row['ProductDate'])[0] . "<br> <b>Time: </b>" . explode(" ", $row['ProductDate'])[1] . "</td>
                         <td class='text-center'>
                         <a title='view detail' href='product-detail.php?id=". $row['ProductId'] ."'><i class='fa fa-info-circle ms-text-primary'></i></a>
                         </td>
