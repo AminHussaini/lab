@@ -191,7 +191,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
         productArray[indexOrKey].productValue,
       );
       productColorList.push(
-       "#"+ Math.floor(Math.pow(10, 6 - 1) + Math.random() * 9 * Math.pow(10, 6 - 1)),
+       "#"+((1<<24)*Math.random()|0).toString(16),
       );
 
     })
