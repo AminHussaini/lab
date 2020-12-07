@@ -38,7 +38,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
               <div class="col-xl-4 col-md-12 mb-3 input-icon">
                 <label for="productDescription">Product Code</label>
                 <div class="input-group">
-                  <input type="text" maxlength="10" class="form-control" id="productCode" name="productCode" placeholder="Enter ProductCode" required>
+                  <input type="text" maxlength="10" minlength="10" class="form-control" id="productCode" name="productCode" placeholder="Enter ProductCode" required>
                   <i id="codeGenerator" class="fas fa-redo"></i>
                   <div class="invalid-feedback">
                     Please provide a Product Code.
