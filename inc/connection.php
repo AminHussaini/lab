@@ -4,14 +4,14 @@ $con = mysqli_connect("localhost", "root", "", "lab");
 
 
 
-$url = "http://localhost:8080/aptechProject/lab/";
+$url = "http://localhost/aptechProject/lab/";
 
 // for pc
-$imagelocation="C:/xampp/htdocs/aptechProject/lab/assets"; 
+$imagelocation="C:/xampp/htdocs/aptechProject/lab/assets";
 
 // //for Mac
-//  $userimagelocation="lab/assets/user_image/"; 
-//  $productimagelocation="Applications/XAMPP/xamppfiles/htdocs/aptechProject/lab/assets/product-image/"; 
+//  $userimagelocation="lab/assets/user_image/";
+//  $productimagelocation="Applications/XAMPP/xamppfiles/htdocs/aptechProject/lab/assets/product-image/";
 
 
 
@@ -312,7 +312,7 @@ if (isset($_POST["addProductName"])) {
   $addTestProductDescription = $_POST["addTestProductDescription"];
 
 
-  $target_dir = $productimagelocation ;
+  $target_dir = $imagelocation."/product-image/";
   $target_file = $target_dir . json_encode($_FILES["addProductImage"]["name"]);
   $uploadOk = 1;
   $imageUpload = 0;
@@ -339,8 +339,9 @@ if (isset($_POST["addProductName"])) {
         }
         if ((($_FILES["addProductImage"]["type"][$i] == "image/png") || ($_FILES["addProductImage"]["type"][$i] == "image/jpg") || ($_FILES["addProductImage"]["type"][$i] == "image/jpeg"))) {
           if ($uploadOk != 0) {
+            $path=$imagelocation."/product-image/";
             $sourcePath = $_FILES['addProductImage']['tmp_name'][$i]; // Storing source path of the file in a variable
-            $targetPath = $productimagelocation . $_FILES['addProductImage']['name'][$i]; // Target path where file is to be stored
+            $targetPath = $path . $_FILES['addProductImage']['name'][$i]; // Target path where file is to be stored
             // echo explode("," , json_encode($_FILES['addProductImage']['name']));
             if (move_uploaded_file($sourcePath, $targetPath)) {
               // echo '
