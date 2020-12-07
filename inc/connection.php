@@ -386,10 +386,20 @@ if (isset($_POST["addProductName"])) {
         };
       }
     } else {
-      echo " data not add";
+      echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>data not add.</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
     }
   } else {
-    echo "This product or code is already exit";
+    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>This code is already exit.</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
   }
 }
 
