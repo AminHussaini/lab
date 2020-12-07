@@ -21,7 +21,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
     <div class="col-xl-6 col-lg-12 col-md-12">
       <div class="ms-panel">
         <div class="ms-panel-header">
-          <h6>Total Departments</h6>
+          <h6>Total Product</h6>
         </div>
         <div class="ms-panel-body">
           <canvas id="pie-chart"></canvas>
@@ -31,7 +31,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
     <div class="col-xl-6 col-lg-12 col-md-12">
       <div class="ms-panel">
         <div class="ms-panel-header">
-          <h6>Employes</h6>
+          <h6>Product Entry</h6>
         </div>
         <div class="ms-panel-body">
           <canvas id="bar-chart"></canvas>
@@ -121,13 +121,13 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
                     $getProductCategoryRow = mysqli_fetch_assoc($getProductCategory);
 
                     echo "</div></td>
-                        <td style='text-transform:capitalize;'>" . $row['ProductName'] . "</td>
+                        <td class='product-name' style='text-transform:capitalize;'>" . $row['ProductName'] . "</td>
                         <td>" . $row['ProductCode'] . "</td>
                         <td>" . $getProductCategoryRow['ProductName'] . "</td>
                         <td style='min-width: 200px;max-width: 280px;word-break: break-word;white-space: initial;'>" . $row['ProductDetail'] . "</td>
                         <td style='min-width: 170px;white-space: initial;'> <b>Date: </b>" . explode(" ", $row['ProductDate'])[0] . "<br> <b>Time: </b>" . explode(" ", $row['ProductDate'])[1] . "</td>
                         <td class='text-center'>
-                        <a title='view detail' href='product-detail.php?id=". $row['ProductId'] ."'><i class='fa fa-info-circle ms-text-primary'></i></a>
+                        <a title='view detail' href='product-detail.php?id=" . $row['ProductId'] . "'><i class='fa fa-info-circle ms-text-primary'></i></a>
                         </td>
                         </tr>
                         ";
@@ -144,5 +144,95 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
   </div>
 </div>
 
-
 <?php include "inc/footer.php" ?>
+<script>
+  var added = false;
+  productArray = [];
+  let product_length = $(".product-name").length;
+  $.map($(".product-name"), function(elementOfArray, indexInArray) {
+    function defaultProduct() {
+      productArray.push({
+        productName: $(elementOfArray).text(),
+        productValue: 1
+      });
+    }
+    let count = indexInArray;
+    if (productArray == undefined || productArray.length == 0) {
+      defaultProduct();
+    } else {
+      let added = false;
+      let curruntIndex = 1;
+      let count = 1;
+      $.map(productArray, function(elementOrValue, indexOrKey) {
+        if (elementOrValue.productName == $(elementOfArray).text()) {
+          curruntIndex = indexOrKey;
+          count = elementOrValue.productValue;
+          added = true;
+        }
+      });
+      if (!added) {
+        defaultProduct();
+      } else {
+        productArray[curruntIndex].productValue = ++count;
+        added = false;
+      }
+    }
+  })
+
+  $(document).ready(function() {
+    let productNameList = [];
+    let productValueList = [];
+    let productColorList = [];
+    $.map(productArray, function(elementOrValue, indexOrKey) {
+      productNameList.push(
+        productArray[indexOrKey].productName,
+      );
+      productValueList.push(
+        productArray[indexOrKey].productValue,
+      );
+      productColorList.push(
+       "#"+ Math.floor(Math.pow(10, 6 - 1) + Math.random() * 9 * Math.pow(10, 6 - 1)),
+      );
+
+    })
+
+    new Chart(document.getElementById("pie-chart"), {
+      type: 'pie',
+      data: {
+        labels: productNameList,
+
+        datasets: [{
+          label: "Population (millions)",
+          backgroundColor: productColorList,
+          data: productValueList
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Number of product added'
+        }
+      }
+    });
+    var barChart = new Chart(document.getElementById("bar-chart"), {
+      type: 'bar',
+      data: {
+        labels: productNameList,
+        datasets: [{
+          label: "product",
+          backgroundColor: productColorList,
+          data: productValueList
+        }]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: 'Maximum number of product'
+        }
+      }
+    });
+  })
+</script>

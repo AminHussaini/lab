@@ -644,7 +644,7 @@ if (isset($_POST['testingCategoryName']) && isset($_POST['testingCategoryDescrip
   }
 }
 
-// return table
+// return table testing
 if (isset($_POST["testingTable"])) {
   session_start();
   $sql = "SELECT * FROM testingtypes";
@@ -720,7 +720,7 @@ if (isset($_POST["testingTable"])) {
   }
 }
 
-// delete category product
+// delete category Testing
 if (isset($_POST["deleteTestingCategory"])) {
   $deleteTestingCategory = $_POST["deleteTestingCategory"];
   // echo $_POST["currentId"];
@@ -743,7 +743,7 @@ if (isset($_POST["deleteTestingCategory"])) {
   }
 }
 
-// Edit click category product
+// Edit click category testing
 if (isset($_POST["editTestingCategory"])) {
   session_start();
   extract($_POST);
