@@ -21,7 +21,10 @@ if (isset($_GET['id'])) {
     echo '<script type="text/javascript">
     window.location = "' . $url . 'product-list.php"
     </script>';
+    
   }
+  
+
   // date_default_timezone_set("Asia/Karachi");
   // $productDate = date('Y-m-d h:ia');
   // echo $productDate;
@@ -56,6 +59,7 @@ if (isset($_GET['id'])) {
       <div class="ms-panel ms-panel-fh">
         <div class="ms-panel-body">
           <h2 class="section-title">Product Details</h2>
+          <form method="POST">
           <table class="table ms-profile-information">
             <tbody>
 
@@ -81,7 +85,7 @@ if (isset($_GET['id'])) {
               <tr>
               <tr>
                 <th scope="row">Category Description:</th>
-                <td><?php echo $getProductCategoryRow['ProductDescription'] ?></td>
+                <td style="white-space: inherit;"><?php echo $getProductCategoryRow['ProductDescription'] ?></td>
               </tr>
 
               <tr>
@@ -103,22 +107,23 @@ if (isset($_GET['id'])) {
                 <td><?php echo $productrow['ProductCode'] ?></td>
               </tr>
               <tr>
-                <th scope="row">Product Detail:</th>
-                <td><?php echo $productrow['ProductDetail'] ?></td>
-              </tr>
-              <tr>
                 <th scope="row">Product Date:</th>
                 <td><?php echo $productrow['ProductDate'] ?></td>
               </tr>
-
+              <tr>
+                <th scope="row">Product Detail:</th>
+                <td style="white-space: inherit;"><?php echo $productrow['ProductDetail'] ?></td>
+              </tr>
+              
               <tr>
                 <td colspan='2'>
-
-                  <a class="btn btn-primary mt-4 d-block w-5 text-white" id=<?php echo $pageDetail ?>>Send for Test</a>
+                  <button class="btn btn-primary  mt-4 d-block w-5 text-white" disabled name="send" id=<?php echo $pageDetail ?>>Send for Test</button>
+                
                 </td>
               </tr>
             </tbody>
           </table>
+          </form>
         </div>
       </div>
     </div>
@@ -131,3 +136,43 @@ if (isset($_GET['id'])) {
 <!-- <script type="text/javascript" src="http://www.queness.com/js/bsa2.js"></script> -->
 <script src="assets/slider-nav/js/jquery.flexslider-min.js"></script>
 <script src="assets/slider-nav/js/demo.js"></script>
+
+
+
+<?php
+
+if(isset($_POST["send"])){
+  
+  $sendbyuserid=$_SESSION["Id"];
+  $productid=$pageDetail; 
+  
+  date_default_timezone_set("Asia/Karachi");
+  $productDate = date('Y-m-d h:ia');
+  
+
+  $in_query= mysqli_query($con,"insert into sendfortest values(null,'$sendbyuserid','$productid','$productDate')");
+
+
+  if($in_query){
+    echo '
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Product Send For test Sussecfully</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+  }
+  else{
+    echo '
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>there was some error.</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+  }
+  
+  
+}
+
+?>

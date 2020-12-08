@@ -2,8 +2,8 @@
 -- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 06, 2020 at 05:13 PM
+-- Host: localhost
+-- Generation Time: Dec 08, 2020 at 08:34 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -107,7 +107,8 @@ INSERT INTO `product` (`ProductId`, `ProductName`, `ProductCode`, `ProductaddUse
 (67, 'elecrtic fuse', '3582799570', '3', 'asdasdas', 76, '2020-12-06 02:55am'),
 (68, 'motor fuse', '9841179899', '3', 'asdsadasd', 74, '2020-12-06 05:51am'),
 (69, 'asdasda', '8178347652', '3', 'What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting i', 75, '2020-12-06 05:54am'),
-(70, 'elecrtic fuse', '5267679422', '3', 'demo', 77, '2020-12-06 01:39pm');
+(70, 'elecrtic fuse', '5267679422', '3', 'demo', 77, '2020-12-06 01:39pm'),
+(80, 'electric button', '9577914445', '4', 'qwdwcqwcc', 74, '2020-12-07 05:04am');
 
 -- --------------------------------------------------------
 
@@ -154,12 +155,34 @@ CREATE TABLE `register` (
 --
 
 INSERT INTO `register` (`Id`, `name`, `email`, `password`, `role`, `status`, `image`) VALUES
-(3, 'Muhammad Amin Hussaini', 'aminasghar125@gmail.com', 'demo125', 'Admin', 'Accepted', '3pp.jpg'),
+(3, 'Muhammad Amin Hussaini', 'aminasghar125@gmail.com', 'demo125', 'Admin', 'Accepted', '33pp.jpg'),
 (4, 'Ali', 'aminasghar5@gmail.com', 'demo', 'SRS', 'Accepted', '20151104_113813.jpg'),
 (12, 'Aizaz', 'twinmark01@gmail.com', 'demo23', 'Admin', 'Pending', 'slider.jpg'),
-(13, 'Irfan', 'irfanhaiderkhan12@yahoo.com', 'demo123', 'CPRI', 'Accepted', '13pp+.jpg'),
+(13, 'Irfan', 'irfanhaiderkhan12@yahoo.com', 'demo123', 'CPRI', 'Accepted', '133pp.jpg'),
 (17, 'Ehtizan', 'aminasghar52@gmail.com', 'duck', 'SRS', 'Pending', 'pp1.jpg'),
 (19, 'shariq', 'shariq.shaikh109@gmail.com', 'demo', 'SRS', 'Accepted', 'processed.jpeg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sendfortest`
+--
+
+CREATE TABLE `sendfortest` (
+  `sft_id` int(11) NOT NULL,
+  `sendbyuser` int(11) NOT NULL,
+  `productid` int(11) NOT NULL,
+  `Datetime` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sendfortest`
+--
+
+INSERT INTO `sendfortest` (`sft_id`, `sendbyuser`, `productid`, `Datetime`) VALUES
+(1, 3, 56, '2020-12-09 12:11am'),
+(2, 3, 57, '2020-12-09 12:11am'),
+(3, 3, 57, '2020-12-09 12:14am');
 
 -- --------------------------------------------------------
 
@@ -234,6 +257,12 @@ ALTER TABLE `register`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- Indexes for table `sendfortest`
+--
+ALTER TABLE `sendfortest`
+  ADD PRIMARY KEY (`sft_id`);
+
+--
 -- Indexes for table `testingtypes`
 --
 ALTER TABLE `testingtypes`
@@ -259,7 +288,7 @@ ALTER TABLE `multiimages`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `ProductId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `ProductId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `producttype`
@@ -272,6 +301,12 @@ ALTER TABLE `producttype`
 --
 ALTER TABLE `register`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `sendfortest`
+--
+ALTER TABLE `sendfortest`
+  MODIFY `sft_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `testingtypes`

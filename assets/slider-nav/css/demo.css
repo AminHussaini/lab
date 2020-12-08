@@ -192,4 +192,9 @@
   left: 0;
 }
 
+tr td {
+text-align: left !important;
+white-space: inherit;
+}
+
 /*# sourceMappingURL=demo.css.map */
