@@ -54,6 +54,43 @@ if (isset($_GET['id'])) {
     </div>
 
 
+    <?php
+
+if(isset($_POST["send"])){
+  
+  $sendbyuserid=$_SESSION["Id"];
+  $productid=$pageDetail; 
+  
+  date_default_timezone_set("Asia/Karachi");
+  $productDate = date('Y-m-d h:ia');
+  
+
+  $in_query= mysqli_query($con,"insert into sendfortest values(null,'$sendbyuserid','$productid','$productDate')");
+
+
+  if($in_query){
+    echo '
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Product Send For test Sussecfully</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+  }
+  else{
+    echo '
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>there was some error.</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+  }
+  
+  
+}
+
+?>
 
     <div class="col-xl-5 col-md-6">
       <div class="ms-panel ms-panel-fh">
@@ -117,7 +154,20 @@ if (isset($_GET['id'])) {
               
               <tr>
                 <td colspan='2'>
-                  <button class="btn btn-primary  mt-4 d-block w-5 text-white" disabled name="send" id=<?php echo $pageDetail ?>>Send for Test</button>
+                  <?php
+                  
+                   $qurey_em=mysqli_query($con,"select * from sendfortest where productid='$pageDetail'");
+
+                    if(mysqli_num_rows($qurey_em) >0){
+                     echo '<button class="btn btn-primary  mt-4 d-block w-5 text-white" disabled >Send for Test</button>';
+
+                    }
+                    else{
+                     echo '<button class="btn btn-primary  mt-4 d-block w-5 text-white" name="send" id="$pageDetail">Send for Test</button>';
+                    }
+
+                  ?>
+                  
                 
                 </td>
               </tr>
@@ -138,41 +188,3 @@ if (isset($_GET['id'])) {
 <script src="assets/slider-nav/js/demo.js"></script>
 
 
-
-<?php
-
-if(isset($_POST["send"])){
-  
-  $sendbyuserid=$_SESSION["Id"];
-  $productid=$pageDetail; 
-  
-  date_default_timezone_set("Asia/Karachi");
-  $productDate = date('Y-m-d h:ia');
-  
-
-  $in_query= mysqli_query($con,"insert into sendfortest values(null,'$sendbyuserid','$productid','$productDate')");
-
-
-  if($in_query){
-    echo '
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Product Send For test Sussecfully</strong>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>';
-  }
-  else{
-    echo '
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>there was some error.</strong>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>';
-  }
-  
-  
-}
-
-?>
