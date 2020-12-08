@@ -4,7 +4,7 @@ $con = mysqli_connect("localhost", "root", "", "lab");
 
 
 
-$url = "http://localhost/aptechProject/lab/";
+$url = "http://localhost:8080/aptechProject/lab/";
 
 // for pc
 $imagelocation="C:/xampp/htdocs/aptechProject/lab/assets";

@@ -21,7 +21,10 @@ if (isset($_GET['id'])) {
     echo '<script type="text/javascript">
     window.location = "' . $url . 'product-list.php"
     </script>';
+    
   }
+  
+
   // date_default_timezone_set("Asia/Karachi");
   // $productDate = date('Y-m-d h:ia');
   // echo $productDate;
@@ -81,7 +84,7 @@ if (isset($_GET['id'])) {
               <tr>
               <tr>
                 <th scope="row">Category Description:</th>
-                <td><?php echo $getProductCategoryRow['ProductDescription'] ?></td>
+                <td style="white-space: inherit;"><?php echo $getProductCategoryRow['ProductDescription'] ?></td>
               </tr>
 
               <tr>
@@ -103,14 +106,14 @@ if (isset($_GET['id'])) {
                 <td><?php echo $productrow['ProductCode'] ?></td>
               </tr>
               <tr>
-                <th scope="row">Product Detail:</th>
-                <td><?php echo $productrow['ProductDetail'] ?></td>
-              </tr>
-              <tr>
                 <th scope="row">Product Date:</th>
                 <td><?php echo $productrow['ProductDate'] ?></td>
               </tr>
-
+              <tr>
+                <th scope="row">Product Detail:</th>
+                <td style="white-space: inherit;"><?php echo $productrow['ProductDetail'] ?></td>
+              </tr>
+              
               <tr>
                 <td colspan='2'>
 
