@@ -193,9 +193,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
       productColorList.push(
        "#"+((1<<24)*Math.random()|0).toString(16),
       );
-
     })
-
     new Chart(document.getElementById("pie-chart"), {
       type: 'pie',
       data: {

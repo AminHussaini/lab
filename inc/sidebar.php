@@ -15,48 +15,24 @@
 
      <?php
 
+      echo "
+      <li class='menu-item'>
+      <a href='dashboard.php'>
+        <span><i class='material-icons fs-16'>dashboard</i>".$_SESSION["user_role"]." Dashboard </span>
+      </a>
+    </li>
+      ";
       if ($_SESSION["user_role"] == "Admin") {
         echo "
-        <li class='menu-item'>
-          <a href='dashboard.php'>
-            <span><i class='material-icons fs-16'>dashboard</i>Admin Dashboard </span>
-          </a>
-        </li>
         <li class='menu-item'>
           <a href='allow-user.php' class='active'>
             <span><i class='fa fa-users fs-16'></i>Allow Users</span>
           </a>
         </li>
-        <li class='menu-item'>
-            <a href='#' class='has-chevron collapsed' data-toggle='collapse' data-target='#product' aria-expanded='false' aria-controls='department'>
-            <span><i class='fas fa-archive'></i>Product</span>
-            </a>
-            <ul id='product' class='collapse' aria-labelledby='product' data-parent='#side-nav-accordion' style=''>
-              <li> <a href='product-category.php'>Product Category</a> </li>
-              <li> <a href='add-product.php'>Add Product</a> </li>
-              <li> <a href='product-list.php'>Product List</a> </li>
-            </ul>
-        </li>
-        <li class='menu-item'>
-          <a href='#' class='has-chevron collapsed' data-toggle='collapse' data-target='#testing' aria-expanded='false' aria-controls='department'>
-          <span><i class='fas fa-archive'></i>Testing</span>
-          </a>
-          <ul id='testing' class='collapse' aria-labelledby='testing' data-parent='#side-nav-accordion' style=''>
-            <li> <a href='testing-category.php'>Testing Category</a> </li>
-            <li> <a href='add-testing.php'>Add Testing</a> </li>
-            <li> <a href='testing-list.php'>Testing List</a> </li>
-          </ul>
-        </li>
         ";
       }
-
-      if ($_SESSION["user_role"] == "SRS") {
+      if ($_SESSION["user_role"] == "SRS" || $_SESSION["user_role"] == "Admin") {
         echo "
-        <li class='menu-item'>
-          <a href='dashboard.php'>
-            <span><i class='material-icons fs-16'>dashboard</i>SRS Dashboard </span>
-          </a>
-        </li>
         <li class='menu-item'>
           <a href='#' class='has-chevron collapsed' data-toggle='collapse' data-target='#product' aria-expanded='false' aria-controls='department'>
           <span><i class='fas fa-archive'></i>Product</span>
@@ -69,14 +45,8 @@
         </li>
         ";
       }
-
-      if ($_SESSION["user_role"] == "CPRI") {
+      if ($_SESSION["user_role"] == "CPRI" || $_SESSION["user_role"] == "Admin") {
         echo "
-        <li class='menu-item'>
-          <a href='dashboard.php'>
-            <span><i class='material-icons fs-16'>dashboard</i>CPRI Dashboard </span>
-          </a>
-        </li>
         <li class='menu-item'>
           <a href='#' class='has-chevron collapsed' data-toggle='collapse' data-target='#Testing' aria-expanded='false' aria-controls='department'>
           <span><i class='fas fa-archive'></i>Testing</span>
@@ -89,7 +59,6 @@
         </li>
         ";
       }
-
       ?>
 
    </ul>
