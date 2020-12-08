@@ -21,74 +21,75 @@ $rowCpri = mysqli_num_rows($resultCpri);
     <!-- Notifications Widgets -->
 
     <div class="col-xl-3 col-md-6 col-sm-6">
-      <a href="#">
-        <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
-          <div class="ms-card-body media">
-            <div class="media-body">
-              <h6>Admin</h6>
-              <p class="ms-card-change"><?php echo $rowAdmin?></p>
-            </div>
+      <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+        <div class="ms-card-body media">
+          <div class="media-body">
+            <h6>Admin</h6>
+            <p class="ms-card-change"><?php echo $rowAdmin ?></p>
           </div>
-          <i class="fas fa-user-tie ms-icon-mr"></i>
         </div>
-      </a>
+        <i class="fas fa-user-tie ms-icon-mr"></i>
+      </div>
     </div>
     <div class="col-xl-3 col-md-6 col-sm-6">
-      <a href="#">
-        <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
-          <div class="ms-card-body media">
-            <div class="media-body">
-              <h6 class="bold">SRS</h6>
-              <p class="ms-card-change"> <?php echo $rowSrs ?></p>
-            </div>
+      <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+        <div class="ms-card-body media">
+          <div class="media-body">
+            <h6 class="bold">SRS</h6>
+            <p class="ms-card-change"> <?php echo $rowSrs ?></p>
           </div>
-          <i class="fa fa-user ms-icon-mr"></i>
         </div>
-      </a>
+        <i class="fa fa-user ms-icon-mr"></i>
+      </div>
     </div>
     <div class="col-xl-3 col-md-6 col-sm-6">
-      <a href="#">
-        <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
-          <div class="ms-card-body media">
-            <div class="media-body">
-              <h6 class="bold">CPRI</h6>
-              <p class="ms-card-change"> <?php echo $rowCpri ?> </p>
-            </div>
+      <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+        <div class="ms-card-body media">
+          <div class="media-body">
+            <h6 class="bold">CPRI</h6>
+            <p class="ms-card-change"> <?php echo $rowCpri ?> </p>
           </div>
-          <i class="fa fa-user ms-icon-mr"></i>
         </div>
-      </a>
+        <i class="fa fa-user ms-icon-mr"></i>
+      </div>
     </div>
     <div class="col-xl-3 col-md-6 col-sm-6">
-      <a href="#">
-        <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
-          <div class="ms-card-body media">
-            <div class="media-body">
-              <h6>Product Send</h6>
-              <p class="ms-card-change"> Not Ready</p>
-            </div>
+      <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+        <div class="ms-card-body media">
+          <div class="media-body">
+            <h6>Product Send</h6>
+            <p class="ms-card-change"> Not Ready</p>
           </div>
-          <i class="fas fa-project-diagram ms-icon-mr"></i>
         </div>
-      </a>
+        <i class="fas fa-project-diagram ms-icon-mr"></i>
+      </div>
     </div>
     <div class="col-xl-3 col-md-6 col-sm-6">
-      <a href="#">
-        <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
-          <div class="ms-card-body media">
-            <div class="media-body">
-              <h6 class="bold">Testing Done</h6>
-              <p class="ms-card-change"> Not Ready</p>
-            </div>
+      <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+        <div class="ms-card-body media">
+          <div class="media-body">
+            <h6 class="bold">Testing Done</h6>
+            <p class="ms-card-change"> Not Ready</p>
           </div>
-          <i class="material-icons  ms-icon-mr">assignment</i>
         </div>
-      </a>
+        <i class="material-icons  ms-icon-mr">assignment</i>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 col-sm-6">
+      <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+        <div class="ms-card-body media">
+          <div class="media-body">
+            <h6 class="bold">Testing Reject</h6>
+            <p class="ms-card-change"> Not Ready</p>
+          </div>
+        </div>
+        <i class="material-icons  ms-icon-mr">assignment</i>
+      </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-xl-4 col-lg-6 col-md-12">
+    <div class="col-lg-4 col-md-12">
       <div class="ms-card ms-widget has-graph-full-width ms-infographics-widget">
         <div class="ms-card-body media">
           <div class="media-body">
@@ -98,7 +99,8 @@ $rowCpri = mysqli_num_rows($resultCpri);
         </div>
         <canvas id="line-chart-2"></canvas>
       </div>
-
+    </div>
+    <div class="col-lg-4 col-md-12">
       <div class="ms-card ms-widget has-graph-full-width ms-infographics-widget">
         <div class="ms-card-body media">
           <div class="media-body">
@@ -108,7 +110,8 @@ $rowCpri = mysqli_num_rows($resultCpri);
         </div>
         <canvas id="line-chart-3"></canvas>
       </div>
-
+    </div>
+    <div class="col-lg-4 col-md-12">
       <div class="ms-card ms-widget has-graph-full-width ms-infographics-widget">
         <div class="ms-card-body media">
           <div class="media-body">
@@ -118,80 +121,8 @@ $rowCpri = mysqli_num_rows($resultCpri);
         </div>
         <canvas id="line-chart-4"></canvas>
       </div>
-
     </div>
-
-    <div class="col-xl-4 col-lg-6 col-md-12">
-      <div class="ms-panel ms-panel-fh">
-        <div class="ms-panel-body calendar-wedgit">
-          <div id="calendar"></div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="col-xl-4 col-md-12">
-
-      <div class="ms-card ms-widget ms-profile-widget ms-card-fh br-0">
-        <div class="ms-card-img">
-          <img src="assets/img/portfolio/gallery-4-760x260.jpg" alt="card_img">
-        </div>
-        <img src="assets/img/dashboard/Engineer-1.jpg" class="ms-img-large ms-img-round ms-user-img" alt="people">
-        <div class="ms-card-body">
-          <h2>Anny Farisha</h2>
-          <span>Engineer</span>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in arcu turpis. Nunc</p>
-          <button type="button" class="btn btn-primary btn-sm" name="button"><i class="material-icons">person_add</i> Assign</button>
-          <ul class="ms-profile-stats">
-            <li>
-              <h3 class="ms-count">5790</h3>
-              <span>Operations</span>
-            </li>
-            <li>
-              <h3 class="ms-count">4.8</h3>
-              <span>Medical Rating</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="col-xl-6 col-lg-12">
-      <div class="ms-panel ms-device-sessions ms-quick-mic">
-        <div class="ms-panel-header">
-          <h6>Project base Analytics</h6>
-        </div>
-        <div class="ms-panel-body">
-          <div class="row">
-            <div class="col-xl-4 col-md-4 col-sm-4 col-6 ms-device">
-              <i class="fas fa-thumbs-up"></i>
-              <h4>Done</h4>
-              <p class="ms-text-primary">45.07%</p>
-              <span class="ms-text-primary">201,434</span>
-            </div>
-            <div class="col-xl-4 col-md-4 col-sm-4 col-6 ms-device">
-              <i class="fas fa-spinner"></i>
-              <h4>Current</h4>
-              <p class="ms-text-current">29.05%</p>
-              <span class="ms-text-current">134,693</span>
-            </div>
-            <div class="col-xl-4 col-md-4 col-sm-4 col-6 ms-device">
-              <i class="fas fa-sync-alt"></i>
-              <h4>Pending</h4>
-              <p class="ms-text-warning">18.43%</p>
-              <span class="ms-text-warning">81,525</span>
-            </div>
-          </div>
-          <div class="progress">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 45.07%" aria-valuenow="45.07" aria-valuemin="0" aria-valuemax="100"></div>
-            <div class="progress-bar bg-current" role="progressbar" style="width: 29.05%" aria-valuenow="29.05" aria-valuemin="0" aria-valuemax="100"></div>
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 25.48%" aria-valuenow="25.48" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-6 col-lg-12">
+    <div class="col-md-12">
       <div class="ms-panel">
         <div class="ms-panel-header d-flex justify-content-between">
           <h6>Our Staff</h6>
@@ -205,101 +136,80 @@ $rowCpri = mysqli_num_rows($resultCpri);
           </div>
         </div>
         <div class="ms-panel-body p-0 ms-medical-overview-slider">
-          <div class="ms-crypto-overview">
-            <a href="#" class="ms-profile">
-              <img src="assets/img/dashboard/Engineer-1.jpg" class="ms-img-large ms-img-round ms-user-img mx-auto d-block" alt="people">
-              <div class="ms-card-body">
-                <h5>Anny</h5>
-                <span>Engineer</span>
-              </div>
-            </a>
-          </div>
-          <div class="ms-crypto-overview">
-            <a href="#" class="ms-profile">
-              <img src="assets/img/dashboard/Engineer-2.jpg" class="ms-img-large ms-img-round ms-user-img mx-auto d-block" alt="people">
-              <div class="ms-card-body">
-                <h5>Jude</h5>
-                <span>Surgeon</span>
-              </div>
-            </a>
-          </div>
-          <div class="ms-crypto-overview">
-            <a href="#" class="ms-profile">
-              <img src="assets/img/dashboard/Engineer-3.jpg" class="ms-img-large ms-img-round ms-user-img mx-auto d-block" alt="people">
-              <div class="ms-card-body">
-                <h5>Jordan</h5>
-                <span>Engineer</span>
-              </div>
-            </a>
-          </div>
-          <div class="ms-crypto-overview">
-            <a href="#" class="ms-profile">
-              <img src="assets/img/dashboard/Engineer-4.jpg" class="ms-img-large ms-img-round ms-user-img mx-auto d-block" alt="people">
-              <div class="ms-card-body">
-                <h5>Micheal</h5>
-                <span>Nurse</span>
-              </div>
-            </a>
-          </div>
-          <div class="ms-crypto-overview">
-            <a href="#" class="ms-profile">
-              <img src="assets/img/dashboard/Engineer-2.jpg" class="ms-img-large ms-img-round ms-user-img mx-auto d-block" alt="people">
-              <div class="ms-card-body">
-                <h5>Rouge</h5>
-                <span>Engineer</span>
-              </div>
-            </a>
-          </div>
-          <div class="ms-crypto-overview">
-            <a href="#" class="ms-profile">
-              <img src="assets/img/dashboard/Engineer-1.jpg" class="ms-img-large ms-img-round ms-user-img mx-auto d-block" alt="people">
-              <div class="ms-card-body">
-                <h5>Lilly</h5>
-                <span>Surgeon</span>
-              </div>
-            </a>
-          </div>
-          <div class="ms-crypto-overview">
-            <a href="#" class="ms-profile">
-              <img src="assets/img/dashboard/Engineer-3.jpg" class="ms-img-large ms-img-round ms-user-img mx-auto d-block" alt="people">
-              <div class="ms-card-body">
-                <h5>Sameul</h5>
-                <span>Surgeon</span>
-              </div>
-            </a>
-          </div>
-          <div class="ms-crypto-overview">
-            <a href="#" class="ms-profile">
-              <img src="assets/img/dashboard/Engineer-4.jpg" class="ms-img-large ms-img-round ms-user-img mx-auto d-block" alt="people">
-              <div class="ms-card-body">
-                <h5>Ricky</h5>
-                <span>Engineer</span>
-              </div>
-            </a>
-          </div>
-          <div class="ms-crypto-overview">
-            <a href="#" class="ms-profile">
-              <img src="assets/img/dashboard/Engineer-1.jpg" class="ms-img-large ms-img-round ms-user-img mx-auto d-block" alt="people">
-              <div class="ms-card-body">
-                <h5>Venus</h5>
-                <span>Engineer</span>
-              </div>
-            </a>
-          </div>
-          <div class="ms-crypto-overview">
-            <a href="#" class="ms-profile">
-              <img src="assets/img/dashboard/Engineer-3.jpg" class="ms-img-large ms-img-round ms-user-img mx-auto d-block" alt="people">
-              <div class="ms-card-body">
-                <h5>Johan</h5>
-                <span>Nurse</span>
-              </div>
-            </a>
-          </div>
+          <?php
+          $query;
+          if ($_SESSION['user_role'] == "Admin") {
+            $query = "SELECT * From register where status='Accepted'";
+          } else {
+            $user_role = $_SESSION['user_role'];
+            $query = "SELECT * From register where role='" . $user_role . "' AND status='Accepted'";
+          }
+          $queryResult = mysqli_query($con, $query);
+          while ($totalRow = mysqli_fetch_assoc($queryResult)) {
+            if (mysqli_num_rows($queryResult) > 1) {
+              if ($totalRow["Id"] != $_SESSION["Id"]) {
+                echo '<div class="ms-crypto-overview">
+                <a href="#" class="ms-profile">
+                  <img src="assets/user_image/' . $totalRow["image"] . '" style="height:100px" class="ms-img-large ms-img-round ms-user-img mx-auto d-block" alt="people">
+                  <div class="ms-card-body">
+                    <h5>' . $totalRow["name"] . '</h5>
+                    <span>' . $totalRow["role"] . '</span>
+                  </div>
+                </a>
+              </div>';
+              }
+            } else {
+              echo "<h6>Currently you are the only one.</h6>";
+            }
+          }
+          ?>
         </div>
       </div>
     </div>
-
-
   </div>
 </div>
 <?php include "inc/footer.php" ?>
+<script>
+  $('.ms-medical-overview-slider').slick({
+    dots: false,
+    arrows: false,
+    infinite: false,
+    slidesToShow: 4,
+    arrows: true,
+    prevArrow: $('.prev-item'),
+    nextArrow: $('.next-item'),
+    responsive: [{
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 420,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  });
+</script>

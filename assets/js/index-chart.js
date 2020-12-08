@@ -257,7 +257,7 @@
         gradientFill2.addColorStop(0, "rgb(255, 76, 1)");
         gradientFill2.addColorStop(1, "rgba(255,255,255)");
 
-        var lineChart2 = new Chart(ctx2, { 
+        var lineChart2 = new Chart(ctx2, {
           type: 'line',
           data: {
               labels:  [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
