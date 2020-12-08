@@ -1,13 +1,20 @@
 <?php
+// for website
+// $con = mysqli_connect("sql310.epizy.com", "epiz_27415298", "y6SipnQ2p0w2QO", "epiz_27415298_labautomation");
+
+// // for website
+// $url = "http://lab-automation.epizy.com/";
+
+// // for website
+// $imagelocation="http://lab-automation.epizy.com/assets/";
+
+
 
 $con = mysqli_connect("localhost", "root", "", "lab");
-
-
-
-$url = "http://localhost:8080/aptechProject/lab/";
+$url = "http://localhost/aptechProject/lab/";
 
 // for pc
-$imagelocation="C:/xampp/htdocs/aptechProject/lab/assets";
+$imagelocation="C:/xampp/htdocs/aptechProject/lab/assets/";
 
 // //for Mac
 //  $userimagelocation="lab/assets/user_image/";
@@ -69,12 +76,12 @@ if (isset($_FILES["file"]["type"]) && isset($_POST["name"]) && isset($_POST["use
         </button>
       </div>';
     } else {
-      unlink($imagelocation."/user_image/" . $_SESSION["user_image"]);
+      unlink($imagelocation."user_image/" . $_SESSION["user_image"]);
       $sql = "UPDATE register SET name='$name', email='$email', password='$pass', image='$img_path' WHERE Id=" . $user_id . "";
       mysqli_query($con, $sql);
       // send image to folder
       $sourcePath = $_FILES['file']['tmp_name'];
-      $targetPath =$imagelocation. "/user_image/" . $img_path;
+      $targetPath =$imagelocation. "user_image/" . $img_path;
       move_uploaded_file($sourcePath, $targetPath);
       $_SESSION["user_name"] = $name;
       $_SESSION["user_image"] = $img_path;
@@ -312,7 +319,7 @@ if (isset($_POST["addProductName"])) {
   $addTestProductDescription = $_POST["addTestProductDescription"];
 
 
-  $target_dir = $imagelocation."/product-image/";
+  $target_dir = $imagelocation."product-image/";
   $target_file = $target_dir . json_encode($_FILES["addProductImage"]["name"]);
   $uploadOk = 1;
   $imageUpload = 0;
@@ -339,7 +346,7 @@ if (isset($_POST["addProductName"])) {
         }
         if ((($_FILES["addProductImage"]["type"][$i] == "image/png") || ($_FILES["addProductImage"]["type"][$i] == "image/jpg") || ($_FILES["addProductImage"]["type"][$i] == "image/jpeg"))) {
           if ($uploadOk != 0) {
-            $path=$imagelocation."/product-image/";
+            $path=$imagelocation."product-image/";
             $sourcePath = $_FILES['addProductImage']['tmp_name'][$i]; // Storing source path of the file in a variable
             $targetPath = $path . $_FILES['addProductImage']['name'][$i]; // Target path where file is to be stored
             // echo explode("," , json_encode($_FILES['addProductImage']['name']));

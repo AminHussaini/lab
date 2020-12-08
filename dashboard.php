@@ -20,17 +20,20 @@ $rowCpri = mysqli_num_rows($resultCpri);
   <div class="row">
     <!-- Notifications Widgets -->
 
-    <div class="col-xl-3 col-md-6 col-sm-6">
-      <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
-        <div class="ms-card-body media">
-          <div class="media-body">
-            <h6>Admin</h6>
-            <p class="ms-card-change"><?php echo $rowAdmin ?></p>
+    <?php if ($_SESSION["user_role"] == "Admin") { ?>
+      <div class="col-xl-3 col-md-6 col-sm-6">
+        <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+          <div class="ms-card-body media">
+            <div class="media-body">
+              <h6>Admin</h6>
+              <p class="ms-card-change"><?php echo $rowAdmin ?></p>
+            </div>
           </div>
+          <i class="fas fa-user-tie ms-icon-mr"></i>
         </div>
-        <i class="fas fa-user-tie ms-icon-mr"></i>
       </div>
-    </div>
+    <?php } ?>
+    <?php if ($_SESSION["user_role"] != "CPRI") { ?>
     <div class="col-xl-3 col-md-6 col-sm-6">
       <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
         <div class="ms-card-body media">
@@ -42,17 +45,20 @@ $rowCpri = mysqli_num_rows($resultCpri);
         <i class="fa fa-user ms-icon-mr"></i>
       </div>
     </div>
+    <?php } ?>
+    <?php if ($_SESSION["user_role"] != "SRS") { ?>
     <div class="col-xl-3 col-md-6 col-sm-6">
       <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
         <div class="ms-card-body media">
           <div class="media-body">
-            <h6 class="bold">CPRI</h6>
+            <h6 class="bold">CPRI </h6>
             <p class="ms-card-change"> <?php echo $rowCpri ?> </p>
           </div>
         </div>
         <i class="fa fa-user ms-icon-mr"></i>
       </div>
     </div>
+    <?php } ?>
     <div class="col-xl-3 col-md-6 col-sm-6">
       <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
         <div class="ms-card-body media">

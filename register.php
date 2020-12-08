@@ -100,7 +100,7 @@ if (isset($_POST["btn"])) {
     </div>';
   }
   else{
-    $target_dir = $imageloaction ."/user_image/";
+    $target_dir = $imagelocation ."user_image/";
     $target_file = $target_dir . basename($_FILES["file"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -162,15 +162,16 @@ if (isset($_POST["btn"])) {
 
   }
 
-  } else {
-    echo '
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Some thing went wrong</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>';
   }
+  // else {
+  //   echo '
+  //     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  //       <strong>Some thing went wrong</strong>
+  //       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  //         <span aria-hidden="true">&times;</span>
+  //       </button>
+  //     </div>';
+  // }
 
 
 ?>
