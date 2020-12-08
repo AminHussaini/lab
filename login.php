@@ -60,10 +60,7 @@ if (isset($_POST["btn"])) {
     if (mysqli_num_rows($result_1) == 1) {
       $query = "select Id, name, role, image, status From register where email='" . $_POST["email"] . "' and password='" . $_POST["pass"] . "'";
       $result_2 = mysqli_query($con, $query) or die("Query Failed");
-
-
       if (mysqli_num_rows($result_2) > 0) {
-
         while ($row = mysqli_fetch_assoc($result_2)) {
           $_SESSION["user_name"] = $row["name"];
           $_SESSION["Id"] = $row["Id"];
