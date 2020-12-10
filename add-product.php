@@ -1,8 +1,10 @@
 <?php include "inc/header.php" ?>
 <?php include "inc/connection.php";
+
 $return_var = '<script type="text/javascript">
 window.location = "' . $url . 'dashboard.php"
 </script>';
+
 if ($_SESSION["user_role"] == "CPRI") echo $return_var;
 
 ?>
@@ -184,7 +186,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
       },
       success: function(data) {
         $("#test-product").html(data);
-        $('#add-testing-product').DataTable();
+        $('#start-testing-product').DataTable();
       },
     })
   }
@@ -217,6 +219,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
       });
     }
   }));
+
   // delete
   $(document).on('click', "#delete-product", function() {
     let productCurrentId = $(this).attr("storedata");
@@ -251,8 +254,10 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
         $("#updateTestProductName").val(data.split("(array)")[1]);
         $("#updateTestProductDescription").val(data.split("(array)")[2]);
         $.map($("#updateTestProductCategory option"), function(elementOrValue, indexOrKey) {
+          $(elementOrValue).attr("selected",false)
           if ($(elementOrValue).attr("value") == data.split("(array)")[3]) {
-            $(elementOrValue).attr("selected", "selected")
+            console.log($(elementOrValue).attr("value") +"    " + data.split("(array)")[3])
+            $(elementOrValue).attr("selected", true)
           }
         });
 

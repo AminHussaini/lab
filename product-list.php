@@ -49,7 +49,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
             $sql = "SELECT * FROM product";
             $result = mysqli_query($con, $sql) or die("query fail");
             ?>
-            <table id="add-testing-product" class="table w-100 thead-primary">
+            <table id="start-testing-product" class="table w-100 thead-primary">
               <thead>
                 <tr>
                   <th>
@@ -86,8 +86,15 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
                 <?php
                 if ($result = mysqli_query($con, $sql)) {
                   $i = 1;
+                  $startTesting = "SELECT * FROM sendfortest";
+                  $startTestingResult = mysqli_query($con, $startTesting) or die("query fail");
+                  $startTestingResultRow = mysqli_fetch_assoc($startTestingResult);
                   while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<tr>
+                   if ($row['ProductId'] == $startTestingResultRow['productid'] ) echo "<tr style='background-color:#ffd5789e'>";
+                    else echo "<tr>";
+
+
+                    echo "
                         <td>" . $i . "</td>
                         ";
 

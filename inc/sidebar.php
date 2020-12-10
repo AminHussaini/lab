@@ -53,8 +53,8 @@
           </a>
           <ul id='Testing' class='collapse' aria-labelledby='Testing' data-parent='#side-nav-accordion' style=''>
             <li> <a href='testing-category.php'>Testing Category</a> </li>
-            <li> <a href='add-Testing.php'>Add Testing</a> </li>
-            <li> <a href='Testing-list.php'>Testing List</a> </li>
+            <li> <a href='start-testing.php'>Start Testing</a> </li>
+            <li> <a href='testing-list.php'>Testing List</a> </li>
           </ul>
         </li>
         ";

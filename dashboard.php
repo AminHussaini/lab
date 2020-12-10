@@ -13,6 +13,13 @@ $cpriQuery = "SELECT * From register where role='CPRI'";
 $resultCpri = mysqli_query($con, $cpriQuery);
 $rowCpri = mysqli_num_rows($resultCpri);
 
+$productSend;
+$data = mysqli_query($con, "SELECT * From sendfortest");
+if (mysqli_num_rows($data) > 0) {
+  $productSend =mysqli_num_rows($data);
+} else {
+  $productSend = "Not Ready";
+}
 ?>
 
 <!-- Body Content Wrapper -->
@@ -34,37 +41,37 @@ $rowCpri = mysqli_num_rows($resultCpri);
       </div>
     <?php } ?>
     <?php if ($_SESSION["user_role"] != "CPRI") { ?>
-    <div class="col-xl-3 col-md-6 col-sm-6">
-      <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
-        <div class="ms-card-body media">
-          <div class="media-body">
-            <h6 class="bold">SRS</h6>
-            <p class="ms-card-change"> <?php echo $rowSrs ?></p>
+      <div class="col-xl-3 col-md-6 col-sm-6">
+        <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+          <div class="ms-card-body media">
+            <div class="media-body">
+              <h6 class="bold">SRS</h6>
+              <p class="ms-card-change"> <?php echo $rowSrs ?></p>
+            </div>
           </div>
+          <i class="fa fa-user ms-icon-mr"></i>
         </div>
-        <i class="fa fa-user ms-icon-mr"></i>
       </div>
-    </div>
     <?php } ?>
     <?php if ($_SESSION["user_role"] != "SRS") { ?>
-    <div class="col-xl-3 col-md-6 col-sm-6">
-      <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
-        <div class="ms-card-body media">
-          <div class="media-body">
-            <h6 class="bold">CPRI </h6>
-            <p class="ms-card-change"> <?php echo $rowCpri ?> </p>
+      <div class="col-xl-3 col-md-6 col-sm-6">
+        <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+          <div class="ms-card-body media">
+            <div class="media-body">
+              <h6 class="bold">CPRI </h6>
+              <p class="ms-card-change"> <?php echo $rowCpri ?> </p>
+            </div>
           </div>
+          <i class="fa fa-user ms-icon-mr"></i>
         </div>
-        <i class="fa fa-user ms-icon-mr"></i>
       </div>
-    </div>
     <?php } ?>
     <div class="col-xl-3 col-md-6 col-sm-6">
       <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
         <div class="ms-card-body media">
           <div class="media-body">
             <h6>Product Send</h6>
-            <p class="ms-card-change"> Not Ready</p>
+            <p class="ms-card-change"> <?php echo $productSend?> </p>
           </div>
         </div>
         <i class="fas fa-project-diagram ms-icon-mr"></i>

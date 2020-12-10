@@ -1,6 +1,4 @@
 <?php include "inc/header.php" ?>
-<link rel="stylesheet" href="assets/slider-nav/css/flexslider.css" />
-<link rel="stylesheet" href="assets/slider-nav/css/demo.css" />
 <?php include "inc/connection.php";
 $return_var = '<script type="text/javascript">
 window.location = "' . $url . 'dashboard.php"
@@ -18,7 +16,7 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
         <ol class="breadcrumb pl-0">
           <li class="breadcrumb-item"><a href="#"><i class="material-icons">home</i> Home</a></li>
           <li class="breadcrumb-item"><a href="#">Testing</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Add Testing</li>
+          <li class="breadcrumb-item active" aria-current="page">Start-testing</li>
         </ol>
       </nav>
     </div>
@@ -37,7 +35,7 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
 
             $testingrow = 'SELECT * FROM testingtypes';
             if (mysqli_num_rows(mysqli_query($con, $testingrow)) > 0) { ?>
-              <table id="add-testing-product" class="table w-100 thead-primary">
+              <table id="start-testing-product" class="table w-100 thead-primary">
                 <thead>
                   <tr>
                     <th>
@@ -47,10 +45,10 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
                       User Name
                     </th>
                     <th>
-                      Product Category
+                      Product Name
                     </th>
                     <th>
-                      Product Name
+                      Product Category
                     </th>
                     <th>
                       Product Code
@@ -96,14 +94,14 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
                       $getProductCategoryRow = mysqli_fetch_assoc($getProductCategory);
 
                       echo "
-                        <td class='product-name' style='text-transform:capitalize;'>" . $getProductCategoryRow['ProductName']  . "</td>
-                        <td>" . $productrow['ProductName'] . "</td>
+                        <td class='product-name' style='text-transform:capitalize;'>" . $productrow['ProductName'] . "</td>
+                        <td style='text-align:center!important;'>" . $getProductCategoryRow['ProductName']  . "</td>
                         <td>" . $productrow['ProductCode'] . "</td>
                         <td style='min-width: 200px;max-width: 280px;word-break: break-word;white-space: initial;'>" . $productrow['ProductDetail'] . "</td>
                         <td style='min-width: 170px;white-space: initial;'> <b>Date: </b>" . explode(" ", $productrow['ProductDate'])[0] . "<br> <b>Time: </b>" . explode(" ", $productrow['ProductDate'])[1] . "</td>";
 
                       echo "<td style='min-width: 200px;max-width: 280px;word-break: break-word;'>
-                    <div class='input-group'>
+                    <div class='testing-category'>
                     <select class='form-control' id='addTestProductCategory' name='addTestProductCategory' required>
                     <option value='empty' selected disabled>Select</option>";
 
@@ -121,7 +119,7 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
                      </div>
                      </td>
                         <td class='text-center'>
-                        <button class='btn btn-primary  mt-2 d-block w-3 text-white'>Strat Testing</button>
+                        <button id=" . $productrow['ProductId'] . " type='button' class='btn btn-pill btn-outline-light m-0 start-testing'>Start Testing</button>
                         </td>
                         </tr>
                         ";
@@ -131,8 +129,8 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
                   ?>
                 </tbody>
               </table>
-            <?php  } else  {
-             echo "<h6 class='text-center' style='color:var(--red);font-weight:700'>Add the testing First</h6>";
+            <?php  } else {
+              echo "<h6 class='text-center' style='color:var(--red);font-weight:700'>Add the testing First</h6>";
             };
             ?>
 
@@ -144,3 +142,35 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
 </div>
 
 <?php include "inc/footer.php" ?>
+<script>
+  $(document).ready(function() {
+    $(document).on('click', ".start-testing", function() {
+
+      let product_id = $(this).attr("id");
+      let testing_id = $(this).closest("tr").find(".testing-category select").val()
+      if (testing_id != null || testing_id != undefined) {
+        let testing_code = Math.floor(Math.pow(10, 10 - 1) + Math.random() * 9 * Math.pow(10, 10 - 1));
+        $.ajax({
+        type: "POST",
+        url: "inc/connection.php",
+        data: {
+          product_id: product_id,
+          testing_id: testing_id,
+          testing_code: testing_code,
+        },
+        success: function(response) {
+          alert(response)
+        }
+      });
+      } else {
+        $(".alert").remove();
+        $("body").append('<div class="alert alert-danger alert-dismissible fade show" role="alert">\
+             <strong>Select the testing category.</strong>\
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">\
+               <span aria-hidden="true">&times;</span>\
+             </button>\
+           </div>')
+      }
+    })
+  })
+</script>

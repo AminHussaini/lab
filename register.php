@@ -68,7 +68,7 @@
           </div>
 
           <input type="submit" class="btn btn-primary mt-4 d-block w-100" name="btn" value="Create Account">
-          <p class="mb-0 mt-3 text-center">Already have an account? <a class="btn-link" href="login.php">Login</a> </p>
+          <p class="mb-0 mt-3 text-center">Already have an account? <a class="btn-link" href="index.php">Login</a> </p>
         </form>
       </div>
     </div>
