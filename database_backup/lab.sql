@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2020 at 06:29 PM
+-- Generation Time: Dec 13, 2020 at 12:16 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -93,9 +93,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`ProductId`, `ProductName`, `ProductCode`, `ProductaddUserName`, `ProductDetail`, `ProductIdType`, `ProductDate`, `Status`, `ReBuild`) VALUES
-(56, 'elecrtic fuse-1', '2693787045', '3', 'changes', 74, '2020-12-06 07:08am', '2', 0),
-(60, 'elecrtic fuse', '8598705630', '3', 'asdasdasdasd', 75, '2020-12-06 01:48am', '2', 0),
-(61, 'light', 'asdasdeqwe', '3', 'asdasdsadasd', 75, '2020-12-11 05:14pm', '0', 1),
+(56, 'elecrtic fuse-1', '2693787045', '3', 'changes', 74, '2020-12-06 07:08am', '0', 0),
+(60, 'elecrtic fuse', '8598705630', '3', 'asdasdasdasd', 75, '2020-12-06 01:48am', '2', 3),
+(61, 'light', 'asdasdeqwe', '3', 'asdasdsadasd', 75, '2020-12-11 05:14pm', '0', 0),
 (65, 'elecrtic fuse', '8472303117', '3', 'asdasda', 75, '2020-12-06 02:10am', '0', 0),
 (68, 'motor fuse', '9841179899', '3', 'asdsadasd', 74, '2020-12-06 05:51am', '0', 0),
 (69, 'asdasda', '8178347652', '3', 'What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting i', 75, '2020-12-06 05:54am', '0', 0),
@@ -150,7 +150,7 @@ INSERT INTO `register` (`Id`, `name`, `email`, `password`, `role`, `status`, `im
 (4, 'Ali', 'aminasghar5@gmail.com', 'demo', 'SRS', 'Accepted', '20151104_113813.jpg'),
 (12, 'Aizaz', 'twinmark01@gmail.com', 'demo23', 'Admin', 'Accepted', '12processed.jpeg'),
 (13, 'Irfan', 'irfanhaiderkhan12@yahoo.com', 'demo123', 'CPRI', 'Accepted', '13pp+.jpg'),
-(17, 'Ehtizan', 'aminasghar52@gmail.com', 'duck', 'SRS', 'Accepted', 'pp1.jpg'),
+(17, 'Ehtizan', 'aminasghar52@gmail.com', 'duck', 'SRS', 'Accepted', '170a1f820e29719c7b67e9d5aa44241155.jpg'),
 (19, 'shariq', 'shariq.shaikh109@gmail.com', 'demo', 'SRS', 'Accepted', 'processed.jpeg');
 
 -- --------------------------------------------------------
@@ -171,9 +171,7 @@ CREATE TABLE `sendfortest` (
 --
 
 INSERT INTO `sendfortest` (`sft_id`, `sendbyuser`, `productid`, `Datetime`) VALUES
-(17, 3, 56, '2020-12-12 05:57pm'),
-(18, 3, 60, '2020-12-12 06:31pm'),
-(23, 4, 61, '12-12-2020 10:26pm');
+(49, 4, 60, '13-12-2020 04:11am');
 
 -- --------------------------------------------------------
 
@@ -185,7 +183,7 @@ CREATE TABLE `testing` (
   `TestingId` int(11) NOT NULL,
   `TestingType` int(255) NOT NULL,
   `ProductId` int(255) NOT NULL,
-  `TestingCode` int(10) DEFAULT NULL,
+  `TestingCode` varchar(10) NOT NULL,
   `TestingUser` int(50) DEFAULT NULL,
   `TestingDate` varchar(50) DEFAULT NULL,
   `EndDate` varchar(50) DEFAULT NULL
@@ -196,9 +194,7 @@ CREATE TABLE `testing` (
 --
 
 INSERT INTO `testing` (`TestingId`, `TestingType`, `ProductId`, `TestingCode`, `TestingUser`, `TestingDate`, `EndDate`) VALUES
-(12, 8, 56, 2147483647, 13, '12-12-2020 05:57pm', '12-12-2020 05:58pm'),
-(13, 9, 60, 2147483647, 13, '12-12-2020 06:31pm', '12-12-2020 06:31pm'),
-(17, 8, 61, 2147483647, 12, '12-12-2020 07:38pm', '12-12-2020 07:38pm');
+(37, 9, 60, '2029850851', 12, '13-12-2020 04:12am', '13-12-2020 04:12am');
 
 -- --------------------------------------------------------
 
@@ -219,9 +215,10 @@ CREATE TABLE `testingremark` (
 --
 
 INSERT INTO `testingremark` (`RemarkId`, `Remark`, `RemarkParent`, `RemarkUser`, `RemarkDate`) VALUES
-(27, 'This is approved', 56, 13, '12-12-2020 06:31pm'),
-(28, 'This is approved', 60, 13, '12-12-2020 06:31pm'),
-(31, 'This is reject', 61, 12, '12-12-2020 07:38pm');
+(39, 'fail', 60, 13, '13-12-2020 03:58am'),
+(40, 'again fail', 60, 13, '13-12-2020 04:00am'),
+(41, 'asdasdasd', 60, 13, '13-12-2020 04:01am'),
+(42, 'approved', 60, 12, '13-12-2020 04:12am');
 
 -- --------------------------------------------------------
 
@@ -358,19 +355,19 @@ ALTER TABLE `register`
 -- AUTO_INCREMENT for table `sendfortest`
 --
 ALTER TABLE `sendfortest`
-  MODIFY `sft_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `sft_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `testing`
 --
 ALTER TABLE `testing`
-  MODIFY `TestingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `TestingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `testingremark`
 --
 ALTER TABLE `testingremark`
-  MODIFY `RemarkId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `RemarkId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `testingtypes`
