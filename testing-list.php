@@ -99,10 +99,14 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
                     $testingtypesrow = 'SELECT * FROM testingtypes Where TestingTypeID='.$testingRows["TestingType"].'';
                     $testTypeRowList = mysqli_fetch_assoc(mysqli_query($con, $testingtypesrow));
 
+                    $testingUser = "SELECT * FROM register where id=" . $testingRows["TestingUser"]. "";
+                    $getTestingUser = mysqli_query($con, $testingUser);
+                    $getTestingUserList = mysqli_fetch_assoc($getTestingUser);
+
                     echo "
                     <td>" . $productTypeRowList["ProductName"] . "</td>
                     <td>" . $productRowList["ProductDetail"] . "</td>
-                    <td>" . $testingRows["TestingUser"] . "</td>
+                    <td>" . $getTestingUserList['name'] . "</td>
                     <td>" . $testingRows["TestingCode"] . "</td>
                     <td>" . $testTypeRowList["TestingTypeName"] . "</td>
                     <td style='min-width: 170px;white-space: initial;'> <b>Date: </b>" . explode(" ", $testingRows['TestingDate'])[0] . "<br> <b>Time: </b>" . explode(" ", $testingRows['TestingDate'])[1] . "</td>

@@ -80,7 +80,7 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
                       if ($productrow["Status"] == 0) {
 
                         echo "<tr>
-                        <td>" . $i . "</td>
+                        <td class='userid' id=".$getsenddeatilrow['sendbyuser'].">" . $i . "</td>
                         ";
 
                         $sql = "SELECT * FROM register where id=" . $getsenddeatilrow['sendbyuser'] . "";
@@ -151,20 +151,21 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
   $(document).ready(function() {
     $(document).on('click', ".start-testing", function() {
 
+      let user_id = $(this).closest("tr").find(".userid").attr("id");
       let product_id = $(this).attr("id");
       let testing_id = $(this).closest("tr").find(".testing-category select").val()
       if (testing_id != null || testing_id != undefined) {
-        let testing_code = Math.floor(Math.pow(10, 10 - 1) + Math.random() * 9 * Math.pow(10, 10 - 1));
         $.ajax({
           type: "POST",
           url: "inc/connection.php",
           data: {
+            user_id: user_id,
             product_id: product_id,
             testing_id: testing_id,
-            testing_code: testing_code,
           },
           success: function(response) {
-            $("body").append(response)
+            $("body").append(response);
+            // alert(response)
           }
         });
       } else {

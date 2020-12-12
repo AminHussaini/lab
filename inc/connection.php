@@ -820,23 +820,56 @@ if (isset($_POST["updateTestingId"]) && isset($_POST["updateTestingName"]) && is
 
 //
 // Starting testing
-if (isset($_POST['product_id']) && isset($_POST['testing_id']) && isset($_POST['testing_code'])) {
+if (isset($_POST['product_id']) && isset($_POST['testing_id']) && isset($_POST['user_id'])) {
   extract($_POST);
   session_start();
   $testing_user = $_SESSION['Id'];
-  $query = mysqli_query($con, "INSERT into testing values(null,$testing_id,$product_id,$testing_code, $testing_user,'$dateTime',null)") or die("query fail1");
-  $query_2 = mysqli_query($con, "UPDATE product Set Status=1  WHERE ProductId=$product_id") or die("query fail");
-  if ($query && $query_2) {
-    echo '<script type="text/javascript">
-    window.location = "' . $url . 'testing-detail.php?id='.$product_id.'"
-    </script>';
+  $productCreator = mysqli_query($con, 'SELECT * FROM product WHERE ProductId=' . $product_id . '');
+  $productCreatorRow = mysqli_fetch_assoc($productCreator);
+  if ($user_id != $testing_user && $testing_user  != $productCreatorRow['ProductaddUserName']) {
+    $testingListCheck = mysqli_query($con, 'SELECT * FROM testing WHERE ProductId=' . $product_id . '');
+
+    $query_2 = mysqli_query($con, "UPDATE product Set Status=1  WHERE ProductId=$product_id") or die("query fail product");
+    if (mysqli_num_rows($testingListCheck) > 0) {
+      $query_1 = mysqli_query($con, "UPDATE testing Set TestingUser=$testing_user, TestingDate='$dateTime',EndDate=null,TestingType=$testing_id  WHERE ProductId=$product_id") or die("query fail testing");
+      if ($query_1 && $query_2) {
+        echo '<script type="text/javascript">
+      window.location = "' . $url . 'testing-detail.php?id=' . $product_id . '"
+      </script>';
+      } else {
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Something wrong in start testing</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+      }
+    } else {
+      $length = 10;
+      $min = pow(10, $length - 1);
+      $max = pow(10, $length) - 1;
+      $testing_code = mt_rand($min, $max);
+      $query = mysqli_query($con, "INSERT into testing values(null,$testing_id,$product_id,'$testing_code', $testing_user,'$dateTime',null)") or die("query fail1");
+      if ($query && $query_2) {
+        echo '<script type="text/javascript">
+        window.location = "' . $url . 'testing-detail.php?id=' . $product_id . '"
+        </script>';
+      } else {
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Something wrong in start testing</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
+      }
+    }
   } else {
     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>Something wrong in start testing</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>';
+      <strong>Product Sender and testing user are same</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
   }
 }
 

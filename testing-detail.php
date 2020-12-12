@@ -144,11 +144,13 @@ if (isset($_GET['id'])) {
                     <th scope="row">Result</th>
                     <td style="min-width: 170px;white-space: initial;">
                      ';
-                  if ($productrow['Status'] == 2) echo "Approved";
-                  else if ($productrow['Status'] == 3) echo "Rejected";
-                  echo '
-                    </td>
-                  </tr>
+                        if ($productrow['Status'] == 0) echo "Pending";
+                        if ($productrow['Status'] == 1) echo "Test Start";
+                        else if ($productrow['Status'] == 2) echo "Approved";
+                        else if ($productrow['Status'] == 3) echo "Rejected";
+                        echo '
+                          </td>
+                        </tr>
                 ';
                 } else {
                 ?>
@@ -216,11 +218,11 @@ if (isset($_GET['id'])) {
                   </div>
                   <div class="media-body">
                     <div class="ms-chat-text">
-                      <p>
+                      <p style="text-transform: capitalize;">
                       ' . $fetch["Remark"] . '
                       </p>
                     </div>
-                    <p class="ms-chat-time">' . $getTestingList['EndDate'] . '</p>
+                    <p class="ms-chat-time">' . $fetch['RemarkDate'] . '</p>
                   </div>
                 </div>';
             }
@@ -246,7 +248,7 @@ if (isset($_POST['approved'])) {
     $approvedQuery = "UPDATE product SET Status=2 WHERE ProductId =$pageDetail";
     $approvedQueryResult = mysqli_query($con, $approvedQuery) or die("query fail-1");
     if ($approvedQueryResult) {
-      $remarkQuery = "insert into testingremark values(null, '$remark',$pageDetail," . $_SESSION["Id"] . ",0)";
+      $remarkQuery = "insert into testingremark values(null, '".strtolower($remark)."',$pageDetail," . $_SESSION["Id"] . ",'$dateTime')";
       $remarkQueryResult = mysqli_query($con, $remarkQuery) or die("query fail-2");
       echo $dateTime;
       $testingQuery = "UPDATE testing SET EndDate='$dateTime' WHERE ProductId =$pageDetail";
@@ -287,9 +289,8 @@ if (isset($_POST['rejected'])) {
     $approvedQuery = "UPDATE product SET Status=3 WHERE ProductId =$pageDetail";
     $approvedQueryResult = mysqli_query($con, $approvedQuery) or die("query fail-1");
     if ($approvedQueryResult) {
-      $remarkQuery = "insert into testingremark values(null, '$remark',$pageDetail," . $_SESSION["Id"] . ",'$date')";
+      $remarkQuery = "insert into testingremark values(null, '".strtolower($remark)."',$pageDetail," . $_SESSION["Id"] . ",'$dateTime')";
       $remarkQueryResult = mysqli_query($con, $remarkQuery) or die("query fail-2");
-      echo $dateTime;
       $testingQuery = "UPDATE testing SET EndDate='$dateTime' WHERE ProductId =$pageDetail";
       $testingQueryResult = mysqli_query($con, $testingQuery) or die("query fail-3");
 

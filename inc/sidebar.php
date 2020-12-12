@@ -17,10 +17,10 @@
 
       echo "
       <li class='menu-item'>
-      <a href='dashboard.php'>
-        <span><i class='material-icons fs-16'>dashboard</i>".$_SESSION["user_role"]." Dashboard </span>
-      </a>
-    </li>
+        <a href='dashboard.php'>
+          <span><i class='material-icons fs-16'>dashboard</i>".$_SESSION["user_role"]." Dashboard </span>
+        </a>
+      </li>
       ";
       if ($_SESSION["user_role"] == "Admin") {
         echo "
@@ -43,6 +43,11 @@
             <li> <a href='product-list.php'>Product List</a> </li>
           </ul>
         </li>
+        <li class='menu-item'>
+        <a href='market-product.php'>
+          <span><i class='material-icons fs-16'>dashboard</i>Market Product</span>
+        </a>
+      </li>
         ";
       }
       if ($_SESSION["user_role"] == "CPRI" || $_SESSION["user_role"] == "Admin") {

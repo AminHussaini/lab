@@ -75,7 +75,7 @@ if (isset($_GET['id'])) {
         if ($in_query) {
           echo '
           <script type="text/javascript">
-            window.location = "' . $url . 'product-list.php"
+            window.location = "' . $url . 'product-detail.php?id=' . $pageDetail . '"
           </script>
           <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Product Send For test Successfully</strong>
@@ -133,22 +133,6 @@ if (isset($_GET['id'])) {
                   <th scope="row">Product Detail:</th>
                   <td style="white-space: inherit;"><?php echo $productrow['ProductDetail'] ?></td>
                 </tr>
-                <?php
-                if (mysqli_num_rows($startTestingResult) > 0) {
-                  $rowSender = mysqli_fetch_assoc($startTestingResult);
-
-                  $sendername = "SELECT * FROM register where id=" . $rowSender["sendbyuser"] . "";
-                  $getsendername = mysqli_query($con, $sendername);
-                  $getsenderRow = mysqli_fetch_assoc($getsendername);
-                ?>
-                  <tr>
-                    <th scope="row">Product Sender:</th>
-                    <td style="white-space: inherit;">
-                      <?php echo $getsenderRow["name"] ?>
-                    </td>
-                  </tr>
-
-                <?php } ?>
                 <tr>
                   <th scope="row">Category Name:</th>
                   <td><?php echo $getProductCategoryRow['ProductName'] ?></td>
@@ -168,17 +152,42 @@ if (isset($_GET['id'])) {
                   <td style="white-space: inherit;"><?php echo $getProductCategoryRow['ProductDescription'] ?></td>
                 </tr>
                 <?php
-                if($productrow['ReBuild'] >0) {
-                 echo ' <tr>
+                if ($productrow['ReBuild'] > 0) {
+
+                  echo ' <tr>
                     <th scope="row">Product Revive:</th>
-                    <td style="white-space: inherit;">'.$productrow['ReBuild'].'</td>
+                    <td style="white-space: inherit;">' . $productrow['ReBuild'] . '</td>
                   </tr>';
                 }
+                if ($productrow['Status'] > 0) {
+
+                  $testing = "SELECT * FROM testing where ProductId=" . $productrow['ProductId'] . "";
+                  $getTesting = mysqli_query($con, $testing);
+                  $getTestingList = mysqli_fetch_assoc($getTesting);
+
+                  $testingType = "SELECT * FROM testingtypes where TestingTypeID=" . $getTestingList['TestingType'] . "";
+                  $getTestingType = mysqli_query($con, $testingType);
+                  $getTestingTypeList = mysqli_fetch_assoc($getTestingType);
+
+                  $testingUser = "SELECT * FROM register where id=" . $getTestingList['TestingUser'] . "";
+                  $getTestingUser = mysqli_query($con, $testingUser);
+                  $getTestingUserList = mysqli_fetch_assoc($getTestingUser);
+                  echo '
+                    <tr>
+                      <th scope="row">Tester Name:</th>
+                      <td style="white-space: inherit;">' .$getTestingUserList['name']  . '</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Tester Category:</th>
+                      <td style="white-space: inherit;">' . $getTestingTypeList['TestingTypeName'] . '</td>
+                    </tr>
+                    ';
+                }
                 ?>
+
                 <tr>
                   <th scope="row">Product Status:</th>
                   <td style="white-space: inherit;">
-
                     <?php
                     if (mysqli_num_rows($startTestingResult) > 0) {
                       if ($productrow['Status'] == 1) echo "Testing start";
@@ -258,7 +267,7 @@ if (isset($_GET['id'])) {
                     </div>
                     <div class="media-body">
                       <div class="ms-chat-text">
-                        <p>
+                        <p style="text-transform: capitalize;">
                         ' . $fetch["Remark"] . '
                         </p>
                       </div>
@@ -285,24 +294,24 @@ if (isset($_POST["resend"]) && $productrow['Status'] == 3) {
   $sendbyuserid = $_SESSION["Id"];
 
   if (mysqli_num_rows($startTestingResult) > 0) {
-    $reBuildQuery =mysqli_fetch_assoc(mysqli_query( $con,"SELECT * from product WHERE ProductId=$pageDetail"));
-    $totalReBuild = $reBuildQuery['ReBuild']+1;
-    $resend ="UPDATE product set Status=0 ,ReBuild=$totalReBuild WHERE ProductId=$pageDetail";
+    $reBuildQuery = mysqli_fetch_assoc(mysqli_query($con, "SELECT * from product WHERE ProductId=$pageDetail"));
+    $totalReBuild = $reBuildQuery['ReBuild'] + 1;
+    $resend = "UPDATE product set Status=0 ,ReBuild=$totalReBuild WHERE ProductId=$pageDetail";
 
-    $resendfortest ="UPDATE sendfortest set sendbyuser=$sendbyuserid, Datetime='$dateTime' WHERE productid=$pageDetail";
-    if (mysqli_query( $con,$resend) && mysqli_query( $con,$resendfortest)) {
+    $resendfortest = "UPDATE sendfortest set sendbyuser=$sendbyuserid, Datetime='$dateTime' WHERE productid=$pageDetail";
+    if (mysqli_query($con, $resend) && mysqli_query($con, $resendfortest)) {
 
-      // <script type="text/javascript">
-      //   window.location = "' . $url . 'product-list.php"
-      // </script>
       echo '
+      <script type="text/javascript">
+        window.location = "' . $url . 'product-detail.php?id=' . $pageDetail . '"
+      </script>
       <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Product Resend For test Successfully</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>';
-    }else {
+    } else {
       echo '
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Fail</strong>
