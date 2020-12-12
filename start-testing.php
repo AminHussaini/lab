@@ -24,7 +24,7 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
     <div class="col-xl-12">
       <div class="ms-panel">
         <div class="ms-panel-header ms-panel-custome">
-          <h6>Product Testing List</h6>
+          <h6>Start Testing List</h6>
         </div>
         <div class="ms-panel-body" id="test-product">
           <div class="table-responsive">
@@ -73,57 +73,62 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
                   if ($result = mysqli_query($con, $sql)) {
                     $i = 1;
                     while ($getsenddeatilrow = mysqli_fetch_assoc($result)) {
-
-                      echo "<tr>
-                        <td>" . $i . "</td>
-                        ";
-
-                      $sql = "SELECT * FROM register where id=" . $getsenddeatilrow['sendbyuser'] . "";
-                      $getRegister = mysqli_query($con, $sql);
-                      $getRegisterRow = mysqli_fetch_assoc($getRegister);
-
-                      echo   "<td>" . $getRegisterRow['name'] . "</td>";
-
                       $sqlp = "SELECT * FROM product where ProductId= " . $getsenddeatilrow["productid"] . "";
                       $presult = mysqli_query($con, $sqlp) or die("query fail");
                       $productrow = mysqli_fetch_array($presult);
 
+                      if ($productrow["Status"] == 0) {
 
-                      $productCategory = "SELECT * FROM producttype where ProductTypeId=" . $productrow['ProductIdType'] . "";
-                      $getProductCategory = mysqli_query($con, $productCategory);
-                      $getProductCategoryRow = mysqli_fetch_assoc($getProductCategory);
+                        echo "<tr>
+                        <td>" . $i . "</td>
+                        ";
 
-                      echo "
+                        $sql = "SELECT * FROM register where id=" . $getsenddeatilrow['sendbyuser'] . "";
+                        $getRegister = mysqli_query($con, $sql);
+                        $getRegisterRow = mysqli_fetch_assoc($getRegister);
+
+                        echo   "<td>" . $getRegisterRow['name'] . "</td>";
+
+
+
+                        $productID = $productrow['ProductIdType'];
+                        $productCategory = "SELECT * FROM producttype where ProductTypeId=$productID" or die("query fail");
+                        $getProductCategory = mysqli_query($con, $productCategory);
+                        $getProductCategoryRow = mysqli_fetch_assoc($getProductCategory);
+
+                        echo "
                         <td class='product-name' style='text-transform:capitalize;'>" . $productrow['ProductName'] . "</td>
                         <td style='text-align:center!important;'>" . $getProductCategoryRow['ProductName']  . "</td>
                         <td>" . $productrow['ProductCode'] . "</td>
                         <td style='min-width: 200px;max-width: 280px;word-break: break-word;white-space: initial;'>" . $productrow['ProductDetail'] . "</td>
                         <td style='min-width: 170px;white-space: initial;'> <b>Date: </b>" . explode(" ", $productrow['ProductDate'])[0] . "<br> <b>Time: </b>" . explode(" ", $productrow['ProductDate'])[1] . "</td>";
 
-                      echo "<td style='min-width: 200px;max-width: 280px;word-break: break-word;'>
-                    <div class='testing-category'>
-                    <select class='form-control' id='addTestProductCategory' name='addTestProductCategory' required>
-                    <option value='empty' selected disabled>Select</option>";
+                        echo "<td style='min-width: 200px;max-width: 280px;word-break: break-word;'>
+                        <div class='testing-category'>
+                        <select class='form-control' id='addTestProductCategory' name='addTestProductCategory' required>
+                        <option value='empty' selected disabled>Select</option>";
 
-                      $sqlf = 'SELECT * FROM testingtypes';
+                        $sqlf = 'SELECT * FROM testingtypes';
 
-                      if ($results = mysqli_query($con, $sqlf)) {
+                        if ($results = mysqli_query($con, $sqlf)) {
 
-                        while ($row = mysqli_fetch_assoc($results)) {
-                          echo "<option style='text-transform:lowercase; name='$row[TestingTypeID]' value='$row[TestingTypeID]' > $row[TestingTypeName] </option>";
+                          while ($row = mysqli_fetch_assoc($results)) {
+                            echo "<option style='text-transform:lowercase; name='$row[TestingTypeID]' value='$row[TestingTypeID]' > $row[TestingTypeName] </option>";
+                          }
                         }
-                      }
 
-                      echo "
-                      </select>
-                     </div>
-                     </td>
-                        <td class='text-center'>
-                        <button id=" . $productrow['ProductId'] . " type='button' class='btn btn-pill btn-outline-light m-0 start-testing'>Start Testing</button>
+                        echo "
+                          </select>
+                        </div>
                         </td>
-                        </tr>
+                            <td class='text-center'>
+                            <button id=" . $productrow['ProductId'] . " type='button' class='btn btn-pill btn-outline-light m-0 start-testing'>Start Testing</button>
+                            </td>
+                            </tr>
                         ";
-                      $i++;
+
+                        $i++;
+                      }
                     }
                   }
                   ?>
@@ -151,17 +156,17 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
       if (testing_id != null || testing_id != undefined) {
         let testing_code = Math.floor(Math.pow(10, 10 - 1) + Math.random() * 9 * Math.pow(10, 10 - 1));
         $.ajax({
-        type: "POST",
-        url: "inc/connection.php",
-        data: {
-          product_id: product_id,
-          testing_id: testing_id,
-          testing_code: testing_code,
-        },
-        success: function(response) {
-          alert(response)
-        }
-      });
+          type: "POST",
+          url: "inc/connection.php",
+          data: {
+            product_id: product_id,
+            testing_id: testing_id,
+            testing_code: testing_code,
+          },
+          success: function(response) {
+            $("body").append(response)
+          }
+        });
       } else {
         $(".alert").remove();
         $("body").append('<div class="alert alert-danger alert-dismissible fade show" role="alert">\
@@ -171,6 +176,8 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
              </button>\
            </div>')
       }
-    })
+    });
+
+    $('#start-testing-product').DataTable();
   })
 </script>

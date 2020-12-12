@@ -41,7 +41,23 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
     <div class="col-xl-12">
       <div class="ms-panel">
         <div class="ms-panel-header ms-panel-custome">
-          <h6>Product List</h6>
+          <h6>
+            Product List
+          </h6>
+          <!-- <div class="legends">
+            <div>
+              <i class="pending"></i>
+              <span>Pending</span>
+            </div>
+            <div>
+              <i class="approved"></i>
+              <span>Approved</span>
+            </div>
+            <div>
+              <i class="rejected"></i>
+              <span>Rejected</span>
+            </div>
+          </div> -->
         </div>
         <div class="ms-panel-body" id="test-product">
           <div class="table-responsive">
@@ -49,7 +65,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
             $sql = "SELECT * FROM product";
             $result = mysqli_query($con, $sql) or die("query fail");
             ?>
-            <table id="start-testing-product" class="table w-100 thead-primary">
+            <table id="product-lists" class="table w-100 thead-primary">
               <thead>
                 <tr>
                   <th>
@@ -76,6 +92,9 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
                   <th>
                     Date
                   </th>
+                  <th class='text-center'>
+                    Status
+                  </th>
                   <th class="text-center">
                     Action
                   </th>
@@ -86,15 +105,10 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
                 <?php
                 if ($result = mysqli_query($con, $sql)) {
                   $i = 1;
-                  $startTesting = "SELECT * FROM sendfortest";
-                  $startTestingResult = mysqli_query($con, $startTesting) or die("query fail");
-                  $startTestingResultRow = mysqli_fetch_assoc($startTestingResult);
                   while ($row = mysqli_fetch_assoc($result)) {
-                   if ($row['ProductId'] == $startTestingResultRow['productid'] ) echo "<tr style='background-color:#ffd5789e'>";
-                    else echo "<tr>";
-
-
-                    echo "
+                    $startTesting = "SELECT * FROM sendfortest WHERE productid=" . $row["ProductId"] . "";
+                    $startTestingResult = mysqli_query($con, $startTesting) or die("query fail");
+                    echo "<tr>
                         <td>" . $i . "</td>
                         ";
 
@@ -133,8 +147,17 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
                         <td>" . $getProductCategoryRow['ProductName'] . "</td>
                         <td style='min-width: 200px;max-width: 280px;word-break: break-word;white-space: initial;'>" . $row['ProductDetail'] . "</td>
                         <td style='min-width: 170px;white-space: initial;'> <b>Date: </b>" . explode(" ", $row['ProductDate'])[0] . "<br> <b>Time: </b>" . explode(" ", $row['ProductDate'])[1] . "</td>
+                        <td class='text-center'>";
+                    if (mysqli_num_rows($startTestingResult) > 0) {
+                      if ($row['Status'] ==1) echo "<span class='badge badge-outline-info'>Testing start</span>";
+                      else if ($row['Status'] == 2) echo "<span class='badge badge-outline-success'>Approved</span>";
+                      else if ($row['Status'] == 3) echo "<span class='badge badge-outline-danger'>Rejected</span>";
+                     else echo "<span class='badge badge-outline-warning'>Pending</span>";
+
+                    } else echo "<span class='badge badge-outline-light'>Ready</span>";
+                    echo " </td>
                         <td class='text-center'>
-                        <a title='view detail' href='product-detail.php?id=" . $row['ProductId'] . "'><i class='fa fa-info-circle ms-text-primary'></i></a>
+                          <a title='view detail' href='product-detail.php?id=" . $row['ProductId'] . "'><i class='fa fa-info-circle ms-text-primary'></i></a>
                         </td>
                         </tr>
                         ";
@@ -198,7 +221,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
         productArray[indexOrKey].productValue,
       );
       productColorList.push(
-       "#"+((1<<24)*Math.random()|0).toString(16),
+        "#" + ((1 << 24) * Math.random() | 0).toString(16),
       );
     })
     new Chart(document.getElementById("pie-chart"), {
@@ -239,5 +262,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
         }
       }
     });
+
+    $('#product-lists').DataTable();
   })
 </script>

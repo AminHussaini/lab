@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2020 at 07:51 PM
+-- Generation Time: Dec 12, 2020 at 06:29 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -65,7 +65,10 @@ INSERT INTO `multiimages` (`id`, `file_name`, `parentId`) VALUES
 (128, 'download-4.jpg', 70),
 (129, 'download-3.jpg', 70),
 (130, 'download-2.jpg', 70),
-(131, 'download-1.jpg', 70);
+(131, 'download-1.jpg', 70),
+(135, '—Pngtree—muscle santa cool body_5590575.png', 82),
+(136, '—Pngtree—instagram icon logo_3560507.png', 82),
+(137, '0a1f820e29719c7b67e9d5aa44241155.jpg', 82);
 
 -- --------------------------------------------------------
 
@@ -81,21 +84,23 @@ CREATE TABLE `product` (
   `ProductDetail` varchar(1000) NOT NULL,
   `ProductIdType` int(11) NOT NULL,
   `ProductDate` varchar(50) NOT NULL,
-  `Status` varchar(50) DEFAULT NULL
+  `Status` varchar(50) DEFAULT NULL,
+  `ReBuild` int(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`ProductId`, `ProductName`, `ProductCode`, `ProductaddUserName`, `ProductDetail`, `ProductIdType`, `ProductDate`, `Status`) VALUES
-(56, 'elecrtic fuse-1', '2693787045', '3', 'changes', 74, '2020-12-06 07:08am', '0'),
-(60, 'elecrtic fuse', '8598705630', '3', 'asdasdasdasd', 75, '2020-12-06 01:48am', NULL),
-(61, 'amin', 'asdasdeqwe', '3', 'asdasdsadasd', 75, '2020-12-06 01:52am', NULL),
-(65, 'elecrtic fuse', '8472303117', '3', 'asdasda', 75, '2020-12-06 02:10am', NULL),
-(68, 'motor fuse', '9841179899', '3', 'asdsadasd', 74, '2020-12-06 05:51am', NULL),
-(69, 'asdasda', '8178347652', '3', 'What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting i', 75, '2020-12-06 05:54am', NULL),
-(70, 'elecrtic fuse', '5267679422', '3', 'demo', 75, '2020-12-10 02:14am', NULL);
+INSERT INTO `product` (`ProductId`, `ProductName`, `ProductCode`, `ProductaddUserName`, `ProductDetail`, `ProductIdType`, `ProductDate`, `Status`, `ReBuild`) VALUES
+(56, 'elecrtic fuse-1', '2693787045', '3', 'changes', 74, '2020-12-06 07:08am', '2', 0),
+(60, 'elecrtic fuse', '8598705630', '3', 'asdasdasdasd', 75, '2020-12-06 01:48am', '2', 0),
+(61, 'light', 'asdasdeqwe', '3', 'asdasdsadasd', 75, '2020-12-11 05:14pm', '0', 1),
+(65, 'elecrtic fuse', '8472303117', '3', 'asdasda', 75, '2020-12-06 02:10am', '0', 0),
+(68, 'motor fuse', '9841179899', '3', 'asdsadasd', 74, '2020-12-06 05:51am', '0', 0),
+(69, 'asdasda', '8178347652', '3', 'What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting i', 75, '2020-12-06 05:54am', '0', 0),
+(70, 'elecrtic fuse', '5267679422', '3', 'demo', 75, '2020-12-10 02:14am', '0', 0),
+(82, 'elecrtic fuse', '3445924638', '3', 'testing', 75, '11-12-2020 07:42pm', '0', 0);
 
 -- --------------------------------------------------------
 
@@ -143,9 +148,9 @@ CREATE TABLE `register` (
 INSERT INTO `register` (`Id`, `name`, `email`, `password`, `role`, `status`, `image`) VALUES
 (3, 'Muhammad Amin Hussaini', 'aminasghar125@gmail.com', 'demo125', 'Admin', 'Accepted', '3pp.jpg'),
 (4, 'Ali', 'aminasghar5@gmail.com', 'demo', 'SRS', 'Accepted', '20151104_113813.jpg'),
-(12, 'Aizaz', 'twinmark01@gmail.com', 'demo23', 'Admin', 'Pending', 'slider.jpg'),
+(12, 'Aizaz', 'twinmark01@gmail.com', 'demo23', 'Admin', 'Accepted', '12processed.jpeg'),
 (13, 'Irfan', 'irfanhaiderkhan12@yahoo.com', 'demo123', 'CPRI', 'Accepted', '13pp+.jpg'),
-(17, 'Ehtizan', 'aminasghar52@gmail.com', 'duck', 'SRS', 'Pending', 'pp1.jpg'),
+(17, 'Ehtizan', 'aminasghar52@gmail.com', 'duck', 'SRS', 'Accepted', 'pp1.jpg'),
 (19, 'shariq', 'shariq.shaikh109@gmail.com', 'demo', 'SRS', 'Accepted', 'processed.jpeg');
 
 -- --------------------------------------------------------
@@ -158,18 +163,17 @@ CREATE TABLE `sendfortest` (
   `sft_id` int(11) NOT NULL,
   `sendbyuser` int(11) NOT NULL,
   `productid` int(11) NOT NULL,
-  `Datetime` varchar(50) NOT NULL,
-  `status` int(10) DEFAULT NULL
+  `Datetime` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `sendfortest`
 --
 
-INSERT INTO `sendfortest` (`sft_id`, `sendbyuser`, `productid`, `Datetime`, `status`) VALUES
-(1, 3, 56, '2020-12-09 12:11am', 0),
-(2, 3, 57, '2020-12-09 12:11am', 0),
-(3, 3, 57, '2020-12-09 12:14am', 0);
+INSERT INTO `sendfortest` (`sft_id`, `sendbyuser`, `productid`, `Datetime`) VALUES
+(17, 3, 56, '2020-12-12 05:57pm'),
+(18, 3, 60, '2020-12-12 06:31pm'),
+(23, 4, 61, '12-12-2020 10:26pm');
 
 -- --------------------------------------------------------
 
@@ -183,15 +187,41 @@ CREATE TABLE `testing` (
   `ProductId` int(255) NOT NULL,
   `TestingCode` int(10) DEFAULT NULL,
   `TestingUser` int(50) DEFAULT NULL,
-  `TestingDate` varchar(50) DEFAULT NULL
+  `TestingDate` varchar(50) DEFAULT NULL,
+  `EndDate` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `testing`
 --
 
-INSERT INTO `testing` (`TestingId`, `TestingType`, `ProductId`, `TestingCode`, `TestingUser`, `TestingDate`) VALUES
-(3, 5, 56, 2147483647, 3, '2020-12-10 02:01am');
+INSERT INTO `testing` (`TestingId`, `TestingType`, `ProductId`, `TestingCode`, `TestingUser`, `TestingDate`, `EndDate`) VALUES
+(12, 8, 56, 2147483647, 13, '12-12-2020 05:57pm', '12-12-2020 05:58pm'),
+(13, 9, 60, 2147483647, 13, '12-12-2020 06:31pm', '12-12-2020 06:31pm'),
+(17, 8, 61, 2147483647, 12, '12-12-2020 07:38pm', '12-12-2020 07:38pm');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `testingremark`
+--
+
+CREATE TABLE `testingremark` (
+  `RemarkId` int(11) NOT NULL,
+  `Remark` text NOT NULL,
+  `RemarkParent` int(11) NOT NULL,
+  `RemarkUser` int(11) DEFAULT NULL,
+  `RemarkDate` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `testingremark`
+--
+
+INSERT INTO `testingremark` (`RemarkId`, `Remark`, `RemarkParent`, `RemarkUser`, `RemarkDate`) VALUES
+(27, 'This is approved', 56, 13, '12-12-2020 06:31pm'),
+(28, 'This is approved', 60, 13, '12-12-2020 06:31pm'),
+(31, 'This is reject', 61, 12, '12-12-2020 07:38pm');
 
 -- --------------------------------------------------------
 
@@ -212,9 +242,9 @@ CREATE TABLE `testingtypes` (
 --
 
 INSERT INTO `testingtypes` (`TestingTypeID`, `TestingTypeName`, `TestingTypeDescription`, `TestingCateAddUser`, `TestingCateDate`) VALUES
-(4, 'level-1', 'this is low testing', 3, '2020-12-09 03:39am'),
-(5, 'level-2', 'this is medium testing', 3, '2020-12-10 12:33am'),
-(6, 'testing', 'asdasd', 3, '2020-12-10 02:00am');
+(8, 'level-1', 'this is low testing', 3, '2020-12-11 04:52pm'),
+(9, 'level-3', 'asd', 3, '2020-12-11 06:42pm'),
+(10, 'level-2', 'asdasd', 13, '11-12-2020 06:12pm');
 
 -- --------------------------------------------------------
 
@@ -279,6 +309,12 @@ ALTER TABLE `testing`
   ADD PRIMARY KEY (`TestingId`);
 
 --
+-- Indexes for table `testingremark`
+--
+ALTER TABLE `testingremark`
+  ADD PRIMARY KEY (`RemarkId`);
+
+--
 -- Indexes for table `testingtypes`
 --
 ALTER TABLE `testingtypes`
@@ -298,13 +334,13 @@ ALTER TABLE `uploading`
 -- AUTO_INCREMENT for table `multiimages`
 --
 ALTER TABLE `multiimages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `ProductId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `ProductId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `producttype`
@@ -322,19 +358,25 @@ ALTER TABLE `register`
 -- AUTO_INCREMENT for table `sendfortest`
 --
 ALTER TABLE `sendfortest`
-  MODIFY `sft_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `sft_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `testing`
 --
 ALTER TABLE `testing`
-  MODIFY `TestingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `TestingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `testingremark`
+--
+ALTER TABLE `testingremark`
+  MODIFY `RemarkId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `testingtypes`
 --
 ALTER TABLE `testingtypes`
-  MODIFY `TestingTypeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `TestingTypeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `uploading`

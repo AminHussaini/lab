@@ -3,7 +3,7 @@
 $return_var = '<script type="text/javascript">
 window.location = "' . $url . 'dashboard.php"
 </script>';
-if ($_SESSION["user_role"] == "CPRI") echo $return_var;
+if ($_SESSION["user_role"] == "SRS") echo $return_var;
 
 ?>
 <!-- Body Content Wrapper -->
@@ -48,18 +48,13 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
             <?php
 
             $testing = "SELECT * FROM testing";
-            $result  = mysqli_query($con, $testing) or die("query fail");
-
-            $testingtypesrow = 'SELECT * FROM testingtypes';
-            if (mysqli_num_rows(mysqli_query($con, $testingtypesrow)) > 0) { ?>
-              <table id="start-testing-product" class="table w-100 thead-primary">
+            $testingresult  = mysqli_query($con, $testing) or die("query fail");
+            if (mysqli_num_rows($testingresult) > 0) { ?>
+              <table id="product-list" class="table w-100 thead-primary">
                 <thead>
                   <tr>
                     <th>
                       Id
-                    </th>
-                    <th>
-                      User Name
                     </th>
                     <th>
                       Product Name
@@ -71,7 +66,10 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
                       Product Detail
                     </th>
                     <th>
-                      Test Code
+                      Tester Name
+                    </th>
+                    <th>
+                      Testing Code
                     </th>
                     <th>
                       Testing Type
@@ -84,13 +82,50 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
                     </th>
                   </tr>
                 </thead>
+                <tbody>
+                  <?php
+                  $i = 1;
+                  while ($testingRows = mysqli_fetch_assoc($testingresult)) {
+                    echo "<tr> <td>" . $i . "</td>";
 
+                    $productRow = 'SELECT *  FROM product where ProductId='.$testingRows["ProductId"].'';
+                    $productRowList = mysqli_fetch_assoc(mysqli_query($con, $productRow));
+                    echo "
+                    <td style='text-transform:capitalize'>" . $productRowList["ProductName"] . "</td>";
+
+                    $productTypeRow = 'SELECT *  FROM producttype where ProductTypeId ='.$productRowList["ProductIdType"].'';
+                    $productTypeRowList = mysqli_fetch_assoc(mysqli_query($con, $productTypeRow));
+
+                    $testingtypesrow = 'SELECT * FROM testingtypes Where TestingTypeID='.$testingRows["TestingType"].'';
+                    $testTypeRowList = mysqli_fetch_assoc(mysqli_query($con, $testingtypesrow));
+
+                    echo "
+                    <td>" . $productTypeRowList["ProductName"] . "</td>
+                    <td>" . $productRowList["ProductDetail"] . "</td>
+                    <td>" . $testingRows["TestingUser"] . "</td>
+                    <td>" . $testingRows["TestingCode"] . "</td>
+                    <td>" . $testTypeRowList["TestingTypeName"] . "</td>
+                    <td style='min-width: 170px;white-space: initial;'> <b>Date: </b>" . explode(" ", $testingRows['TestingDate'])[0] . "<br> <b>Time: </b>" . explode(" ", $testingRows['TestingDate'])[1] . "</td>
+                    <td class='text-center'>";
+                    if ($_SESSION["Id"] == $testingRows['TestingUser'] || $_SESSION["user_role"] == "Admin") {
+                      echo "
+                        <a title='view detail' href='testing-detail.php?id=" . $productRowList['ProductId'] . "'><i class='fa fa-info-circle ms-text-primary'></i></a>
+                      ";
+                    } else {
+                      echo "<span class='badge badge-outline-danger'>No permission</span>";
+                    }
+                    echo "</td>";
+                    $i++;
+                  }
+                  ?>
+
+
+                </tbody>
               </table>
             <?php  } else {
-              echo "<h6 class='text-center' style='color:var(--red);font-weight:700'>Add the testing First</h6>";
+              echo "<h6 class='text-center' style='color:var(--red);font-weight:700'>No Data</h6>";
             };
             ?>
-
           </div>
         </div>
       </div>

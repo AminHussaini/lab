@@ -7,6 +7,10 @@
   position: relative;
 }
 
+.legends {
+  display: flex;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -9174,6 +9178,7 @@ body:not(.ms-settings-open) .ms-settings-toggle:hover {
 #test-product .image-box {
   max-width: 120px;
   overflow-y: auto;
+  white-space: nowrap;
 }
 .product-list .image-box .img-session,
 #test-product .image-box .img-session {
@@ -9257,6 +9262,11 @@ body:not(.ms-settings-open) .ms-settings-toggle:hover {
   z-index: 0;
   margin-left: -21px;
 }
+.product-list .badge-outline-success,
+#test-product .badge-outline-success {
+  border-color: #00e609 !important;
+  color: #00e609 !important;
+}
 
 #modal-13 .modal-body {
   background-position: center;
@@ -9273,4 +9283,53 @@ body:not(.ms-settings-open) .ms-settings-toggle:hover {
   #modal-13 .modal-body {
     min-height: 400px;
   }
+}
+
+.profile-information table tr td,
+.profile-information table tr th {
+  white-space: inherit !important;
+}
+
+.legends {
+  float: right;
+}
+.legends > div {
+  margin-left: 10px;
+}
+.legends > div i {
+  height: 12px;
+  width: 12px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-right: 2px;
+}
+.legends > div i.pending {
+  background: #ffd5789e;
+}
+.legends > div i.approved {
+  background: #00e6094d;
+}
+.legends > div i.rejected {
+  background: #ff11006e;
+}
+
+div.table-responsive > div.dataTables_wrapper > div.row {
+  overflow-x: auto !important;
+}
+
+.flexslider .slides {
+  zoom: 1;
+  width: 100%;
+  height: 560px;
+}
+.flexslider .slides li {
+  height: 100%;
+}
+.flexslider .slides li img {
+  height: 100%;
+}
+
+.testing-detail .btn-danger {
+  background-color: #db3c36;
+  border-color: #db3c36;
 }

@@ -64,14 +64,6 @@ if ($_SERVER['REQUEST_URI'] != "/aptechProject/lab/product-category.php") {
       </div>
       <ul class="ms-nav-list ms-inline mb-0" id="ms-nav-options">
 
-        <li class="ms-nav-item  ms-d-none">
-          <a href="#mymodal" class="text-white" data-toggle="modal"><i class="flaticon-spreadsheet mr-2"></i> Make an appointment</a>
-        </li>
-
-        <li class="ms-nav-item ms-d-none">
-          <a href="#report1" class="text-white" data-toggle="modal"><i class="flaticon-list mr-2"></i> Generate Report</a>
-        </li>
-
         <li class="ms-nav-item dropdown">
           <a href="#" class="text-disabled ms-has-notification" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-bell"></i></a>
           <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">

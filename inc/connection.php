@@ -21,7 +21,7 @@ $imagelocation = "C:/xampp/htdocs/aptechProject/lab/assets/";
 //  $productimagelocation="Applications/XAMPP/xamppfiles/htdocs/aptechProject/lab/assets/product-image/";
 
 date_default_timezone_set("Asia/Karachi");
-$dateTime = date('Y-m-d h:ia');
+$dateTime = date('d-m-Y h:ia');
 
 if (!$con) {
   echo "connection fail";
@@ -58,7 +58,7 @@ if (isset($_POST["current_id"]) && isset($_POST["email"]) && isset($_POST["edite
   }
 }
 
-// Profile Code
+// Profile edit
 if (isset($_FILES["file"]["type"]) && isset($_POST["name"]) && isset($_POST["user_id"]) && isset($_POST["pass"]) && isset($_POST["email"])) {
   extract($_POST);
   $error = 0;
@@ -325,7 +325,7 @@ if (isset($_POST["addProductName"])) {
   $result = mysqli_query($con, $query_1) or die("Query Failed");
   $row = mysqli_fetch_assoc($result);
   if ($productCode != $row["ProductCode"]) {
-    $addProduct = mysqli_query($con, "insert into product values(null,'$addProductName','$productCode','$addTestProduct_Category_user','$addTestProductDescription','$addTestProductCategory','$dateTime', null)");
+    $addProduct = mysqli_query($con, "insert into product values(null,'$addProductName','$productCode','$addTestProduct_Category_user','$addTestProductDescription','$addTestProductCategory','$dateTime', null, 0)");
     if ($addProduct) {
       $addProductId = $con->insert_id;
 
@@ -734,22 +734,33 @@ if (isset($_POST["testingTable"])) {
 if (isset($_POST["deleteTestingCategory"])) {
   $deleteTestingCategory = $_POST["deleteTestingCategory"];
   // echo $_POST["currentId"];
-  $query = "DELETE FROM testingtypes WHERE TestingTypeID = $deleteTestingCategory";
-  $result = mysqli_query($con, $query) or die("Query Failed");
-  if ($result) {
-    echo '    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Category is delete.</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>';
-  } else {
+
+  $deleteQuery = mysqli_query($con, "select * from testing where TestingType=$deleteTestingCategory") or die("query fail");
+  if (mysqli_num_rows($deleteQuery) > 0) {
     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Something wrong.</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>';
+          <strong>Cannot delete its using in test list.</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>';
+  } else {
+    $query = "DELETE FROM testingtypes WHERE TestingTypeID = $deleteTestingCategory";
+    $result = mysqli_query($con, $query) or die("Query Failed");
+    if ($result) {
+      echo '    <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Category is delete.</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>';
+    } else {
+      echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Something wrong.</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>';
+    }
   }
 }
 
@@ -813,15 +824,15 @@ if (isset($_POST['product_id']) && isset($_POST['testing_id']) && isset($_POST['
   extract($_POST);
   session_start();
   $testing_user = $_SESSION['Id'];
-  $query = mysqli_query($con, "INSERT into testing values(null,$testing_id,$product_id,$testing_code, $testing_user,'$dateTime')") or die("query fail1");
-  $query_2 = mysqli_query($con, "UPDATE product Set Status=0  WHERE ProductId=$product_id") or die("query fail");
+  $query = mysqli_query($con, "INSERT into testing values(null,$testing_id,$product_id,$testing_code, $testing_user,'$dateTime',null)") or die("query fail1");
+  $query_2 = mysqli_query($con, "UPDATE product Set Status=1  WHERE ProductId=$product_id") or die("query fail");
   if ($query && $query_2) {
     echo '<script type="text/javascript">
-    window.location = "' . $url . 'testing-list.php"
+    window.location = "' . $url . 'testing-detail.php?id='.$product_id.'"
     </script>';
   } else {
     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong></strong>
+    <strong>Something wrong in start testing</strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>

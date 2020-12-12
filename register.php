@@ -140,7 +140,7 @@ if (isset($_POST["btn"])) {
         </div>';
       } else {
         // echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"])) . " has been uploaded.";
-        mysqli_query($con, "insert into register values(null,'$name','$email','$pass','$role','$status','$file')");
+        mysqli_query($con, "insert into register values(null,'$name','$email','$pass','$role','$status','$file',null)");
         echo '
         <div class="alert alert-success alert-dismissible fade show" role="alert">
           <strong>Account has been created</strong>

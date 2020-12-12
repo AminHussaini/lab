@@ -186,7 +186,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
       },
       success: function(data) {
         $("#test-product").html(data);
-        $('#start-testing-product').DataTable();
+        $('#add-testing-product').DataTable();
       },
     })
   }
