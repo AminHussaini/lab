@@ -215,15 +215,15 @@ if (isset($_GET['id'])) {
   $multiremark = "SELECT * FROM testingremark Where RemarkParent=$pageDetail";
   $getmultiremark = mysqli_query($con, $multiremark) or die("Query fail");
 
-  $startTesting = "SELECT * FROM sendfortest WHERE productid=" . $pageDetail . "";
-  $startTestingResult = mysqli_query($con, $startTesting) or die("query fail");
-  $rowSender = mysqli_fetch_assoc($startTestingResult);
-
-  $sendername = "SELECT * FROM register where id=" . $rowSender["sendbyuser"] . "";
-  $getsendername = mysqli_query($con, $sendername) or die("sender fail");
-  $getsendernameDetail = mysqli_fetch_assoc($getsendername);
   $j = 0;
   if (mysqli_num_rows($getmultiremark) > 0) {
+    $startTesting = "SELECT * FROM sendfortest WHERE productid=" . $pageDetail . "";
+    $startTestingResult = mysqli_query($con, $startTesting) or die("query fail");
+    $rowSender = mysqli_fetch_assoc($startTestingResult);
+
+    $sendername = "SELECT * FROM register where id=" . $rowSender["sendbyuser"] . "";
+    $getsendername = mysqli_query($con, $sendername) or die("sender fail");
+    $getsendernameDetail = mysqli_fetch_assoc($getsendername);
   ?>
     <div class="row clearfix" style='margin-top:30px'>
       <div class="col-md-12">

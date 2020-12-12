@@ -101,7 +101,7 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
                         <td style='text-align:center!important;'>" . $getProductCategoryRow['ProductName']  . "</td>
                         <td>" . $productrow['ProductCode'] . "</td>
                         <td style='min-width: 200px;max-width: 280px;word-break: break-word;white-space: initial;'>" . $productrow['ProductDetail'] . "</td>
-                        <td style='min-width: 170px;white-space: initial;'> <b>Date: </b>" . explode(" ", $productrow['ProductDate'])[0] . "<br> <b>Time: </b>" . explode(" ", $productrow['ProductDate'])[1] . "</td>";
+                        <td style='min-width: 170px;white-space: initial;'> <b>Date: </b>" . explode(" ", $getsenddeatilrow['Datetime'])[0] . "<br> <b>Time: </b>" . explode(" ", $getsenddeatilrow['Datetime'])[1] . "</td>";
 
                         echo "<td style='min-width: 200px;max-width: 280px;word-break: break-word;'>
                         <div class='testing-category'>
