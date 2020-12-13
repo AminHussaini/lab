@@ -59,54 +59,70 @@ if (isset($_POST["current_id"]) && isset($_POST["email"]) && isset($_POST["edite
 }
 
 // Profile edit
-if (isset($_FILES["file"]["type"]) && isset($_POST["name"]) && isset($_POST["user_id"]) && isset($_POST["pass"]) && isset($_POST["email"])) {
+if (isset($_FILES["file"]["type"]) && isset($_POST["name"]) && isset($_POST["pass"]) && isset($_POST["email"])) {
   extract($_POST);
+  session_start();
   $error = 0;
+  $user_id = $_SESSION["Id"];
   $img_path = $_SESSION["Id"] . $_FILES["file"]["name"];
   $validextensions = array("jpeg", "jpg", "png");
   $temporary = explode(".", $_FILES["file"]["name"]);
   $file_extension = end($temporary);
-  if ((($_FILES["file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/jpg") || ($_FILES["file"]["type"] == "image/jpeg")) && ($_FILES["file"]["size"] < 100000) //Approx. 100kb files can be uploaded.
-  ) {
-    if ($_FILES["file"]["error"] > 0) {
-      echo '
-      <div class="alert alert-danger alert-dismissible fade show" style="display:block !important" role="alert">
-        <strong>Return Code: "' . $_FILES["file"]["error"] . '</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>';
-    } else {
-      unlink($imagelocation . "user_image/" . $_SESSION["user_image"]);
-      $sql = "UPDATE register SET name='$name', email='$email', password='$pass', image='$img_path' WHERE Id=" . $user_id . "";
-      mysqli_query($con, $sql);
-      // send image to folder
-      $sourcePath = $_FILES['file']['tmp_name'];
-      $targetPath = $imagelocation . "user_image/" . $img_path;
-      move_uploaded_file($sourcePath, $targetPath);
+  if (empty($_FILES["file"]["name"])) {
+    $sql = "UPDATE register SET name='$name', email='$email', password='$pass' WHERE Id=" . $user_id . "";
+    if (mysqli_query($con, $sql)) {
+
       $_SESSION["user_name"] = $name;
-      $_SESSION["user_image"] = $img_path;
       echo '<script type="text/javascript">
-        window.location = "' . $url . 'profile.php";
-        $(".view-profile").show();
-    $(".edit-profile").hide();
-   </script>';
+      $("#preloader-wrap.loaded").css({ "visibility": "visible", "opacity": "1" });
+      window.location = "' . $url . 'profile.php";
+          $(".view-profile").show();
+      $(".edit-profile").hide();
+    </script>';
     }
-    echo '
-      <div class="alert alert-success alert-dismissible fade show" style="display:block !important" role="alert">
-        <strong>Profile is updated</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>';
   } else {
-    echo '
-      <div class="alert alert-danger alert-dismissible fade show" style="display:block !important" role="alert">
-        <strong>***Invalid file Size or Type***</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>';
+    if ((($_FILES["file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/jpg") || ($_FILES["file"]["type"] == "image/jpeg")) && ($_FILES["file"]["size"] < 100000) //Approx. 100kb files can be uploaded.
+    ) {
+      if ($_FILES["file"]["error"] > 0) {
+        echo '
+        <div class="alert alert-danger alert-dismissible fade show" style="display:block !important" role="alert">
+          <strong>Return Code: "' . $_FILES["file"]["error"] . '</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>';
+      } else {
+        unlink($imagelocation . "user_image/" . $_SESSION["user_image"]);
+        $sql = "UPDATE register SET name='$name', email='$email', password='$pass', image='$img_path' WHERE Id=" . $user_id . "";
+        mysqli_query($con, $sql);
+        // send image to folder
+        $sourcePath = $_FILES['file']['tmp_name'];
+        $targetPath = $imagelocation . "user_image/" . $img_path;
+        move_uploaded_file($sourcePath, $targetPath);
+        $_SESSION["user_name"] = $name;
+        $_SESSION["user_image"] = $img_path;
+        echo '<script type="text/javascript">
+          window.location = "' . $url . 'profile.php";
+          $(".view-profile").show();
+      $(".edit-profile").hide();
+    </script>';
+      }
+      echo '
+        <div class="alert alert-success alert-dismissible fade show" style="display:block !important" role="alert">
+          <strong>Profile is updated</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>';
+    } else {
+      echo '
+        <div class="alert alert-danger alert-dismissible fade show" style="display:block !important" role="alert">
+          <strong>***Invalid file Size or Type***</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>';
+    }
   }
 }
 

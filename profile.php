@@ -1,4 +1,5 @@
-<?php $title="Porfile"; include "inc/header.php";
+<?php $title = "Porfile";
+include "inc/header.php";
 error_reporting(0); ?>
 
 <!-- Main Content -->
@@ -22,7 +23,7 @@ error_reporting(0); ?>
       </div>
     </div>
     <div class="row">
-      <div class="col-xl-5 col-md-12 view-profile" >
+      <div class="col-xl-5 col-md-12 view-profile">
         <div class="ms-panel ms-panel-fh">
           <div class="ms-panel-body">
             <h2 class="section-title">Basic Information</h2>
@@ -44,7 +45,6 @@ error_reporting(0); ?>
                 <tr>
                 <tr>
                   <td colspan='2'>
-                    <!-- ?EDIT= WILL HELP US TO GET THE ID IN EDIT PAGE, EDIT IS THE NAME WHERE ID STORE-->
                     <a class="btn btn-primary mt-4 d-block w-5 text-white" id="edit-profile">Edit Profile</a>
                   </td>
                 </tr>
@@ -57,13 +57,12 @@ error_reporting(0); ?>
         <div class="ms-panel ms-panel-fh">
           <div class="ms-panel-body">
             <h2 class="section-title">Edit Personal Information </h2>
-            <form id="uploadimage" action="" class="needs-validation" novalidate="" method="post" enctype="multipart/form-data">
+            <form  id="uploadimage" action="" class="needs-validation" novalidate="" method="post" enctype="multipart/form-data">
               <div class="form-row">
                 <div class="col-md-12 ">
                   <label for="validationCustom01">Your name</label>
                   <div class="input-group">
-                    <input type="hidden"  id="user_id" name="user_id"  value="<?php echo $row["Id"] ?>"  required="">
-                    <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="Enter name" value="<?php echo $row["name"] ?>"  required="">
+                    <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="Enter name" value="<?php echo $row["name"] ?>" required="">
                     <div class="invalid-feedback">
                       Please provide a valid name.
                     </div>
@@ -88,16 +87,27 @@ error_reporting(0); ?>
                   </div>
                 </div>
                 <div class="col-md-12 ">
+                  <label for="validationCustom04">Change Profile</label>
+                  <br>
+                  <label class='ms-switch'>
+                    <input type='checkbox' class='user-image' value="yes" name="userImage" id="upload-switch">
+                    <span class='ms-switch-slider ms-switch-warning round'></span>
+                  </label>
+                </div>
+                <br>
+
+                <div class="col-md-12 profile-image" style="display: none;">
                   <label for="file">Upload image</label>
-                  <div class="input-group">
-                    <input type="file" class="form-control" name="file" id="file" required />
+                  <div class="input-group" >
+                    <input type="file" class="form-control" name="file" id="file" required/>
                     <div class="invalid-feedback">
                       Please provide your profile image.
                     </div>
                   </div>
-                  <input type="submit" class="btn btn-primary mt-4" value="Upload" class="submit" />
-                  <input type="button" class="btn btn-success mt-4" value="Back" />
                 </div>
+                <input type="submit" class="btn btn-primary mt-4" value="Upload" name="editbtn" class="submit" />
+                &nbsp;
+                <input type="button" class="btn btn-success mt-4" value="Back" />
               </div>
             </form>
           </div>
@@ -111,36 +121,46 @@ error_reporting(0); ?>
 
 <?php include "inc/footer.php" ?>
 <script>
-
-
- 
   $(document).ready(function() {
-    $("#update_user").on('submit', (function(e) {
+   let userImage;
+    $("#upload-switch").change(function() {
+      userImage = $(this).is(":checked") ? "upload" : "not-upload";
+      if(userImage == "upload") {
+        $(".profile-image").show();
+      }else {
+        $(".profile-image").hide();
+      }
+    })
+
+    $("#uploadimage").on('submit', (function(e) {
       e.preventDefault();
       $.ajax({
         url: "inc/connection.php",
         type: "POST",
-        data: new FormData(this),
-        success: function(data)
-        {
-          alert(data);
-          // $('body').append(data);
+        data: new FormData($('#uploadimage')[0]),
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(data) {
+          // alert(data);
+          $('body').append(data);
         }
       });
     }));
-    $(".view-profile .btn-primary").on("click", function () {
-    $(this).closest('.view-profile').hide();
-    $('.edit-profile').show();
-  });
-  $(".edit-profile .btn-success").on("click", function () {
-    $('.view-profile').show();
-    $('.edit-profile').hide();
-  });
 
-  $(document).on("click","#edit-profile", function () {
-    $(this).closest('.view-profile').hide();
-    $('.edit-profile').show();
-  });
+    // $(".view-profile .btn-primary").on("click", function() {
+    //   $(this).closest('.view-profile').hide();
+    //   $('.edit-profile').show();
+    // });
+    $(".edit-profile .btn-success").on("click", function() {
+      $('.view-profile').show();
+      $('.edit-profile').hide();
+    });
+
+    $(document).on("click", "#edit-profile", function() {
+      $(this).closest('.view-profile').hide();
+      $('.edit-profile').show();
+    });
+
   })
-
 </script>
