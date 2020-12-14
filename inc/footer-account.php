@@ -8,7 +8,7 @@
   <script src="assets/js/perfect-scrollbar.js"> </script>
   <script src="assets/js/jquery-ui.min.js"> </script>
   <!-- Global Required Scripts End -->
-  <!-- Toola Board core JavaScript -->
+  <!-- Lab Automation core JavaScript -->
   <script src="assets/js/framework.js"></script>
   <!-- Settings -->
   <script src="assets/js/settings.js"></script>

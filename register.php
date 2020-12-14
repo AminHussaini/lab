@@ -1,4 +1,5 @@
-<?php $title="Registration"; include('inc/header-account.php') ?>
+<?php $title = "Registration";
+include('inc/header-account.php') ?>
 <!-- Body Content Wrapper -->
 <div class="ms-content-wrapper ms-auth register">
   <div class="ms-auth-container">
@@ -14,7 +15,7 @@
             <div class="col-md-12 ">
               <label for="validationCustom01">Your name</label>
               <div class="input-group">
-                <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="First name" required="">
+                <input type="text" class="form-control" id="validationCustom01" name="username" placeholder="First name" required="">
                 <div class="invalid-feedback">
                   Please provide a valid name.
                 </div>
@@ -25,7 +26,7 @@
             <div class="col-md-12 ">
               <label for="validationCustom03">Email Address</label>
               <div class="input-group">
-                <input type="email" class="form-control" id="validationCustom03" name="email" placeholder="Email Address" required="">
+                <input type="email" class="form-control" id="validationCustom03" name="useremail" placeholder="Email Address" required="">
                 <div class="invalid-feedback">
                   Please provide a valid email.
                 </div>
@@ -34,7 +35,7 @@
             <div class="col-md-12 ">
               <label for="validationCustom04">Password</label>
               <div class="input-group">
-                <input type="password" class="form-control" id="validationCustom04" name="pass" placeholder="Password" required="">
+                <input type="password" class="form-control" id="validationCustom04" name="userpass" placeholder="Password" required="">
                 <div class="invalid-feedback">
                   Please provide a password.
                 </div>
@@ -43,7 +44,7 @@
             <div class="col-md-12 ">
               <label for="validationCustom05">Upload profile</label>
               <div class="input-group">
-                <input type="file" class="form-control" id="validationCustom05" name="file" required="">
+                <input type="file" class="form-control" id="validationCustom05" name="userfile" required="">
                 <div class="invalid-feedback">
                   Please provide a file.
                 </div>
@@ -68,7 +69,7 @@
           </div>
 
           <input type="submit" class="btn btn-primary mt-4 d-block w-100" name="btn" value="Create Account">
-          <p class="mb-0 mt-3 text-center">Already have an account? <a class="btn-link" href="login.php">Login</a> </p>
+          <p class="mb-0 mt-3 text-center">Already have an account? <a class="btn-link" href="index.php">Login</a> </p>
         </form>
       </div>
     </div>
@@ -79,18 +80,18 @@
 if (isset($_POST["btn"])) {
 
 
-  $name = $_POST["name"];
-  $email = $_POST["email"];
-  $pass = $_POST["pass"];
+  $name = $_POST["username"];
+  $email = $_POST["useremail"];
+  $pass = $_POST["userpass"];
   $role = $_POST["role"];
   $status = "Pending";
   $default = "later";
-  $file = $_FILES["file"]["name"];
+  $file = $_FILES["userfile"]["name"];
 
 
-  $qurey_em=mysqli_query($con,"select * from register where email='$email'");
+  $qurey_em = mysqli_query($con, "select * from register where email='$email'");
 
-  if(mysqli_num_rows($qurey_em) >0){
+  if (mysqli_num_rows($qurey_em) > 0) {
     echo '
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
       <strong>Sorry, your Email are already Exists.</strong>
@@ -98,17 +99,14 @@ if (isset($_POST["btn"])) {
         <span aria-hidden="true">&times;</span>
       </button>
     </div>';
-  }
-  else{
-    
-
-    $target_dir = "C:/xampp/htdocs/aptechProject/lab/assets/user_image/";
-    $target_file = $target_dir . basename($_FILES["file"]["name"]);
+  } else {
+    $target_dir = $imagelocation . "user_image/";
+    $target_file = $target_dir . basename($file);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
     // Check file size 1mb
-    if ($_FILES["file"]["size"] > 1000000) {
+    if ($_FILES["userfile"]["size"] > 1000000) {
       echo '
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Sorry, your file is too large.</strong>
@@ -132,7 +130,7 @@ if (isset($_POST["btn"])) {
       $uploadOk = 0;
     }
     if ($uploadOk != 0) {
-      if (!move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+      if (!move_uploaded_file($_FILES["userfile"]["tmp_name"], $target_file)) {
         echo '
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <strong>Sorry, there was an error uploading your file.</strong>
@@ -142,14 +140,30 @@ if (isset($_POST["btn"])) {
         </div>';
       } else {
         // echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"])) . " has been uploaded.";
-        mysqli_query($con, "insert into register values(null,'$name','$email','$pass','$role','$status','$file')");
-        echo '
+        if (mysqli_query($con, "insert into register values(null,'$name','$email','$pass','$role','$status','$file')")) {
+          echo '
         <div class="alert alert-success alert-dismissible fade show" role="alert">
           <strong>Account has been created</strong>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>';
+        } else {
+          echo '
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Account not create please try later</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+        }
+        // echo '
+        // <div class="alert alert-success alert-dismissible fade show" role="alert">
+        //   <strong>Account has been created</strong>
+        //   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        //     <span aria-hidden="true">&times;</span>
+        //   </button>
+        // </div>';
       }
     }
     // else {
@@ -163,16 +177,16 @@ if (isset($_POST["btn"])) {
     // }
 
   }
-
-  } else {
-    echo '
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Some thing went wrong</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>';
-  }
+}
+// else {
+//   echo '
+//     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+//       <strong>Some thing went wrong</strong>
+//       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+//         <span aria-hidden="true">&times;</span>
+//       </button>
+//     </div>';
+// }
 
 
 ?>

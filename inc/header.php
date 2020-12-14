@@ -2,7 +2,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["user_name"])) {
-  header("Location:login.php");
+  header("Location:index.php");
   // exit();
 }
 if (isset($_SESSION["user_lock"])) {
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_URI'] != "/aptechProject/lab/product-category.php") {
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title><?php if (isset($title)) {echo $title;} else{echo "Toola Board";} ?></title>
+  <title><?php if (isset($title)) {echo $title;} else{echo "Lab Automation";} ?></title>
   <!-- Iconic Fonts -->
   <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
   <link href="vendors/iconic-fonts/material/font.css" rel="stylesheet">
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_URI'] != "/aptechProject/lab/product-category.php") {
   <link href="assets/css/slick.css" rel="stylesheet">
   <!-- Data table styles -->
   <link href="assets/css/datatables.min.css" rel="stylesheet">
-  <!-- Toola Board styles -->
+  <!-- Lab Automation styles -->
   <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- Page Specific CSS (Morris Charts.css) -->
@@ -63,14 +63,6 @@ if ($_SERVER['REQUEST_URI'] != "/aptechProject/lab/product-category.php") {
         <a class="pl-0 ml-0 text-center navbar-brand mr-0" href="index-2.html"><img src="assets/img/toola.png" alt="logo"> </a>
       </div>
       <ul class="ms-nav-list ms-inline mb-0" id="ms-nav-options">
-
-        <li class="ms-nav-item  ms-d-none">
-          <a href="#mymodal" class="text-white" data-toggle="modal"><i class="flaticon-spreadsheet mr-2"></i> Make an appointment</a>
-        </li>
-
-        <li class="ms-nav-item ms-d-none">
-          <a href="#report1" class="text-white" data-toggle="modal"><i class="flaticon-list mr-2"></i> Generate Report</a>
-        </li>
 
         <li class="ms-nav-item dropdown">
           <a href="#" class="text-disabled ms-has-notification" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-bell"></i></a>

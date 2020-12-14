@@ -15,44 +15,24 @@
 
      <?php
 
+      echo "
+      <li class='menu-item'>
+        <a href='dashboard.php'>
+          <span><i class='material-icons fs-16'>dashboard</i>".$_SESSION["user_role"]." Dashboard </span>
+        </a>
+      </li>
+      ";
       if ($_SESSION["user_role"] == "Admin") {
         echo "
-        <li class='menu-item'>
-          <a href='#' class='has-chevron' data-toggle='collapse' data-target='#dashboard' aria-expanded='false' aria-controls='dashboard'>
-            <span><i class='material-icons fs-16'>dashboard</i>Admin Dashboard </span>
-          </a>
-          <ul id='dashboard' class='collapse' aria-labelledby='dashboard' data-parent='#side-nav-accordion'>
-            <li> <a href='#'>Toola Board</a> </li>
-          </ul>
-        </li>
         <li class='menu-item'>
           <a href='allow-user.php' class='active'>
             <span><i class='fa fa-users fs-16'></i>Allow Users</span>
           </a>
         </li>
-        <li class='menu-item'>
-            <a href='#' class='has-chevron collapsed' data-toggle='collapse' data-target='#product' aria-expanded='false' aria-controls='department'>
-            <span><i class='fas fa-archive'></i>Product</span>
-            </a>
-            <ul id='product' class='collapse' aria-labelledby='product' data-parent='#side-nav-accordion' style=''>
-              <li> <a href='product-category.php'>Product Category</a> </li>
-              <li> <a href='add-product.php'>Add Product</a> </li>
-              <li> <a href='product-list.php'>Product List</a> </li>
-            </ul>
-        </li>
         ";
       }
-
-      if ($_SESSION["user_role"] == "SRS") {
+      if ($_SESSION["user_role"] == "SRS" || $_SESSION["user_role"] == "Admin") {
         echo "
-        <li class='menu-item'>
-          <a href='#' class='has-chevron' data-toggle='collapse' data-target='#dashboard' aria-expanded='false' aria-controls='dashboard'>
-            <span><i class='material-icons fs-16'>dashboard</i>SRS Dashboard </span>
-          </a>
-          <ul id='dashboard' class='collapse' aria-labelledby='dashboard' data-parent='#side-nav-accordion'>
-            <li> <a href='#'>Toola Board</a> </li>
-          </ul>
-        </li>
         <li class='menu-item'>
           <a href='#' class='has-chevron collapsed' data-toggle='collapse' data-target='#product' aria-expanded='false' aria-controls='department'>
           <span><i class='fas fa-archive'></i>Product</span>
@@ -63,32 +43,27 @@
             <li> <a href='product-list.php'>Product List</a> </li>
           </ul>
         </li>
+        <li class='menu-item'>
+        <a href='market-product.php'>
+          <span><i class='material-icons fs-16'>dashboard</i>Market Product</span>
+        </a>
+      </li>
         ";
       }
-      
-      if ($_SESSION["user_role"] == "CPRI") {
+      if ($_SESSION["user_role"] == "CPRI" || $_SESSION["user_role"] == "Admin") {
         echo "
-        <li class='menu-item'>
-          <a href='#' class='has-chevron' data-toggle='collapse' data-target='#dashboard' aria-expanded='false' aria-controls='dashboard'>
-            <span><i class='material-icons fs-16'>dashboard</i>CPRI Dashboard </span>
-          </a>
-          <ul id='dashboard' class='collapse' aria-labelledby='dashboard' data-parent='#side-nav-accordion'>
-            <li> <a href='#'>Toola Board</a> </li>
-          </ul>
-        </li>
         <li class='menu-item'>
           <a href='#' class='has-chevron collapsed' data-toggle='collapse' data-target='#Testing' aria-expanded='false' aria-controls='department'>
           <span><i class='fas fa-archive'></i>Testing</span>
           </a>
           <ul id='Testing' class='collapse' aria-labelledby='Testing' data-parent='#side-nav-accordion' style=''>
-            <li> <a href='Testing-category.php'>Testing Category</a> </li>
-            <li> <a href='add-Testing.php'>Add Testing</a> </li>
-            <li> <a href='Testing-list.php'>Testing List</a> </li>
+            <li> <a href='testing-category.php'>Testing Category</a> </li>
+            <li> <a href='start-testing.php'>Start Testing</a> </li>
+            <li> <a href='testing-list.php'>Testing List</a> </li>
           </ul>
         </li>
         ";
       }
-
       ?>
 
    </ul>

@@ -9,7 +9,7 @@
     <div class="ms-auth-col">
       <div class="ms-auth-form">
         <form class="needs-validation" method="post" novalidate="">
-          <h1>Login to FOrget</h1>
+          <h1>Login to Account</h1>
           <p>Please enter your email and password to continue</p>
           <div class="mb-3">
             <label for="validationCustom08">Email Address</label>
@@ -20,7 +20,7 @@
               </div>
             </div>
           </div>
-          <div class="mb-2">
+          <div class="mb-2 input-icon">
             <label for="validationCustom09">Password</label>
             <div class="input-group">
               <input type="password" class="form-control password-field" name="pass" id="validationCustom09" placeholder="Password" required="">
@@ -60,10 +60,7 @@ if (isset($_POST["btn"])) {
     if (mysqli_num_rows($result_1) == 1) {
       $query = "select Id, name, role, image, status From register where email='" . $_POST["email"] . "' and password='" . $_POST["pass"] . "'";
       $result_2 = mysqli_query($con, $query) or die("Query Failed");
-
-
       if (mysqli_num_rows($result_2) > 0) {
-
         while ($row = mysqli_fetch_assoc($result_2)) {
           $_SESSION["user_name"] = $row["name"];
           $_SESSION["Id"] = $row["Id"];

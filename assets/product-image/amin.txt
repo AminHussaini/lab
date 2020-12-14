@@ -1,0 +1,65 @@
+The details of the products and the testing like the 
+
+
+--Testing-- 
+product code, 
+product id, 
+testing id, 
+the revise, 
+the testing performed, 
+remarks provided, 
+the result of the testing
+-------
+testing id, auto p-key 
+product id, f-key product 
+TestTypeID f- key testing
+DateOfTesting 
+TesterName 
+Remarks 
+Result 
+isReManufacture
+Status 
+
+--Product--
+
+Product code, 4 int remove sir 
+Product manufacturing 2 int remove sir
+product revise 6 auto remove sir
+
+ProductID,  p-key 
+ProductName
+ProductCode 10 digit
+ProductImage
+ProductaddUserName ,
+Product detail, 
+Product ProductType f-key ProductType table
+ProductDate
+
+MULTI IMAGE
+id name ProductID
+
+
+--ProductType--
+ProductTypeID	p-key
+ProductName,
+ProductDescription
+ProductaddUserName 
+Productdate
+
+
+--TestingTypes--
+TestingTypeID, p-key
+TestingName,
+TestingTypeDescription
+
+
+Forms 
+Product
+--category done
+Testing Performed
+Advance Search Form 
+	- product id
+	- test id
+	- product type
+	- testing type
+	- tester name

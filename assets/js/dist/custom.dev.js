@@ -3,11 +3,8 @@
 $(document).ready(function () {
   var browserUrl = document.location.pathname.match(/[^\/]+$/)[0];
 
-  if (browserUrl != "login.php" && browserUrl != "register.php") {
+  if (browserUrl == "allow-user.php") {
     $('#allow-user').DataTable();
-    $("#product-category").ready(function () {
-      $('#product-category-table').DataTable();
-    });
   }
 
   $("body").mousemove(function () {
@@ -20,12 +17,12 @@ $(document).ready(function () {
     icon = passwordStatus.attr("type") === "password" ? "fas fa-eye-slash" : "fas fa-eye";
     $(this).attr("class", icon);
   });
-  $(".view-profile .btn-primary").on("click", function () {
-    $(this).closest('.view-profile').hide();
-    $('.edit-profile').show();
-  });
-  $(".edit-profile .btn-success").on("click", function () {
-    $('.view-profile').show();
-    $('.edit-profile').hide();
+  $(document).on("click", "#codeGenerator", function () {
+    var code = Math.floor(Math.pow(10, 10 - 1) + Math.random() * 9 * Math.pow(10, 10 - 1));
+    $(this).closest(".input-group").find("input").val(code);
+  }); //
+
+  $(document).on("click", ".image-box .img-session img", function () {
+    $("#modal-13 .modal-body").css('background-image', 'url("' + $(this).attr("src") + '")');
   });
 });

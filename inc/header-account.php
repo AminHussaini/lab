@@ -12,7 +12,7 @@ if (isset($_SESSION["user_name"])) {
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title><?php if (isset($title)) {echo $title;} else{echo "Toola Board";} ?></title>
+  <title><?php if (isset($title)) {echo $title;} else{echo "Lab Automation";} ?></title>
   <!-- Iconic Fonts -->
   <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
   <link href="material/iconic-fonts/font.css" rel="stylesheet">
@@ -24,7 +24,7 @@ if (isset($_SESSION["user_name"])) {
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
   <!-- jQuery UI -->
   <link href="assets/css/jquery-ui.min.css" rel="stylesheet">
-  <!-- Toola Board styles -->
+  <!-- Lab Automation styles -->
   <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- Favicon -->
