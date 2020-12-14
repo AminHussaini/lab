@@ -7,6 +7,11 @@ $(document).ready(function () {
     $('.alert').delay(3000).fadeOut()
   });
 
+  $(document).on("click", "#codeGenerator", function () {
+    let code = Math.floor(Math.pow(10, 10 - 1) + Math.random() * 9 * Math.pow(10, 10 - 1))
+    $(this).closest(".input-group").find("input").val(code);
+  });
+
   $(document).on("click", "#password-icon-btn", function () {
     passwordStatus = $(this).closest(".input-group").find(".password-field")
     let password =
