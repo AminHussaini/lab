@@ -1,4 +1,5 @@
-<?php $title="Registration"; include('inc/header-account.php') ?>
+<?php $title = "Registration";
+include('inc/header-account.php') ?>
 <!-- Body Content Wrapper -->
 <div class="ms-content-wrapper ms-auth register">
   <div class="ms-auth-container">
@@ -88,9 +89,9 @@ if (isset($_POST["btn"])) {
   $file = $_FILES["userfile"]["name"];
 
 
-  $qurey_em=mysqli_query($con,"select * from register where email='$email'");
+  $qurey_em = mysqli_query($con, "select * from register where email='$email'");
 
-  if(mysqli_num_rows($qurey_em) >0){
+  if (mysqli_num_rows($qurey_em) > 0) {
     echo '
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
       <strong>Sorry, your Email are already Exists.</strong>
@@ -98,9 +99,8 @@ if (isset($_POST["btn"])) {
         <span aria-hidden="true">&times;</span>
       </button>
     </div>';
-  }
-  else{
-    $target_dir = $imagelocation ."user_image/";
+  } else {
+    $target_dir = $imagelocation . "user_image/";
     $target_file = $target_dir . basename($file);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -140,14 +140,30 @@ if (isset($_POST["btn"])) {
         </div>';
       } else {
         // echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"])) . " has been uploaded.";
-        mysqli_query($con, "insert into register values(null,'$name','$email','$pass','$role','$status','$file',null)");
-        echo '
+        if (mysqli_query($con, "insert into register values(null,'$name','$email','$pass','$role','$status','$file')")) {
+          echo '
         <div class="alert alert-success alert-dismissible fade show" role="alert">
           <strong>Account has been created</strong>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>';
+        } else {
+          echo '
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Account not create please try later</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+        }
+        // echo '
+        // <div class="alert alert-success alert-dismissible fade show" role="alert">
+        //   <strong>Account has been created</strong>
+        //   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        //     <span aria-hidden="true">&times;</span>
+        //   </button>
+        // </div>';
       }
     }
     // else {
@@ -161,17 +177,16 @@ if (isset($_POST["btn"])) {
     // }
 
   }
-
-  }
-  // else {
-  //   echo '
-  //     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-  //       <strong>Some thing went wrong</strong>
-  //       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  //         <span aria-hidden="true">&times;</span>
-  //       </button>
-  //     </div>';
-  // }
+}
+// else {
+//   echo '
+//     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+//       <strong>Some thing went wrong</strong>
+//       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+//         <span aria-hidden="true">&times;</span>
+//       </button>
+//     </div>';
+// }
 
 
 ?>
