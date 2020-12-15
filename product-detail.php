@@ -1,4 +1,4 @@
-<?php include "inc/header.php" ?>
+<?php $title="Product Detail"; include "inc/header.php" ?>
 <link rel="stylesheet" href="assets/slider-nav/css/flexslider.css" />
 <link rel="stylesheet" href="assets/slider-nav/css/demo.css" />
 <?php include "inc/connection.php";

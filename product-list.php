@@ -1,4 +1,4 @@
-<?php include "inc/header.php" ?>
+<?php $title="Prdocut List"; include "inc/header.php" ?>
 <?php include "inc/connection.php";
 $return_var = '<script type="text/javascript">
 window.location = "' . $url . 'dashboard.php"
@@ -12,8 +12,8 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
     <div class="col-md-12">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb pl-0">
-          <li class="breadcrumb-item"><a href="#"><i class="material-icons">home</i> Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Product</a></li>
+        <li class="breadcrumb-item"><a href=<?php echo $url ?>dashboard.php><i class="material-icons">home</i> Home</a></li>
+          <li class="breadcrumb-item"><a href="">Product</a></li>
           <li class="breadcrumb-item active" aria-current="page">Product List</li>
         </ol>
       </nav>
