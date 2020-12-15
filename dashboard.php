@@ -14,12 +14,42 @@ $resultCpri = mysqli_query($con, $cpriQuery);
 $rowCpri = mysqli_num_rows($resultCpri);
 
 $productSend;
-$data = mysqli_query($con, "SELECT * From sendfortest");
-if (mysqli_num_rows($data) > 0) {
-  $productSend =mysqli_num_rows($data);
+// $data = mysqli_query($con, "SELECT * FROM sendfortest");
+//  $j=0;
+// while($prow=mysqli_fetch_assoc($data)){
+    
+//     $Row = 'SELECT *  FROM product where ProductId='.$prow["productid"].'';
+//     $qurey =mysqli_query($con,$Row) or die("Query Fail");
+
+    
+    
+//     // if (mysqli_num_rows($query) > 0) {
+//     // $productSend =mysqli_num_rows($query);
+//     // } else {
+//     // $productSend = "Not Ready";
+//     // }
+
+
+// }
+
+$sql = "SELECT * FROM product where Status= 2";
+$result = mysqli_query($con, $sql) or die("query fail");
+if (mysqli_num_rows($result) > 0) {
+  $testdone =mysqli_num_rows($result);
 } else {
-  $productSend = "Not Ready";
+  $testdone = "Not Ready";
 }
+
+
+$sqlrej = "SELECT * FROM product where Status= 3";
+$resultr = mysqli_query($con, $sqlrej) or die("query fail");
+if (mysqli_num_rows($resultr) > 0) {
+  $reject =mysqli_num_rows($resultr);
+} else {
+  $reject = "Not Ready";
+}
+
+
 ?>
 
 <!-- Body Content Wrapper -->
@@ -82,7 +112,7 @@ if (mysqli_num_rows($data) > 0) {
         <div class="ms-card-body media">
           <div class="media-body">
             <h6 class="bold">Testing Done</h6>
-            <p class="ms-card-change"> Not Ready</p>
+            <p class="ms-card-change"> <?php echo $testdone?></p>
           </div>
         </div>
         <i class="material-icons  ms-icon-mr">assignment</i>
@@ -92,8 +122,8 @@ if (mysqli_num_rows($data) > 0) {
       <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
         <div class="ms-card-body media">
           <div class="media-body">
-            <h6 class="bold">Testing Reject</h6>
-            <p class="ms-card-change"> Not Ready</p>
+            <h6 class="bold">Reject Product</h6>
+            <p class="ms-card-change"> <?php echo $reject?></p>
           </div>
         </div>
         <i class="material-icons  ms-icon-mr">assignment</i>
@@ -102,39 +132,6 @@ if (mysqli_num_rows($data) > 0) {
   </div>
 
   <div class="row">
-    <div class="col-lg-4 col-md-12">
-      <div class="ms-card ms-widget has-graph-full-width ms-infographics-widget">
-        <div class="ms-card-body media">
-          <div class="media-body">
-            <h6 class="bold">Appointments</h6>
-            <h3><strong>3,973</strong></h3>
-          </div>
-        </div>
-        <canvas id="line-chart-2"></canvas>
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-12">
-      <div class="ms-card ms-widget has-graph-full-width ms-infographics-widget">
-        <div class="ms-card-body media">
-          <div class="media-body">
-            <h6>New Clients</h6>
-            <h3><strong>593</strong></h3>
-          </div>
-        </div>
-        <canvas id="line-chart-3"></canvas>
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-12">
-      <div class="ms-card ms-widget has-graph-full-width ms-infographics-widget">
-        <div class="ms-card-body media">
-          <div class="media-body">
-            <h6 class="bold">Total Earning</h6>
-            <h3><strong>3,973</strong></h3>
-          </div>
-        </div>
-        <canvas id="line-chart-4"></canvas>
-      </div>
-    </div>
     <div class="col-md-12">
       <div class="ms-panel">
         <div class="ms-panel-header d-flex justify-content-between">
