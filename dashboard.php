@@ -13,24 +13,22 @@ $cpriQuery = "SELECT * From register where role='CPRI'";
 $resultCpri = mysqli_query($con, $cpriQuery);
 $rowCpri = mysqli_num_rows($resultCpri);
 
-$productSend;
-// $data = mysqli_query($con, "SELECT * FROM sendfortest");
-//  $j=0;
-// while($prow=mysqli_fetch_assoc($data)){
-    
-//     $Row = 'SELECT *  FROM product where ProductId='.$prow["productid"].'';
-//     $qurey =mysqli_query($con,$Row) or die("Query Fail");
+$productSend=0;
+$sql = "SELECT * FROM sendfortest";
+$result  = mysqli_query($con, $sql) or die("query fail");
+if ($result = mysqli_query($con, $sql)) {
+  $i = 1;
+  while ($getsenddeatilrow = mysqli_fetch_assoc($result)) {
+    $sqlp = "SELECT * FROM product where ProductId= " . $getsenddeatilrow["productid"] . "";
+    $presult = mysqli_query($con, $sqlp) or die("query fail");
+    $productrow = mysqli_fetch_array($presult);
 
-    
-    
-//     // if (mysqli_num_rows($query) > 0) {
-//     // $productSend =mysqli_num_rows($query);
-//     // } else {
-//     // $productSend = "Not Ready";
-//     // }
+    if ($productrow["Status"] == 0 || $productrow["Status"] == 1) {
+      $productSend++;
+    }
+  }
+}
 
-
-// }
 
 $sql = "SELECT * FROM product where Status= 2";
 $result = mysqli_query($con, $sql) or die("query fail");
@@ -101,7 +99,8 @@ if (mysqli_num_rows($resultr) > 0) {
         <div class="ms-card-body media">
           <div class="media-body">
             <h6>Product Send</h6>
-            <p class="ms-card-change"> <?php echo $productSend?> </p>
+            <p class="ms-card-change">
+              <?php  if($productSend==0) echo "Not Ready";else echo $productSend ?> </p>
           </div>
         </div>
         <i class="fas fa-project-diagram ms-icon-mr"></i>
