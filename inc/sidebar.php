@@ -41,13 +41,15 @@
             <li> <a href='product-category.php'>Product Category</a> </li>
             <li> <a href='add-product.php'>Add Product</a> </li>
             <li> <a href='product-list.php'>Product List</a> </li>
+            <li> <a href='reject-product.php'>Reject Product</a> </li>
           </ul>
         </li>
         <li class='menu-item'>
         <a href='market-product.php'>
-          <span><i class='material-icons fs-16'>dashboard</i>Market Product</span>
+          <span><i class='fas fa-archive'></i>Market Product</span>
         </a>
       </li>
+      
         ";
       }
       if ($_SESSION["user_role"] == "CPRI" || $_SESSION["user_role"] == "Admin") {

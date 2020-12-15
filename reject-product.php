@@ -1,4 +1,4 @@
-<?php $title="Prdocut List"; include "inc/header.php" ?>
+<?php $title="Reject Product"; include "inc/header.php" ?>
 <?php include "inc/connection.php";
 $return_var = '<script type="text/javascript">
 window.location = "' . $url . 'dashboard.php"
@@ -13,8 +13,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb pl-0">
         <li class="breadcrumb-item"><a href=<?php echo $url ?>dashboard.php><i class="material-icons">home</i> Home</a></li>
-          <li class="breadcrumb-item"><a href="">Product</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Product List</li>
+          <li class="breadcrumb-item active" aria-current="page">Reject Product</li>
         </ol>
       </nav>
     </div>
@@ -62,7 +61,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
         <div class="ms-panel-body" id="test-product">
           <div class="table-responsive">
             <?php
-            $sql = "SELECT * FROM product where Status= 0 or  Status= 1  ";
+            $sql = "SELECT * FROM product WHERE Status=3";
             $result = mysqli_query($con, $sql) or die("query fail");
             ?>
             <table id="product-lists" class="table w-100 thead-primary">
@@ -78,7 +77,7 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
                     Product Image
                   </th>
                   <th>
-                    Product Name
+                    Product Names
                   </th>
                   <th>
                     Product Code

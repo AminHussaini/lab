@@ -77,6 +77,9 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
                     <th>
                       Date
                     </th>
+                    <th class='text-center'>
+                    Status
+                    </th>
                     <th class="text-center">
                       Action
                     </th>
@@ -86,10 +89,15 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
                   <?php
                   $i = 1;
                   while ($testingRows = mysqli_fetch_assoc($testingresult)) {
+
                     echo "<tr> <td>" . $i . "</td>";
 
                     $productRow = 'SELECT *  FROM product where ProductId='.$testingRows["ProductId"].'';
                     $productRowList = mysqli_fetch_assoc(mysqli_query($con, $productRow));
+
+                    $startTesting = "SELECT * FROM sendfortest WHERE productid=" . $testingRows["ProductId"] . "";
+                    $startTestingResult = mysqli_query($con, $startTesting) or die("query fail");
+
                     echo "
                     <td style='text-transform:capitalize'>" . $productRowList["ProductName"] . "</td>";
 
@@ -104,20 +112,32 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
                     $getTestingUserList = mysqli_fetch_assoc($getTestingUser);
 
                     echo "
-                    <td>" . $productTypeRowList["ProductName"] . "</td>
+                    <td class='testing-name'>" . $productTypeRowList["ProductName"] . "</td>
                     <td>" . $productRowList["ProductDetail"] . "</td>
                     <td>" . $getTestingUserList['name'] . "</td>
                     <td>" . $testingRows["TestingCode"] . "</td>
                     <td>" . $testTypeRowList["TestingTypeName"] . "</td>
                     <td style='min-width: 170px;white-space: initial;'> <b>Date: </b>" . explode(" ", $testingRows['TestingDate'])[0] . "<br> <b>Time: </b>" . explode(" ", $testingRows['TestingDate'])[1] . "</td>
+                      
                     <td class='text-center'>";
-                    if ($_SESSION["Id"] == $testingRows['TestingUser'] || $_SESSION["user_role"] == "Admin") {
-                      echo "
+                    if (mysqli_num_rows($startTestingResult) > 0) {
+                      if ($productRowList['Status'] ==1) echo "<span class='badge badge-outline-info'>Testing start</span>";
+                      else if ($productRowList['Status'] == 2) echo "<span class='badge badge-outline-success'>Approved</span>";
+                      else if ($productRowList['Status'] == 3) echo "<span class='badge badge-outline-danger'>Rejected</span>";
+                     else echo "<span class='badge badge-outline-warning'>Pending</span>";
+
+                    } else echo "<span class='badge badge-outline-light'>Ready</span>";
+                    echo " </td>
+                        <td class='text-center'>
                         <a title='view detail' href='testing-detail.php?id=" . $productRowList['ProductId'] . "'><i class='fa fa-info-circle ms-text-primary'></i></a>
-                      ";
-                    } else {
-                      echo "<span class='badge badge-outline-danger'>No permission</span>";
-                    }
+                        </td>";
+                    // if ($_SESSION["Id"] == $testingRows['TestingUser'] || $_SESSION["user_role"] == "Admin") {
+                    //   echo "
+                    //     <a title='view detail' href='testing-detail.php?id=" . $productRowList['ProductId'] . "'><i class='fa fa-info-circle ms-text-primary'></i></a>
+                    //   ";
+                    // } else {
+                    //   echo "<span class='badge badge-outline-danger'>No permission</span>";
+                    // }
                     echo "</td>";
                     $i++;
                   }
@@ -141,8 +161,8 @@ if ($_SESSION["user_role"] == "SRS") echo $return_var;
 <script>
   var added = false;
   productArray = [];
-  let product_length = $(".product-name").length;
-  $.map($(".product-name"), function(elementOfArray, indexInArray) {
+  let product_length = $(".testing-name").length;
+  $.map($(".testing-name"), function(elementOfArray, indexInArray) {
     function defaultProduct() {
       productArray.push({
         productName: $(elementOfArray).text(),
