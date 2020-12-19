@@ -1,8 +1,10 @@
-<?php $title="Allow User"; include "inc/header.php" ?>
-<?php include "inc/connection.php"; if ($_SESSION["user_role"] != "Admin") echo '<script type="text/javascript">
-             window.location = "'.$url.'dashboard.php"
+<?php $title = "Allow User";
+include "inc/header.php" ?>
+<?php include "inc/connection.php";
+if ($_SESSION["superAdmin"] != 1) echo '<script type="text/javascript">
+             window.location = "' . $url . 'dashboard.php"
         </script>';
- ?>
+?>
 
 <!-- Body Content Wrapper -->
 <div class="ms-content-wrapper">
@@ -49,43 +51,52 @@
               <tbody>
 
                 <?php
-                $sql = "SELECT * FROM register";
+                $sql = "SELECT * FROM register order by Id desc";
 
                 if ($result = mysqli_query($con, $sql)) {
                   $i = 1;
                   while ($row = mysqli_fetch_assoc($result)) {
                     if ($_SESSION["Id"] != $row['Id']) {
-                    echo "<tr>
+                      echo "<tr>
                       <td>" . $i . "</td>
                       <td><div class='img-session'><img src='assets/user_image/" . $row['image'] . "'/></div></td>
                       <td>" . $row['name'] . "</td>
                       <td class='email'>" . $row['email'] . "</td>
                       <td>" . $row['password'] . "</td>
-                      <td>" . $row['role'] . "</td>
+
+                      <td id=" . $row['Id'] . ">
+                        <select class='form-control userRole' storedata='" . $row['role'] . "' name='role' required>
+                          <option value=''>---Select---</option>
+                          <option value='Admin'>Admin</option>
+                          <option value='SRS'>SRS</option>
+                          <option value='CPRI'>CPRI</option>
+                        </select>
+                      </td>
+
                       <td class='text-center'><form method='POST'> ";
 
-                    if ($row['status'] == "Pending") {
-                      echo "
+                      if ($row['status'] == "Pending") {
+                        echo "
                        <span>Block &nbsp;</span>
                         <label class='ms-switch'>
                           <input type='checkbox' class='change-user-permission' id=" . $row['Id'] . " >
                           <span class='ms-switch-slider ms-switch-warning round'></span>
                         </label>
                         <span> &nbsp;Allow</span>";
-                    } else {
-                      echo "
+                      } else {
+                        echo "
                         <span>Block &nbsp;</span>
                         <label class='ms-switch'>
                         <input type='checkbox' class='change-user-permission' checked id=" . $row['Id'] . ">
                         <span class='ms-switch-slider ms-switch-warning round'></span>
                         </label>
                         <span> &nbsp;Allow</span>";
-                    }
+                      }
 
-                    echo "</form>
+                      echo "</form>
                         </td>
                         </tr>";
-                    $i++;
+                      $i++;
                     }
                   }
                 }
@@ -122,5 +133,28 @@
       })
     });
 
+    $.map($(".userRole option"), function(elementOrValue, indexOrKey) {
+      $(elementOrValue).parent().attr("storedata")
+      $(elementOrValue).attr("selected", false)
+      if ($(elementOrValue).attr("value") == $(elementOrValue).parent().attr("storedata")) {
+        $(elementOrValue).attr("selected", true)
+      }
+    });
+
+    $(".userRole").change(function() {
+      let user_role_id = $(this).parent().attr("id");
+      let user_role_value = $(this).val();
+      $.ajax({
+        url: "inc/connection.php",
+        method: "POST",
+        data: {
+          user_role_id: user_role_id,
+          user_role_value: user_role_value,
+        },
+        success: function(data) {
+          $('body').append(data);
+        }
+      })
+    });
   })
 </script>

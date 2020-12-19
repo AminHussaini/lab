@@ -58,7 +58,7 @@ if (isset($_POST["btn"])) {
   $fetch_mail = $row['email'];
   if ($_POST["email"]== $fetch_mail) {
     if (mysqli_num_rows($result_1) == 1) {
-      $query = "select Id, name, role, image, status From register where email='" . $_POST["email"] . "' and password='" . $_POST["pass"] . "'";
+      $query = "select * From register where email='" . $_POST["email"] . "' and password='" . $_POST["pass"] . "'";
       $result_2 = mysqli_query($con, $query) or die("Query Failed");
       if (mysqli_num_rows($result_2) > 0) {
         while ($row = mysqli_fetch_assoc($result_2)) {
@@ -67,7 +67,7 @@ if (isset($_POST["btn"])) {
           $_SESSION["user_role"] = $row["role"];
           $_SESSION["user_status"] = $row["status"];
           $_SESSION["user_image"] = $row["image"];
-
+          $_SESSION["superAdmin"] = $row["superAdmin"];
           echo '<script type="text/javascript">
                window.location = "'.$url.'dashboard.php"
           </script>';

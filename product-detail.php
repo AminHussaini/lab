@@ -153,9 +153,8 @@ if (isset($_GET['id'])) {
                 </tr>
                 <?php
                 if ($productrow['ReBuild'] > 0) {
-
                   echo ' <tr>
-                    <th scope="row">Product Revive:</th>
+                    <th scope="row">Product Repeat:</th>
                     <td style="white-space: inherit;">' . $productrow['ReBuild'] . '</td>
                   </tr>';
                 }

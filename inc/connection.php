@@ -58,6 +58,31 @@ if (isset($_POST["current_id"]) && isset($_POST["email"]) && isset($_POST["edite
   }
 }
 
+
+// User Allow
+if (isset($_POST["user_role_id"]) && isset($_POST["user_role_value"]) ) {
+  $role_value = $_POST["user_role_value"];
+  $sql = "UPDATE register SET role='$role_value' WHERE Id=" . $_POST["user_role_id"] . "";
+
+  if (mysqli_query($con, $sql)) {
+    echo '
+    <div class="alert alert-success alert-dismissible fade show " role="alert">
+      <strong>User role change</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+  } else {
+    echo '
+    <div class="alert alert-danger alert-dismissible fade show " role="alert">
+      <strong>Error updating record: ' . mysqli_error($con) . '</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+  }
+}
+
 // Profile edit
 if (isset($_FILES["file"]["type"]) && isset($_POST["name"]) && isset($_POST["pass"]) && isset($_POST["email"])) {
   extract($_POST);
@@ -81,7 +106,7 @@ if (isset($_FILES["file"]["type"]) && isset($_POST["name"]) && isset($_POST["pas
     </script>';
     }
   } else {
-    if ((($_FILES["file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/jpg") || ($_FILES["file"]["type"] == "image/jpeg")) && ($_FILES["file"]["size"] < 100000) //Approx. 100kb files can be uploaded.
+    if ((($_FILES["file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/jpg") || ($_FILES["file"]["type"] == "image/jpeg")) && ($_FILES["file"]["size"] < 1000000)
     ) {
       if ($_FILES["file"]["error"] > 0) {
         echo '
@@ -323,15 +348,25 @@ if (isset($_POST["updateProductId"]) && isset($_POST["updateProductDescription"]
 
 //  Add testing product
 if (isset($_POST["addProductName"])) {
-  // echo "ajax";
   session_start();
   $addTestProduct_Category_user = $_SESSION['Id'];
   $addProductName = strtolower($_POST['addProductName']);
   $productCode = strtolower($_POST['productCode']);
   $addTestProductCategory = $_POST["addTestProductCategory"];
-  $addTestProductDescription = $_POST["addTestProductDescription"];
+  $addTestProductDescription = strtolower($_POST["addTestProductDescription"]);
 
-
+  if(strlen($_POST['productCode']) != 10)
+  {
+    echo '
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Filled max 10 value.</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>';
+  }
+  else
+  {
   $target_dir = $imagelocation . "product-image/";
   $target_file = $target_dir . json_encode($_FILES["addProductImage"]["name"]);
   $uploadOk = 1;
@@ -341,7 +376,7 @@ if (isset($_POST["addProductName"])) {
   $result = mysqli_query($con, $query_1) or die("Query Failed");
   $row = mysqli_fetch_assoc($result);
   if ($productCode != $row["ProductCode"]) {
-    $addProduct = mysqli_query($con, "insert into product values(null,'$addProductName','$productCode','$addTestProduct_Category_user','$addTestProductDescription','$addTestProductCategory','$dateTime', null, 0)");
+    $addProduct = mysqli_query($con, "insert into product values(null,'$addProductName','$productCode','$addTestProduct_Category_user','$addTestProductDescription','$addTestProductCategory','$dateTime', 0, 0)");
     if ($addProduct) {
       $addProductId = $con->insert_id;
 
@@ -432,6 +467,7 @@ if (isset($_POST["addProductName"])) {
         </button>
       </div>';
   }
+}
 }
 
 // return table
@@ -881,7 +917,7 @@ if (isset($_POST['product_id']) && isset($_POST['testing_id']) && isset($_POST['
     }
   } else {
     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>Product Sender and testing user are same</strong>
+      <strong>Product sender and testing user are same</strong>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>

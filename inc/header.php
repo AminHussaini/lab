@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_URI'] != "/aptechProject/lab/product-category.php") {
         <span class="ms-toggler-bar bg-white"></span>
       </div>
       <div class="logo-sn logo-sm ms-d-block-sm">
-        <a class="pl-0 ml-0 text-center navbar-brand mr-0" href="index-2.html"><img src="assets/img/toola.png" alt="logo"> </a>
+        <a class="pl-0 ml-0 text-center navbar-brand mr-0" href=<?php echo $url ?>dashboard.php><img src="assets/img/toola.png" alt="logo"> </a>
       </div>
       <ul class="ms-nav-list ms-inline mb-0" id="ms-nav-options">
 
@@ -73,8 +73,6 @@ if ($_SERVER['REQUEST_URI'] != "/aptechProject/lab/product-category.php") {
             <li class="dropdown-divider"></li>
             <li class="ms-dropdown-list">
               <a class="media fs-14 p-2" href=<?php echo $url ?>profile.php> <span><i class="flaticon-user mr-2"></i> Profile</span> </a>
-              <a class="media fs-14 p-2" href="pages/apps/email.html"> <span><i class="flaticon-mail mr-2"></i> Inbox</span> <span class="badge badge-pill badge-info">3</span> </a>
-              <a class="media fs-14 p-2" href="pages/prebuilt-pages/user-profile.html"> <span><i class="flaticon-gear mr-2"></i> Account Settings</span> </a>
             </li>
             <li class="dropdown-divider"></li>
             <li class="dropdown-menu-footer">

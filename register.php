@@ -15,7 +15,7 @@ include('inc/header-account.php') ?>
             <div class="col-md-12 ">
               <label for="validationCustom01">Your name</label>
               <div class="input-group">
-                <input type="text" class="form-control" id="validationCustom01" name="username" placeholder="First name" required="">
+                <input type="text" class="form-control" id="validationCustom01" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" name="username" placeholder="First name" required="">
                 <div class="invalid-feedback">
                   Please provide a valid name.
                 </div>
@@ -140,7 +140,7 @@ if (isset($_POST["btn"])) {
         </div>';
       } else {
         // echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"])) . " has been uploaded.";
-        if (mysqli_query($con, "insert into register values(null,'$name','$email','$pass','$role','$status','$file')")) {
+        if (mysqli_query($con, "insert into register values(null,'$name','$email','$pass','$role','$status','$file','null')")) {
           echo '
         <div class="alert alert-success alert-dismissible fade show" role="alert">
           <strong>Account has been created</strong>

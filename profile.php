@@ -62,7 +62,7 @@ error_reporting(0); ?>
                 <div class="col-md-12 ">
                   <label for="validationCustom01">Your name</label>
                   <div class="input-group">
-                    <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="Enter name" value="<?php echo $row["name"] ?>" required="">
+                    <input type="text" class="form-control" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" id="validationCustom01" name="name" placeholder="Enter name" value="<?php echo $row["name"] ?>" required="">
                     <div class="invalid-feedback">
                       Please provide a valid name.
                     </div>

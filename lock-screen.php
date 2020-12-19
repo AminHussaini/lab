@@ -1,6 +1,10 @@
 <?php
 $title="Screen Lock";
 session_start();
+if (!isset($_SESSION["user_name"])) {
+  header("Location:index.php");
+  // exit();
+}
 $_SESSION["user_lock"] = $_SESSION["Id"];
 include('inc/connection.php');
 ?>

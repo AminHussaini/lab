@@ -86,6 +86,15 @@ if (isset($_GET['id'])) {
                   <th scope="row">Category Name:</th>
                   <td style="text-transform: capitalize;"><?php echo $getProductCategoryRow['ProductName'] ?></td>
                 </tr>
+                <?php
+                  if ($productrow['ReBuild'] > 0) {
+                    echo ' <tr>
+                      <th scope="row">Product Repeat:</th>
+                      <td style="white-space: inherit;">' . $productrow['ReBuild'] . '</td>
+                    </tr>';
+                  }
+                ?>
+
                 <tr>
                   <?php
                   $sql = "SELECT * FROM register where id=" . $getProductCategoryRow['ProductCateAddUser'] . "";

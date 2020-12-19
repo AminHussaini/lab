@@ -256,7 +256,6 @@ if ($_SESSION["user_role"] == "CPRI") echo $return_var;
         $.map($("#updateTestProductCategory option"), function(elementOrValue, indexOrKey) {
           $(elementOrValue).attr("selected",false)
           if ($(elementOrValue).attr("value") == data.split("(array)")[3]) {
-            console.log($(elementOrValue).attr("value") +"    " + data.split("(array)")[3])
             $(elementOrValue).attr("selected", true)
           }
         });

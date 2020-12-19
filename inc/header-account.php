@@ -15,7 +15,7 @@ if (isset($_SESSION["user_name"])) {
   <title><?php if (isset($title)) {echo $title;} else{echo "Lab Automation";} ?></title>
   <!-- Iconic Fonts -->
   <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-  <link href="material/iconic-fonts/font.css" rel="stylesheet">
+  <link href="vendors/iconic-fonts/material/font.css" rel="stylesheet">
   <link href="vendors/iconic-fonts/font-awesome/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="vendors/iconic-fonts/flat-icons/flaticon.css">
   <link rel="stylesheet" href="vendors/iconic-fonts/cryptocoins/cryptocoins.css">
