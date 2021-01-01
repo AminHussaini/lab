@@ -1,5 +1,9 @@
 <div id="preloader-wrap">
+<<<<<<< Updated upstream
     <div class="spinner spinner-8">
+=======
+  <div class="spinner spinner-8">
+>>>>>>> Stashed changes
       <div class="ms-circle1 ms-child"></div>
       <div class="ms-circle2 ms-child"></div>
       <div class="ms-circle3 ms-child"></div>
@@ -13,4 +17,15 @@
       <div class="ms-circle11 ms-child"></div>
       <div class="ms-circle12 ms-child"></div>
     </div>
+<<<<<<< Updated upstream
   </div>
+=======
+
+  <!-- <div class="spinner spinner-10">
+    <div class="ms-cube1 ms-cube"></div>
+    <div class="ms-cube2 ms-cube"></div>
+    <div class="ms-cube4 ms-cube"></div>
+    <div class="ms-cube3 ms-cube"></div>
+  </div> -->
+</div>
+>>>>>>> Stashed changes

@@ -1,3 +1,4 @@
+<?php include "inc/connection.php";?>
  <!-- Overlays -->
  <div class="ms-aside-overlay ms-overlay-left ms-toggler" data-target="#ms-side-nav" data-toggle="slideLeft"></div>
   <div class="ms-aside-overlay ms-overlay-right ms-toggler" data-target="#ms-recent-activity" data-toggle="slideRight"></div>
@@ -21,6 +22,7 @@
           <a href='#' class='has-chevron' data-toggle='collapse' data-target='#dashboard' aria-expanded='false' aria-controls='dashboard'>
             <span><i class='material-icons fs-16'>dashboard</i>Admin Dashboard </span>
           </a>
+<<<<<<< Updated upstream
           <ul id='dashboard' class='collapse' aria-labelledby='dashboard' data-parent='#side-nav-accordion'>
             <li> <a href='#'>Toola Board</a> </li>
           </ul>
@@ -29,6 +31,55 @@
           <a href='allow-user.php' class='active'>
             <span><i class='fa fa-users fs-16'></i>Allow Users</span>
           </a>
+=======
+          <ul id='product' class='collapse' aria-labelledby='product' data-parent='#side-nav-accordion' style=''>
+            <li> <a href='product-category.php'>Product Category</a> </li>
+            <li> <a href='add-product.php'>Add Product</a> </li>
+            <li> <a href='product-list.php'>Product List</a> </li>";
+            $sql = "SELECT * FROM product WHERE Status=3";
+            $result = mysqli_query($con, $sql) or die("query fail");
+
+            if (mysqli_num_rows($result) > 0){
+            echo "<li> <a href='reject-product.php'>Reject Product</a> </li>";
+            }
+         echo"
+            </ul>
+        </li>
+        <li class='menu-item'>
+        <a href='market-product.php'>
+          <span><i class='fas fa-archive'></i>Market Product</span>
+        </a>
+      </li>
+
+        ";
+      }
+      if ($_SESSION["user_role"] == "CPRI" || $_SESSION["user_role"] == "Admin") {
+        $testing = "SELECT * FROM testing";
+        $testingresult  = mysqli_query($con, $testing) or die("query fail");
+        echo "
+        <li class='menu-item'>
+          <a href='#' class='has-chevron collapsed' data-toggle='collapse' data-target='#Testing' aria-expanded='false' aria-controls='department'>
+          <span><i class='fas fa-archive'></i>Testing</span>
+          </a>
+          <ul id='Testing' class='collapse' aria-labelledby='Testing' data-parent='#side-nav-accordion' style=''>
+            <li> <a href='testing-category.php'>Testing Category</a> </li>";
+            $sql = "SELECT * FROM sendfortest";
+            $result  = mysqli_query($con, $sql) or die("query fail");
+            if (mysqli_num_rows($result) > 0) {
+              $getsenddeatilrow = mysqli_fetch_assoc($result);
+              $sqlp = "SELECT * FROM product where ProductId= " . $getsenddeatilrow["productid"] . "";
+              $presult = mysqli_query($con, $sqlp) or die("query fail");
+              $productrow = mysqli_num_rows($presult);
+              if ($productrow["Status"] == 0) {
+                echo "<li> <a href='start-testing.php'>Start Testing</a> </li>";
+              }
+            }
+            if (mysqli_num_rows($testingresult) > 0) {
+              echo "<li> <a href='testing-list.php'>Testing List</a> </li>";
+            }
+
+          echo"  </ul>
+>>>>>>> Stashed changes
         </li>
         ";
 

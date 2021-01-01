@@ -48,3 +48,63 @@
     white-space: nowrap;
   }
 }
+<<<<<<< Updated upstream
+=======
+
+.testing-detail {
+  .btn-danger {
+    background-color: #db3c36;
+    border-color: #db3c36;
+  }
+}
+.ms-chat-conversations {
+  .ms-panel-body {
+    .ms-chat-message {
+      &.ms-chat-outgoing,
+      &.ms-chat-incoming {
+        p {
+          color: var(--white);
+          &.reject {
+            background-color: #db3c36;
+          }
+          &.approved {
+            background-color: #00e609;
+          }
+        }
+      }
+      &.ms-chat-incoming {
+        .ms-chat-text {
+          p {
+            &.reject {
+              &:after {
+                border-right-color: #db3c36;
+              }
+            }
+            &.approved {
+              &:after {
+                border-right-color: #00e609;
+              }
+            }
+          }
+        }
+      }
+      &.ms-chat-outgoing {
+        .ms-chat-text {
+          p {
+            &.reject {
+              &:after {
+                border-left-color: #db3c36;
+              }
+            }
+            &.approved {
+              &:after {
+                border-left-color: #00e609;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+>>>>>>> Stashed changes
