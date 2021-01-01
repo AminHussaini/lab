@@ -60,7 +60,7 @@ if (isset($_POST["current_id"]) && isset($_POST["email"]) && isset($_POST["edite
 
 
 // User Allow
-if (isset($_POST["user_role_id"]) && isset($_POST["user_role_value"]) ) {
+if (isset($_POST["user_role_id"]) && isset($_POST["user_role_value"])) {
   $role_value = $_POST["user_role_value"];
   $sql = "UPDATE register SET role='$role_value' WHERE Id=" . $_POST["user_role_id"] . "";
 
@@ -106,8 +106,7 @@ if (isset($_FILES["file"]["type"]) && isset($_POST["name"]) && isset($_POST["pas
     </script>';
     }
   } else {
-    if ((($_FILES["file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/jpg") || ($_FILES["file"]["type"] == "image/jpeg")) && ($_FILES["file"]["size"] < 1000000)
-    ) {
+    if ((($_FILES["file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/jpg") || ($_FILES["file"]["type"] == "image/jpeg")) && ($_FILES["file"]["size"] < 1000000)) {
       if ($_FILES["file"]["error"] > 0) {
         echo '
         <div class="alert alert-danger alert-dismissible fade show" style="display:block !important" role="alert">
@@ -355,8 +354,7 @@ if (isset($_POST["addProductName"])) {
   $addTestProductCategory = $_POST["addTestProductCategory"];
   $addTestProductDescription = strtolower($_POST["addTestProductDescription"]);
 
-  if(strlen($_POST['productCode']) != 10)
-  {
+  if (strlen($_POST['productCode']) != 10) {
     echo '
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <strong>Filled max 10 value.</strong>
@@ -364,110 +362,108 @@ if (isset($_POST["addProductName"])) {
             <span aria-hidden="true">&times;</span>
           </button>
         </div>';
-  }
-  else
-  {
-  $target_dir = $imagelocation . "product-image/";
-  $target_file = $target_dir . json_encode($_FILES["addProductImage"]["name"]);
-  $uploadOk = 1;
-  $imageUpload = 0;
+  } else {
+    $target_dir = $imagelocation . "product-image/";
+    $target_file = $target_dir . json_encode($_FILES["addProductImage"]["name"]);
+    $uploadOk = 1;
+    $imageUpload = 0;
 
-  $query_1 = "select * From product where ProductCode='" . $productCode . "'";
-  $result = mysqli_query($con, $query_1) or die("Query Failed");
-  $row = mysqli_fetch_assoc($result);
-  if ($productCode != $row["ProductCode"]) {
-    $addProduct = mysqli_query($con, "insert into product values(null,'$addProductName','$productCode','$addTestProduct_Category_user','$addTestProductDescription','$addTestProductCategory','$dateTime', 0, 0)");
-    if ($addProduct) {
-      $addProductId = $con->insert_id;
+    $query_1 = "select * From product where ProductCode='" . $productCode . "'";
+    $result = mysqli_query($con, $query_1) or die("Query Failed");
+    $row = mysqli_fetch_assoc($result);
+    if ($productCode != $row["ProductCode"]) {
+      $addProduct = mysqli_query($con, "insert into product values(null,'$addProductName','$productCode','$addTestProduct_Category_user','$addTestProductDescription','$addTestProductCategory','$dateTime', 0, 0)");
+      if ($addProduct) {
+        $addProductId = $con->insert_id;
 
-      for ($i = 0; $i < count($_FILES["addProductImage"]["name"]); $i++) {
-        if (($_FILES["addProductImage"]["size"])[$i] > 1000000) {
-          // echo json_encode($_FILES["addProductImage"]["type"]);
-          echo '
+        for ($i = 0; $i < count($_FILES["addProductImage"]["name"]); $i++) {
+          if (($_FILES["addProductImage"]["size"])[$i] > 1000000) {
+            // echo json_encode($_FILES["addProductImage"]["type"]);
+            echo '
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <strong>Sorry, your file is too large.</strong>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>';
-          $uploadOk = 0;
-        }
-        if ((($_FILES["addProductImage"]["type"][$i] == "image/png") || ($_FILES["addProductImage"]["type"][$i] == "image/jpg") || ($_FILES["addProductImage"]["type"][$i] == "image/jpeg"))) {
-          if ($uploadOk != 0) {
-            $path = $imagelocation . "product-image/";
-            $sourcePath = $_FILES['addProductImage']['tmp_name'][$i]; // Storing source path of the file in a variable
-            $targetPath = $path . $_FILES['addProductImage']['name'][$i]; // Target path where file is to be stored
-            // echo explode("," , json_encode($_FILES['addProductImage']['name']));
-            if (move_uploaded_file($sourcePath, $targetPath)) {
-              // echo '
-              //   <div class="alert alert-success alert-dismissible fade show" role="alert">
-              //     <strong>Account has been created</strong>
-              //     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              //       <span aria-hidden="true">&times;</span>
-              //     </button>
-              //   </div>';
-              $imageName = $_FILES['addProductImage']['name'][$i];
-              if (mysqli_query($con, "insert into multiimages values(null,'" . $imageName . "'," . $addProductId . ")")) {
-                echo '
+            $uploadOk = 0;
+          }
+          if ((($_FILES["addProductImage"]["type"][$i] == "image/png") || ($_FILES["addProductImage"]["type"][$i] == "image/jpg") || ($_FILES["addProductImage"]["type"][$i] == "image/jpeg"))) {
+            if ($uploadOk != 0) {
+              $path = $imagelocation . "product-image/";
+              $sourcePath = $_FILES['addProductImage']['tmp_name'][$i]; // Storing source path of the file in a variable
+              $targetPath = $path . $_FILES['addProductImage']['name'][$i]; // Target path where file is to be stored
+              // echo explode("," , json_encode($_FILES['addProductImage']['name']));
+              if (move_uploaded_file($sourcePath, $targetPath)) {
+                // echo '
+                //   <div class="alert alert-success alert-dismissible fade show" role="alert">
+                //     <strong>Account has been created</strong>
+                //     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                //       <span aria-hidden="true">&times;</span>
+                //     </button>
+                //   </div>';
+                $imageName = $_FILES['addProductImage']['name'][$i];
+                if (mysqli_query($con, "insert into multiimages values(null,'" . $imageName . "'," . $addProductId . ")")) {
+                  echo '
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                   <strong>Product has been created</strong>
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>';
-              } else {
-                echo '
+                } else {
+                  echo '
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                   <strong>Something went wrong..</strong>
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>';
-              }
-            } else {
-              echo '
+                }
+              } else {
+                echo '
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Sorry, there was an error uploading your file.</strong>
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>';
+              }
             }
-          }
-        } else {
-          echo '
+          } else {
+            echo '
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Sorry, only JPG, JPEG, PNG & GIF files are allowed.</strong>
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>';
-          $table2 = "DELETE FROM multiimages WHERE parentId = $addProductId";
-          $result_2 = mysqli_query($con, $table2) or die("Query Failed");
-          if ($result_2) {
-            $table1 = "DELETE FROM product WHERE ProductId = $addProductId";
-            $result_1 = mysqli_query($con, $table1) or die("Query Failed");
-          }
-          $uploadOk = 0;
-        };
-      }
-    } else {
-      echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            $table2 = "DELETE FROM multiimages WHERE parentId = $addProductId";
+            $result_2 = mysqli_query($con, $table2) or die("Query Failed");
+            if ($result_2) {
+              $table1 = "DELETE FROM product WHERE ProductId = $addProductId";
+              $result_1 = mysqli_query($con, $table1) or die("Query Failed");
+            }
+            $uploadOk = 0;
+          };
+        }
+      } else {
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
       <strong>data not add.</strong>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>';
-    }
-  } else {
-    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      }
+    } else {
+      echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>This code is already exit.</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>';
+    }
   }
-}
 }
 
 // return table
@@ -519,40 +515,41 @@ if (isset($_POST["addTestingProductTable"])) {
           if ($result = mysqli_query($con, $sql)) {
             $i = 1;
             while ($row = mysqli_fetch_assoc($result)) {
-              echo "<tr>
+              if ($row["Status"] != 2) {
+                echo "<tr>
                         <td>" . $i . "</td>
                         ";
 
-              $sql = "SELECT * FROM register where id=" . $row['ProductaddUserName'] . "";
-              $getRegister = mysqli_query($con, $sql);
-              $getRegisterRow = mysqli_fetch_assoc($getRegister);
+                $sql = "SELECT * FROM register where id=" . $row['ProductaddUserName'] . "";
+                $getRegister = mysqli_query($con, $sql);
+                $getRegisterRow = mysqli_fetch_assoc($getRegister);
 
-              echo   "<td>" . $getRegisterRow['name'] . "</td><td><div class='image-box'>";
-              $productID =  $row['ProductId'];
+                echo   "<td>" . $getRegisterRow['name'] . "</td><td><div class='image-box'>";
+                $productID =  $row['ProductId'];
 
-              $multi = "SELECT * FROM multiimages";
-              $getMulti = mysqli_query($con, $multi) or die("Query fail");
-              $getMultiRow = mysqli_fetch_array($getMulti);
-              $j = 0;
-              if (mysqli_num_rows($getMulti) > 0) {
-                // show the limit image uncommit code
-                // $imageLength = 3;
-                while ($fetch = mysqli_fetch_assoc($getMulti)) {
-                  // if ($productID == $fetch["parentId"] && $j < $imageLength ) { REVIEW remove the 463 line
-                  if ($productID == $fetch["parentId"]) {
-                    echo "<div class='img-session'><img src='assets/product-image/" . $fetch['file_name'] . "' data-toggle='modal' data-target='#modal-13'/></div>";
-                    // $j++;
+                $multi = "SELECT * FROM multiimages";
+                $getMulti = mysqli_query($con, $multi) or die("Query fail");
+                $getMultiRow = mysqli_fetch_array($getMulti);
+                $j = 0;
+                if (mysqli_num_rows($getMulti) > 0) {
+                  // show the limit image uncommit code
+                  // $imageLength = 3;
+                  while ($fetch = mysqli_fetch_assoc($getMulti)) {
+                    // if ($productID == $fetch["parentId"] && $j < $imageLength ) { REVIEW remove the 463 line
+                    if ($productID == $fetch["parentId"]) {
+                      echo "<div class='img-session'><img src='assets/product-image/" . $fetch['file_name'] . "' data-toggle='modal' data-target='#modal-13'/></div>";
+                      // $j++;
+                    }
+                    // if($j == $imageLength){
+                    //   $j=$imageLength+1;
+                    // }
                   }
-                  // if($j == $imageLength){
-                  //   $j=$imageLength+1;
-                  // }
                 }
-              }
-              $productCategory = "SELECT * FROM producttype where ProductTypeId=" . $row['ProductIdType'] . "";
-              $getProductCategory = mysqli_query($con, $productCategory);
-              $getProductCategoryRow = mysqli_fetch_assoc($getProductCategory);
+                $productCategory = "SELECT * FROM producttype where ProductTypeId=" . $row['ProductIdType'] . "";
+                $getProductCategory = mysqli_query($con, $productCategory);
+                $getProductCategoryRow = mysqli_fetch_assoc($getProductCategory);
 
-              echo "</div></td>
+                echo "</div></td>
                         <td style='text-transform:capitalize;'>" . $row['ProductName'] . "</td>
                         <td>" . $row['ProductCode'] . "</td>
                         <td>" . $getProductCategoryRow['ProductName'] . "</td>
@@ -561,19 +558,20 @@ if (isset($_POST["addTestingProductTable"])) {
                         <td class='text-center'>
                   ";
 
-              if ($_SESSION["Id"] == $row['ProductaddUserName'] || $_SESSION["user_role"] == "Admin") {
-                echo "
+                if ($_SESSION["Id"] == $row['ProductaddUserName'] || $_SESSION["user_role"] == "Admin") {
+                  echo "
                   <a id='edit-product' storeData=" . $row['ProductId'] . " href='javascript:void(0);' style='margin-right:10px'><i class='fas fa-pencil-alt ms-text-primary'></i></a>
                   <a id='delete-product' storeData=" . $row['ProductId'] . " href='javascript:void(0);'><i class='far fa-trash-alt ms-text-danger'></i></a>";
-              } else {
-                echo "<span class='badge badge-outline-danger'>No permission</span>";
-              }
+                } else {
+                  echo "<span class='badge badge-outline-danger'>No permission</span>";
+                }
 
-              echo "
+                echo "
                       </td>
                       </tr>
                   ";
-              $i++;
+                $i++;
+              }
             }
           }
           ?>
