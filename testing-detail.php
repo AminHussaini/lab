@@ -220,6 +220,12 @@ if (isset($_GET['id'])) {
               $image = "SELECT * FROM register Where Id=" . $fetch["RemarkUser"] . "";
               $getimage = mysqli_query($con, $image) or die("Query fail");
               $getimageList = mysqli_fetch_assoc($getimage);
+              if ($fetch["Status"] == 0) {
+                $status= "reject";
+
+              }else {
+                $status= "approved";
+              }
               echo '
               <div class="ms-chat-bubble ms-chat-message ms-chat-outgoing media clearfix">
                   <div class="ms-chat-img">
@@ -227,7 +233,7 @@ if (isset($_GET['id'])) {
                   </div>
                   <div class="media-body">
                     <div class="ms-chat-text">
-                      <p style="text-transform: capitalize;">
+                      <p class="'.$status.'">
                       ' . $fetch["Remark"] . '
                       </p>
                     </div>
@@ -257,7 +263,7 @@ if (isset($_POST['approved'])) {
     $approvedQuery = "UPDATE product SET Status=2 WHERE ProductId =$pageDetail";
     $approvedQueryResult = mysqli_query($con, $approvedQuery) or die("query fail-1");
     if ($approvedQueryResult) {
-      $remarkQuery = "insert into testingremark values(null, '".strtolower($remark)."',$pageDetail," . $_SESSION["Id"] . ",'$dateTime')";
+      $remarkQuery = "insert into testingremark values(null, '".strtolower($remark)."',$pageDetail," . $_SESSION["Id"] . ",'$dateTime',1)";
       $remarkQueryResult = mysqli_query($con, $remarkQuery) or die("query fail-2");
       echo $dateTime;
       $testingQuery = "UPDATE testing SET EndDate='$dateTime' WHERE ProductId =$pageDetail";
@@ -298,7 +304,7 @@ if (isset($_POST['rejected'])) {
     $approvedQuery = "UPDATE product SET Status=3 WHERE ProductId =$pageDetail";
     $approvedQueryResult = mysqli_query($con, $approvedQuery) or die("query fail-1");
     if ($approvedQueryResult) {
-      $remarkQuery = "insert into testingremark values(null, '".strtolower($remark)."',$pageDetail," . $_SESSION["Id"] . ",'$dateTime')";
+      $remarkQuery = "insert into testingremark values(null, '".strtolower($remark)."',$pageDetail," . $_SESSION["Id"] . ",'$dateTime',0)";
       $remarkQueryResult = mysqli_query($con, $remarkQuery) or die("query fail-2");
       $testingQuery = "UPDATE testing SET EndDate='$dateTime' WHERE ProductId =$pageDetail";
       $testingQueryResult = mysqli_query($con, $testingQuery) or die("query fail-3");

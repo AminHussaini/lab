@@ -145,3 +145,56 @@ div.table-responsive > div.dataTables_wrapper > div.row {
     border-color: #db3c36;
   }
 }
+.ms-chat-conversations {
+  $approve : #0d9c12;
+  $reject : #db3c36;
+  .ms-panel-body {
+    .ms-chat-message {
+      &.ms-chat-outgoing,
+      &.ms-chat-incoming {
+        p {
+
+          color: var(--white);
+          &.reject {
+            background-color: $reject;
+          }
+          &.approved {
+            background-color: $approve ;
+          }
+        }
+      }
+      &.ms-chat-incoming {
+        .ms-chat-text {
+          p {
+            &.reject {
+              &:after {
+                border-right-color: $reject;
+              }
+            }
+            &.approved {
+              &:after {
+                border-right-color: $approve;
+              }
+            }
+          }
+        }
+      }
+      &.ms-chat-outgoing {
+        .ms-chat-text {
+          p {
+            &.reject {
+              &:after {
+                border-left-color: $reject;
+              }
+            }
+            &.approved {
+              &:after {
+                border-left-color: $approve;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

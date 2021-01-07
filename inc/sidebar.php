@@ -43,11 +43,12 @@
             <li> <a href='reject-product.php'>Reject Product</a> </li>
           </ul>
         </li>
+
         <li class='menu-item'>
-        <a href='market-product.php'>
-          <span><i class='fas fa-archive'></i>Market Product</span>
-        </a>
-      </li>
+          <a href='market-product.php'>
+            <span><i class='fas fa-archive'></i>Market Product</span>
+          </a>
+        </li>
 
         ";
       }

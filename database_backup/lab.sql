@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2020 at 12:16 AM
+-- Generation Time: Jan 07, 2021 at 06:02 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -38,37 +38,24 @@ CREATE TABLE `multiimages` (
 --
 
 INSERT INTO `multiimages` (`id`, `file_name`, `parentId`) VALUES
-(88, '—Pngtree—muscle santa cool body_5590575.png', 56),
-(89, '—Pngtree—instagram icon logo_3560507.png', 56),
-(90, '0a1f820e29719c7b67e9d5aa44241155.jpg', 56),
 (96, '—Pngtree—muscle santa cool body_5590575.png', 60),
 (97, '—Pngtree—instagram icon logo_3560507.png', 60),
 (98, '0a1f820e29719c7b67e9d5aa44241155.jpg', 60),
-(99, '—Pngtree—muscle santa cool body_5590575.png', 61),
-(100, '—Pngtree—instagram icon logo_3560507.png', 61),
-(101, '0a1f820e29719c7b67e9d5aa44241155.jpg', 61),
-(108, '—Pngtree—muscle santa cool body_5590575.png', 65),
-(109, '—Pngtree—instagram icon logo_3560507.png', 65),
-(115, '—Pngtree—muscle santa cool body_5590575.png', 68),
-(116, '—Pngtree—instagram icon logo_3560507.png', 68),
-(117, '0a1f820e29719c7b67e9d5aa44241155.jpg', 68),
-(118, 'images.jpg', 68),
-(119, 'download-4.jpg', 68),
-(120, 'download-3.jpg', 68),
-(121, 'download-2.jpg', 68),
-(122, 'download-1.jpg', 68),
-(123, '—Pngtree—muscle santa cool body_5590575.png', 69),
-(124, '—Pngtree—muscle santa cool body_5590575.png', 70),
-(125, '—Pngtree—instagram icon logo_3560507.png', 70),
-(126, '0a1f820e29719c7b67e9d5aa44241155.jpg', 70),
-(127, 'images.jpg', 70),
-(128, 'download-4.jpg', 70),
-(129, 'download-3.jpg', 70),
-(130, 'download-2.jpg', 70),
-(131, 'download-1.jpg', 70),
-(135, '—Pngtree—muscle santa cool body_5590575.png', 82),
-(136, '—Pngtree—instagram icon logo_3560507.png', 82),
-(137, '0a1f820e29719c7b67e9d5aa44241155.jpg', 82);
+(138, 'images.jpg', 83),
+(139, 'download-4.jpg', 83),
+(140, 'download-3.jpg', 83),
+(141, 'download-2.jpg', 83),
+(142, 'download-1.jpg', 83),
+(143, 'images.jpg', 84),
+(144, 'download-4.jpg', 84),
+(145, 'download-3.jpg', 84),
+(146, 'download-2.jpg', 84),
+(147, 'download-1.jpg', 84),
+(148, 'images.jpg', 85),
+(149, 'download-4.jpg', 85),
+(150, 'download-3.jpg', 85),
+(151, 'download-2.jpg', 85),
+(152, 'download-1.jpg', 85);
 
 -- --------------------------------------------------------
 
@@ -93,14 +80,10 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`ProductId`, `ProductName`, `ProductCode`, `ProductaddUserName`, `ProductDetail`, `ProductIdType`, `ProductDate`, `Status`, `ReBuild`) VALUES
-(56, 'elecrtic fuse-1', '2693787045', '3', 'changes', 74, '2020-12-06 07:08am', '0', 0),
-(60, 'elecrtic fuse', '8598705630', '3', 'asdasdasdasd', 75, '2020-12-06 01:48am', '2', 3),
-(61, 'light', 'asdasdeqwe', '3', 'asdasdsadasd', 75, '2020-12-11 05:14pm', '0', 0),
-(65, 'elecrtic fuse', '8472303117', '3', 'asdasda', 75, '2020-12-06 02:10am', '0', 0),
-(68, 'motor fuse', '9841179899', '3', 'asdsadasd', 74, '2020-12-06 05:51am', '0', 0),
-(69, 'asdasda', '8178347652', '3', 'What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting i', 75, '2020-12-06 05:54am', '0', 0),
-(70, 'elecrtic fuse', '5267679422', '3', 'demo', 75, '2020-12-10 02:14am', '0', 0),
-(82, 'elecrtic fuse', '3445924638', '3', 'testing', 75, '11-12-2020 07:42pm', '0', 0);
+(60, 'elecrtic fuse', '8598705630', '3', 'asdasdasdasd', 75, '2020-12-06 01:48am', '2', 1),
+(83, 'elecrtic fuse', '7569386465', '12', 'testing', 74, '01-01-2021 01:17pm', '0', 0),
+(84, 'bulb', '5850888844', '3', 'testing', 75, '01-01-2021 03:14pm', '0', 0),
+(85, 'elecrtic fuse', '9011523521', '20', 'testing', 80, '01-01-2021 04:05pm', '0', 0);
 
 -- --------------------------------------------------------
 
@@ -123,7 +106,8 @@ CREATE TABLE `producttype` (
 INSERT INTO `producttype` (`ProductTypeId`, `ProductName`, `ProductDescription`, `ProductCateAddUser`, `ProductCateDate`) VALUES
 (74, 'fuse', 'asdasdasd', 3, '2020-12-06 12:16am'),
 (75, 'bulb', 'asdasdas', 3, '2020-12-06 12:18am'),
-(79, 'abc2a', 'asdasdas', 3, '2020-12-10 02:22am');
+(79, 'abc2a', 'asdasdas', 3, '2020-12-10 02:22am'),
+(80, 'car fuse', 'testing', 20, '01-01-2021 04:04pm');
 
 -- --------------------------------------------------------
 
@@ -138,20 +122,21 @@ CREATE TABLE `register` (
   `password` varchar(50) NOT NULL,
   `role` varchar(50) NOT NULL,
   `status` varchar(50) NOT NULL,
-  `image` varchar(250) NOT NULL
+  `image` varchar(250) NOT NULL,
+  `superAdmin` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `register`
 --
 
-INSERT INTO `register` (`Id`, `name`, `email`, `password`, `role`, `status`, `image`) VALUES
-(3, 'Muhammad Amin Hussaini', 'aminasghar125@gmail.com', 'demo125', 'Admin', 'Accepted', '3pp.jpg'),
-(4, 'Ali', 'aminasghar5@gmail.com', 'demo', 'SRS', 'Accepted', '20151104_113813.jpg'),
-(12, 'Aizaz', 'twinmark01@gmail.com', 'demo23', 'Admin', 'Accepted', '12processed.jpeg'),
-(13, 'Irfan', 'irfanhaiderkhan12@yahoo.com', 'demo123', 'CPRI', 'Accepted', '13pp+.jpg'),
-(17, 'Ehtizan', 'aminasghar52@gmail.com', 'duck', 'SRS', 'Accepted', '170a1f820e29719c7b67e9d5aa44241155.jpg'),
-(19, 'shariq', 'shariq.shaikh109@gmail.com', 'demo', 'SRS', 'Accepted', 'processed.jpeg');
+INSERT INTO `register` (`Id`, `name`, `email`, `password`, `role`, `status`, `image`, `superAdmin`) VALUES
+(3, 'Muhammad Amin Hussaini', 'aminasghar125@gmail.com', 'demo125', 'Admin', 'Accepted', '3pp.jpg', 1),
+(12, 'Aizaz', 'twinmark01@gmail.com', 'demo123', 'Admin', 'Accepted', '12processed.jpeg', NULL),
+(13, 'Irfan', 'irfanhaiderkhan12@yahoo.com', 'demo123', 'CPRI', 'Accepted', '13pp+.jpg', NULL),
+(17, 'Ehtizan', 'aminasghar52@gmail.com', 'duck', 'SRS', 'Accepted', '170a1f820e29719c7b67e9d5aa44241155.jpg', NULL),
+(19, 'shariq', 'shariq.shaikh109@gmail.com', 'demo', 'SRS', 'Accepted', 'processed.jpeg', NULL),
+(20, 'Amin', 'aminasghar5@gmail.com', 'demo12', 'Admin', 'Accepted', 'pp.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -171,7 +156,8 @@ CREATE TABLE `sendfortest` (
 --
 
 INSERT INTO `sendfortest` (`sft_id`, `sendbyuser`, `productid`, `Datetime`) VALUES
-(49, 4, 60, '13-12-2020 04:11am');
+(51, 3, 60, '01-01-2021 03:07pm'),
+(52, 20, 85, '2021-01-01 04:06pm');
 
 -- --------------------------------------------------------
 
@@ -194,7 +180,7 @@ CREATE TABLE `testing` (
 --
 
 INSERT INTO `testing` (`TestingId`, `TestingType`, `ProductId`, `TestingCode`, `TestingUser`, `TestingDate`, `EndDate`) VALUES
-(37, 9, 60, '2029850851', 12, '13-12-2020 04:12am', '13-12-2020 04:12am');
+(39, 9, 60, '8779483095', 13, '01-01-2021 03:09pm', '01-01-2021 03:09pm');
 
 -- --------------------------------------------------------
 
@@ -207,18 +193,17 @@ CREATE TABLE `testingremark` (
   `Remark` text NOT NULL,
   `RemarkParent` int(11) NOT NULL,
   `RemarkUser` int(11) DEFAULT NULL,
-  `RemarkDate` varchar(50) DEFAULT NULL
+  `RemarkDate` varchar(50) DEFAULT NULL,
+  `Status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `testingremark`
 --
 
-INSERT INTO `testingremark` (`RemarkId`, `Remark`, `RemarkParent`, `RemarkUser`, `RemarkDate`) VALUES
-(39, 'fail', 60, 13, '13-12-2020 03:58am'),
-(40, 'again fail', 60, 13, '13-12-2020 04:00am'),
-(41, 'asdasdasd', 60, 13, '13-12-2020 04:01am'),
-(42, 'approved', 60, 12, '13-12-2020 04:12am');
+INSERT INTO `testingremark` (`RemarkId`, `Remark`, `RemarkParent`, `RemarkUser`, `RemarkDate`, `Status`) VALUES
+(44, 'need some improvement', 60, 13, '01-01-2021 03:07pm', 0),
+(45, 'approved', 60, 13, '01-01-2021 03:09pm', 1);
 
 -- --------------------------------------------------------
 
@@ -240,8 +225,8 @@ CREATE TABLE `testingtypes` (
 
 INSERT INTO `testingtypes` (`TestingTypeID`, `TestingTypeName`, `TestingTypeDescription`, `TestingCateAddUser`, `TestingCateDate`) VALUES
 (8, 'level-1', 'this is low testing', 3, '2020-12-11 04:52pm'),
-(9, 'level-3', 'asd', 3, '2020-12-11 06:42pm'),
-(10, 'level-2', 'asdasd', 13, '11-12-2020 06:12pm');
+(9, 'level-2', 'this is medium testing', 3, '2020-12-11 06:42pm'),
+(10, 'level-3', 'this is hard testing', 13, '11-12-2020 06:12pm');
 
 -- --------------------------------------------------------
 
@@ -331,43 +316,43 @@ ALTER TABLE `uploading`
 -- AUTO_INCREMENT for table `multiimages`
 --
 ALTER TABLE `multiimages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `ProductId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `ProductId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `producttype`
 --
 ALTER TABLE `producttype`
-  MODIFY `ProductTypeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `ProductTypeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `sendfortest`
 --
 ALTER TABLE `sendfortest`
-  MODIFY `sft_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `sft_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `testing`
 --
 ALTER TABLE `testing`
-  MODIFY `TestingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `TestingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `testingremark`
 --
 ALTER TABLE `testingremark`
-  MODIFY `RemarkId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `RemarkId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `testingtypes`

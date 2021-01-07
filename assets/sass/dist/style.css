@@ -5836,7 +5836,7 @@ table.data-table7 a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("../img/lock-screen-1920x1080.jpg");
+  background-image: url("../img/bulb.jpg");
   background-size: cover;
   background-position: center center;
   z-index: 2;
@@ -5950,7 +5950,7 @@ table.data-table7 a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("../img/lock-screen-1920x1080.jpg");
+  background-image: url("../img/bulb.jpg");
   background-size: cover;
   background-position: center center;
   z-index: 2;
@@ -9332,4 +9332,26 @@ div.table-responsive > div.dataTables_wrapper > div.row {
 .testing-detail .btn-danger {
   background-color: #db3c36;
   border-color: #db3c36;
+}
+
+.ms-chat-conversations .ms-panel-body .ms-chat-message.ms-chat-outgoing p, .ms-chat-conversations .ms-panel-body .ms-chat-message.ms-chat-incoming p {
+  color: var(--white);
+}
+.ms-chat-conversations .ms-panel-body .ms-chat-message.ms-chat-outgoing p.reject, .ms-chat-conversations .ms-panel-body .ms-chat-message.ms-chat-incoming p.reject {
+  background-color: #db3c36;
+}
+.ms-chat-conversations .ms-panel-body .ms-chat-message.ms-chat-outgoing p.approved, .ms-chat-conversations .ms-panel-body .ms-chat-message.ms-chat-incoming p.approved {
+  background-color: #0d9c12;
+}
+.ms-chat-conversations .ms-panel-body .ms-chat-message.ms-chat-incoming .ms-chat-text p.reject:after {
+  border-right-color: #db3c36;
+}
+.ms-chat-conversations .ms-panel-body .ms-chat-message.ms-chat-incoming .ms-chat-text p.approved:after {
+  border-right-color: #0d9c12;
+}
+.ms-chat-conversations .ms-panel-body .ms-chat-message.ms-chat-outgoing .ms-chat-text p.reject:after {
+  border-left-color: #db3c36;
+}
+.ms-chat-conversations .ms-panel-body .ms-chat-message.ms-chat-outgoing .ms-chat-text p.approved:after {
+  border-left-color: #0d9c12;
 }

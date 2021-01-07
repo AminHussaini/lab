@@ -259,6 +259,12 @@ if (isset($_GET['id'])) {
               $testing = "SELECT * FROM testing where ProductId=" . $productrow['ProductId'] . "";
               $getTesting = mysqli_query($con, $testing);
               $getTestingList = mysqli_fetch_assoc($getTesting);
+              if ($fetch["Status"] == 0) {
+                $status= "reject";
+
+              }else {
+                $status= "approved";
+              }
               echo '
                   <div class="ms-chat-bubble ms-chat-message ms-chat-incoming media clearfix">
                     <div class="ms-chat-img">
@@ -266,7 +272,7 @@ if (isset($_GET['id'])) {
                     </div>
                     <div class="media-body">
                       <div class="ms-chat-text">
-                        <p style="text-transform: capitalize;">
+                      <p class="'.$status.'">
                         ' . $fetch["Remark"] . '
                         </p>
                       </div>
